@@ -18,5 +18,10 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "@popperjs/core": "^2.11.8",
+        "@symfony/stimulus-bundle": "^2.23.0",
+        "bootstrap": "^5.3.3"
     }
 }
