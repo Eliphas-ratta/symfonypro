@@ -1,27 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil | Project Fantasia{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    <h2>🎉 You are loged as {{ app.user.username }}</h2>
-    <a class="btn btn-danger" href="{{ path('app_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-    <form id="logout-form" action="{{ path('app_logout') }}" method="POST" style="display: none;">
-        <input type="hidden" name="_target_path" value="{{ path('app_register') }}">
-    </form>
-    <a class="btn btn-primary "href="{{ path('app_profile') }}">Go to Profile</a>
-    
-    <p>This friendly message is coming from:</p>
-    <ul>
-        <li>Your controller at <code>C:/wamp64/www/Project_fantasy/Project_Fantasia/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>C:/wamp64/www/Project_fantasy/Project_Fantasia/templates/home/index.html.twig</code></li>
-    </ul>
+<div class="container my-5">
+    <div class="row g-4">
+        
+            <div class="col-12 col-md-4"> <!-- 3 colonnes sur desktop, 1 sur mobile -->
+                <div class="card text-center bg-dark text-white border-0 shadow-lg ">
+                    <div class="bg-light text-dark p-5 rounded-top ">
+                        Image
+                    </div>
+                    <div class="card-body bg-gray rounded-bottom">
+                        <h5 class="card-title">Titre</h5>
+                        <a href="#" class="btn btn-danger w-40">Bouton</a>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
 </div>
 {% endblock %}
