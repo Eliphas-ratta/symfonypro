@@ -19,8 +19,6 @@ class RegistrationController extends AbstractController
     public function register(
         Request $request,
         UserPasswordHasherInterface $passwordHasher,
-        UserAuthenticatorInterface $userAuthenticator,
-        LoginFormAuthenticator $authenticator,
         EntityManagerInterface $entityManager
     ): Response {
         $user = new User();
@@ -36,17 +34,26 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            // Définir le rôle par défaut
-            $user->setRoles(['ROLE_USER']);
+            // Gestion de l'upload du fichier
+            $profileImage = $form->get('profileImage')->getData();
+
+            if ($profileImage) {
+                $newFilename = uniqid().'.'.$profileImage->guessExtension();
+
+                // Déplacer le fichier vers le répertoire configuré
+                $profileImage->move(
+                    $this->getParameter('profile_images_directory'),
+                    $newFilename
+                );
+
+                // Stocker le nom du fichier dans l'entité
+                $user->setProfileImage($newFilename);
+            }
 
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $userAuthenticator->authenticateUser(
-                $user,
-                $authenticator,
-                $request
-            );
+            return $this->redirectToRoute('app_home');
         }
 
         return $this->render('registration/register.html.twig', [
