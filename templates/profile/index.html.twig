@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block body %}
+    <h1>Bienvenue sur votre profil, {{ user.username }} ! 👋</h1>
+
+    <ul>
+        <li><strong>Email :</strong> {{ user.email }}</li>
+        <li><strong>Username :</strong> {{ user.username }}</li>
+        <li><strong>Rôle :</strong> {{ user.roles|join(', ') }}</li>
+        {% if user.profileImage %}
+            <li>
+                <strong>Photo de profil :</strong>
+                <img src="{{ asset('uploads/profile_images/' ~ user.profileImage) }}" alt="Photo de profil" style="width:150px; border-radius:50%;">
+            </li>
+        {% endif %}
+    </ul>
+
+    <a href="{{ path('app_home') }}" class="btn btn-primary">Retour à l'accueil</a>
+{% endblock %}

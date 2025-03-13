@@ -12,12 +12,12 @@
     <h1>Hello {{ controller_name }}! ✅</h1>
 
     <h2>🎉 You are loged as {{ app.user.username }}</h2>
-    <a href="{{ path('app_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+    <a class="btn btn-danger" href="{{ path('app_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
     <form id="logout-form" action="{{ path('app_logout') }}" method="POST" style="display: none;">
         <input type="hidden" name="_target_path" value="{{ path('app_register') }}">
     </form>
+    <a class="btn btn-primary "href="{{ path('app_profile') }}">Go to Profile</a>
     
-
     <p>This friendly message is coming from:</p>
     <ul>
         <li>Your controller at <code>C:/wamp64/www/Project_fantasy/Project_Fantasia/src/Controller/HomeController.php</code></li>
