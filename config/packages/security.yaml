@@ -25,6 +25,7 @@ security:
             logout:
                 path: app_logout           # Route de déconnexion
             custom_authenticator: App\Security\LoginFormAuthenticator  # Ton authenticator personnalisé
+            access_denied_url: app_login   # Redirige vers la page de connexion si non connecté
 
     access_control:
         - { path: ^/login, roles: PUBLIC_ACCESS }       # Page de connexion accessible sans être connecté

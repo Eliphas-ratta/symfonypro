@@ -11,7 +11,14 @@
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
+    <h2>🎉 You are loged as {{ app.user.username }}</h2>
+    <a href="{{ path('app_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+    <form id="logout-form" action="{{ path('app_logout') }}" method="POST" style="display: none;">
+        <input type="hidden" name="_target_path" value="{{ path('app_register') }}">
+    </form>
+    
+
+    <p>This friendly message is coming from:</p>
     <ul>
         <li>Your controller at <code>C:/wamp64/www/Project_fantasy/Project_Fantasia/src/Controller/HomeController.php</code></li>
         <li>Your template at <code>C:/wamp64/www/Project_fantasy/Project_Fantasia/templates/home/index.html.twig</code></li>
