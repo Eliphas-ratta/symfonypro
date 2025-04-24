@@ -28,7 +28,8 @@ class World
     /**
      * @var Collection<int, User>
      */
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'User_has_World')]
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'worlds')]
+
     private Collection $users;
 
     /**
@@ -92,62 +93,42 @@ class World
         $this->World_Race = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+    public function getId(): ?int { return $this->id; }
 
-    public function getName(): ?string
-    {
-        return $this->Name;
-    }
+    public function getName(): ?string { return $this->Name; }
 
     public function setName(string $Name): static
     {
         $this->Name = $Name;
-
         return $this;
     }
 
-    public function getDescription(): ?string
-    {
-        return $this->Description;
-    }
+    public function getDescription(): ?string { return $this->Description; }
 
     public function setDescription(?string $Description): static
     {
         $this->Description = $Description;
-
         return $this;
     }
 
-    public function getWorldimage(): ?string
-    {
-        return $this->Worldimage;
-    }
+    public function getWorldimage(): ?string { return $this->Worldimage; }
 
     public function setWorldimage(?string $Worldimage): static
     {
         $this->Worldimage = $Worldimage;
-
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
+    /** @return Collection<int, User> */
+    public function getUsers(): Collection { return $this->users; }
 
     public function addUser(User $user): static
     {
         if (!$this->users->contains($user)) {
             $this->users->add($user);
-            $user->addUserHasWorld($this);
-        }
+            $user->addWorld($this);
 
+        }
         return $this;
     }
 
@@ -156,241 +137,177 @@ class World
         if ($this->users->removeElement($user)) {
             $user->removeUserHasWorld($this);
         }
-
         return $this;
     }
 
-    /**
-     * @return Collection<int, Guild>
-     */
-    public function getWorldGuild(): Collection
-    {
-        return $this->World_Guild;
-    }
+    /** @return Collection<int, Guild> */
+    public function getWorldGuild(): Collection { return $this->World_Guild; }
 
-    public function addWorldGuild(Guild $worldGuild): static
+    public function addWorldGuild(Guild $guild): static
     {
-        if (!$this->World_Guild->contains($worldGuild)) {
-            $this->World_Guild->add($worldGuild);
+        if (!$this->World_Guild->contains($guild)) {
+            $this->World_Guild->add($guild);
         }
-
         return $this;
     }
 
-    public function removeWorldGuild(Guild $worldGuild): static
+    public function removeWorldGuild(Guild $guild): static
     {
-        $this->World_Guild->removeElement($worldGuild);
-
+        $this->World_Guild->removeElement($guild);
         return $this;
     }
 
-    /**
-     * @return Collection<int, Faction>
-     */
-    public function getWorldFaction(): Collection
-    {
-        return $this->World_Faction;
-    }
+    /** @return Collection<int, Faction> */
+    public function getWorldFaction(): Collection { return $this->World_Faction; }
 
-    public function addWorldFaction(Faction $worldFaction): static
+    public function addWorldFaction(Faction $faction): static
     {
-        if (!$this->World_Faction->contains($worldFaction)) {
-            $this->World_Faction->add($worldFaction);
-            $worldFaction->setFactionWorld($this);
+        if (!$this->World_Faction->contains($faction)) {
+            $this->World_Faction->add($faction);
+            $faction->setFactionWorld($this);
         }
-
         return $this;
     }
 
-    public function removeWorldFaction(Faction $worldFaction): static
+    public function removeWorldFaction(Faction $faction): static
     {
-        if ($this->World_Faction->removeElement($worldFaction)) {
-            // set the owning side to null (unless already changed)
-            if ($worldFaction->getFactionWorld() === $this) {
-                $worldFaction->setFactionWorld(null);
+        if ($this->World_Faction->removeElement($faction)) {
+            if ($faction->getFactionWorld() === $this) {
+                $faction->setFactionWorld(null);
             }
         }
-
         return $this;
     }
 
-    /**
-     * @return Collection<int, Capacity>
-     */
-    public function getWorldCapacity(): Collection
-    {
-        return $this->World_Capacity;
-    }
+    /** @return Collection<int, Capacity> */
+    public function getWorldCapacity(): Collection { return $this->World_Capacity; }
 
-    public function addWorldCapacity(Capacity $worldCapacity): static
+    public function addWorldCapacity(Capacity $capacity): static
     {
-        if (!$this->World_Capacity->contains($worldCapacity)) {
-            $this->World_Capacity->add($worldCapacity);
-            $worldCapacity->setCapacityWorld($this);
+        if (!$this->World_Capacity->contains($capacity)) {
+            $this->World_Capacity->add($capacity);
+            $capacity->setCapacityWorld($this);
         }
-
         return $this;
     }
 
-    public function removeWorldCapacity(Capacity $worldCapacity): static
+    public function removeWorldCapacity(Capacity $capacity): static
     {
-        if ($this->World_Capacity->removeElement($worldCapacity)) {
-            // set the owning side to null (unless already changed)
-            if ($worldCapacity->getCapacityWorld() === $this) {
-                $worldCapacity->setCapacityWorld(null);
+        if ($this->World_Capacity->removeElement($capacity)) {
+            if ($capacity->getCapacityWorld() === $this) {
+                $capacity->setCapacityWorld(null);
             }
         }
-
         return $this;
     }
 
-    /**
-     * @return Collection<int, City>
-     */
-    public function getWorldCity(): Collection
-    {
-        return $this->World_City;
-    }
+    /** @return Collection<int, City> */
+    public function getWorldCity(): Collection { return $this->World_City; }
 
-    public function addWorldCity(City $worldCity): static
+    public function addWorldCity(City $city): static
     {
-        if (!$this->World_City->contains($worldCity)) {
-            $this->World_City->add($worldCity);
-            $worldCity->setCityWorld($this);
+        if (!$this->World_City->contains($city)) {
+            $this->World_City->add($city);
+            $city->setCityWorld($this);
         }
-
         return $this;
     }
 
-    public function removeWorldCity(City $worldCity): static
+    public function removeWorldCity(City $city): static
     {
-        if ($this->World_City->removeElement($worldCity)) {
-            // set the owning side to null (unless already changed)
-            if ($worldCity->getCityWorld() === $this) {
-                $worldCity->setCityWorld(null);
+        if ($this->World_City->removeElement($city)) {
+            if ($city->getCityWorld() === $this) {
+                $city->setCityWorld(null);
             }
         }
-
         return $this;
     }
 
-    /**
-     * @return Collection<int, Continent>
-     */
-    public function getWorldContinent(): Collection
-    {
-        return $this->World_Continent;
-    }
+    /** @return Collection<int, Continent> */
+    public function getWorldContinent(): Collection { return $this->World_Continent; }
 
-    public function addWorldContinent(Continent $worldContinent): static
+    public function addWorldContinent(Continent $continent): static
     {
-        if (!$this->World_Continent->contains($worldContinent)) {
-            $this->World_Continent->add($worldContinent);
-            $worldContinent->setContinentWorld($this);
+        if (!$this->World_Continent->contains($continent)) {
+            $this->World_Continent->add($continent);
+            $continent->setContinentWorld($this);
         }
-
         return $this;
     }
 
-    public function removeWorldContinent(Continent $worldContinent): static
+    public function removeWorldContinent(Continent $continent): static
     {
-        if ($this->World_Continent->removeElement($worldContinent)) {
-            // set the owning side to null (unless already changed)
-            if ($worldContinent->getContinentWorld() === $this) {
-                $worldContinent->setContinentWorld(null);
+        if ($this->World_Continent->removeElement($continent)) {
+            if ($continent->getContinentWorld() === $this) {
+                $continent->setContinentWorld(null);
             }
         }
-
         return $this;
     }
 
-    /**
-     * @return Collection<int, Hero>
-     */
-    public function getWorldHero(): Collection
-    {
-        return $this->World_Hero;
-    }
+    /** @return Collection<int, Hero> */
+    public function getWorldHero(): Collection { return $this->World_Hero; }
 
-    public function addWorldHero(Hero $worldHero): static
+    public function addWorldHero(Hero $hero): static
     {
-        if (!$this->World_Hero->contains($worldHero)) {
-            $this->World_Hero->add($worldHero);
-            $worldHero->setHeroWorld($this);
+        if (!$this->World_Hero->contains($hero)) {
+            $this->World_Hero->add($hero);
+            $hero->setHeroWorld($this);
         }
-
         return $this;
     }
 
-    public function removeWorldHero(Hero $worldHero): static
+    public function removeWorldHero(Hero $hero): static
     {
-        if ($this->World_Hero->removeElement($worldHero)) {
-            // set the owning side to null (unless already changed)
-            if ($worldHero->getHeroWorld() === $this) {
-                $worldHero->setHeroWorld(null);
+        if ($this->World_Hero->removeElement($hero)) {
+            if ($hero->getHeroWorld() === $this) {
+                $hero->setHeroWorld(null);
             }
         }
-
         return $this;
     }
 
-    /**
-     * @return Collection<int, Domain>
-     */
-    public function getWorldDomain(): Collection
-    {
-        return $this->World_Domain;
-    }
+    /** @return Collection<int, Domain> */
+    public function getWorldDomain(): Collection { return $this->World_Domain; }
 
-    public function addWorldDomain(Domain $worldDomain): static
+    public function addWorldDomain(Domain $domain): static
     {
-        if (!$this->World_Domain->contains($worldDomain)) {
-            $this->World_Domain->add($worldDomain);
-            $worldDomain->setDomainWorld($this);
+        if (!$this->World_Domain->contains($domain)) {
+            $this->World_Domain->add($domain);
+            $domain->setDomainWorld($this);
         }
-
         return $this;
     }
 
-    public function removeWorldDomain(Domain $worldDomain): static
+    public function removeWorldDomain(Domain $domain): static
     {
-        if ($this->World_Domain->removeElement($worldDomain)) {
-            // set the owning side to null (unless already changed)
-            if ($worldDomain->getDomainWorld() === $this) {
-                $worldDomain->setDomainWorld(null);
+        if ($this->World_Domain->removeElement($domain)) {
+            if ($domain->getDomainWorld() === $this) {
+                $domain->setDomainWorld(null);
             }
         }
-
         return $this;
     }
 
-    /**
-     * @return Collection<int, Race>
-     */
-    public function getWorldRace(): Collection
-    {
-        return $this->World_Race;
-    }
+    /** @return Collection<int, Race> */
+    public function getWorldRace(): Collection { return $this->World_Race; }
 
-    public function addWorldRace(Race $worldRace): static
+    public function addWorldRace(Race $race): static
     {
-        if (!$this->World_Race->contains($worldRace)) {
-            $this->World_Race->add($worldRace);
-            $worldRace->setRaceWorld($this);
+        if (!$this->World_Race->contains($race)) {
+            $this->World_Race->add($race);
+            $race->setRaceWorld($this);
         }
-
         return $this;
     }
 
-    public function removeWorldRace(Race $worldRace): static
+    public function removeWorldRace(Race $race): static
     {
-        if ($this->World_Race->removeElement($worldRace)) {
-            // set the owning side to null (unless already changed)
-            if ($worldRace->getRaceWorld() === $this) {
-                $worldRace->setRaceWorld(null);
+        if ($this->World_Race->removeElement($race)) {
+            if ($race->getRaceWorld() === $this) {
+                $race->setRaceWorld(null);
             }
         }
-
         return $this;
     }
 }

@@ -52,7 +52,8 @@ final class WorldController extends AbstractController
             return $this->redirectToRoute('app_world');
         }
 
-        $userWorlds = $user->getUserHasWorld();
+        $userWorlds = $user->getWorlds();
+
 
         return $this->render('world/index.html.twig', [
             'form' => $form->createView(),

@@ -8,7 +8,6 @@ use Doctrine\DBAL\Types\Types;
 use App\Repository\GuildRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-
 #[ORM\Entity(repositoryClass: GuildRepository::class)]
 class Guild
 {
@@ -53,7 +52,7 @@ class Guild
     /**
      * @var Collection<int, Hero>
      */
-    #[ORM\ManyToMany(targetEntity: Hero::class, mappedBy: 'guild')]
+    #[ORM\ManyToMany(targetEntity: Hero::class, mappedBy: 'guilds')]
     private Collection $heroes;
 
     public function __construct()
@@ -233,6 +232,4 @@ class Guild
 
         return $this;
     }
-
-  
 }

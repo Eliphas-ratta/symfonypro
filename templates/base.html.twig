@@ -27,7 +27,8 @@
         <li><a href="{{ path('app_world') }}" class="text-white text-decoration-none">Worlds</a></li>
 
         {# Si un monde est sélectionné, afficher la navigation liée au monde #}
-        {% if world is defined %}
+        {% if world is defined and world is not null %}
+
             <li><a href="{{ path('app_factions', {'worldId': world.id}) }}" class="text-white text-decoration-none">Factions</a></li>
             <li><a href="{{ path('app_hero', {'worldId': world.id}) }}" class="text-white text-decoration-none">Heroes</a></li>
             <li><a href="{{ path('app_races', {'worldId': world.id}) }}" class="text-white text-decoration-none">Races</a></li>

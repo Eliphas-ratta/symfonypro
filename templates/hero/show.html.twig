@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ hero.name }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .hero-image {
+            max-width: 300px;
+            border-radius: 1rem;
+            object-fit: cover;
+        }
+
+        .hero-description {
+            white-space: pre-line;
+        }
+
+        .faction-card {
+            background-color: #1c1c1c;
+            padding: 1rem;
+            border-radius: 1rem;
+            text-align: center;
+        }
+
+        .faction-card img {
+            border-radius: 0.75rem;
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .faction-card .title {
+            font-weight: bold;
+            margin-top: 0.5rem;
+            color: #66ccff;
+        }
+
+        @media (max-width: 768px) {
+            .hero-flex {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .faction-card {
+                margin-top: 2rem;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="container text-white my-5">
+    <div class="d-flex justify-content-between align-items-start hero-flex gap-4 flex-wrap">
+
+        {# Image du héros #}
+        <div>
+            {% if hero.imageHero %}
+                <img src="{{ asset('uploads/heroes/' ~ hero.imageHero) }}" alt="{{ hero.name }}" class="hero-image">
+            {% endif %}
+        </div>
+
+        {# Infos principales #}
+        <div class="flex-grow-1">
+            <h2 class="text-danger fw-bold">{{ hero.name }}</h2>
+            <p><strong>Âge :</strong> {{ hero.age ? hero.age ~ ' ans' : 'Inconnu' }}</p>
+            <p><strong>Taille :</strong> {{ hero.size }}</p>
+            <p><strong>Fonction :</strong> {{ hero.fonction ?: 'Inconnue' }}</p>
+            <p class="hero-description"><strong>Description :</strong> {{ hero.description }}</p>
+        </div>
+
+        {# Bloc faction #}
+        {% if hero.factions|length > 0 %}
+        <div class="faction-card">
+            <p class="fw-bold">Faction</p>
+            {% set faction = hero.factions[0] %}
+
+            {% if faction.image %}
+            <img src="{{ asset('uploads/factions/' ~ faction.image) }}" alt="{{ faction.name }}">
+            {% endif %}
+            <div class="title mt-2">{{ faction.name }}</div>
+            <small class="text-muted">{{ faction.regime }}</small>
+        </div>
+{% endif %}
+
+    </div>
+</div>
+{% endblock %}

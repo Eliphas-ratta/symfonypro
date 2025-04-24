@@ -38,12 +38,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var Collection<int, World>
      */
-    #[ORM\ManyToMany(targetEntity: World::class, inversedBy: 'users')]
-    private Collection $userHasWorld;
+    #[ORM\ManyToMany(targetEntity: World::class, mappedBy: 'users')]
+    private Collection $worlds;
 
     public function __construct()
     {
-        $this->userHasWorld = new ArrayCollection();
+        $this->worlds = new ArrayCollection();
         $this->roles = ['ROLE_USER'];
     }
 
@@ -86,14 +86,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     public function getRoles(): array
-{
-    $roles = $this->roles;
-
-    // Garantit que chaque utilisateur a au moins le rôle 'ROLE_USER'
-    $roles[] = 'ROLE_USER';
-
-    return array_unique($roles);
-}
+    {
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+        return array_unique($roles);
+    }
 
     public function setRoles(array $roles): self
     {
@@ -114,34 +111,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function eraseCredentials(): void
     {
-        // Méthode vide mais nécessaire pour l'interface
+        // Méthode vide requise par l’interface
     }
 
     public function getUserIdentifier(): string
     {
-        return $this->email; // Correspond à l'identifiant unique (username ou email selon ton choix)
+        return $this->email;
     }
 
     /**
      * @return Collection<int, World>
      */
-    public function getUserHasWorld(): Collection
+    public function getWorlds(): Collection
     {
-        return $this->userHasWorld;
+        return $this->worlds;
     }
 
-    public function addUserHasWorld(World $userHasWorld): static
+    public function addWorld(World $world): static
     {
-        if (!$this->userHasWorld->contains($userHasWorld)) {
-            $this->userHasWorld->add($userHasWorld);
+        if (!$this->worlds->contains($world)) {
+            $this->worlds->add($world);
+            $world->addUser($this); // Important si la méthode existe dans World
         }
 
         return $this;
     }
 
-    public function removeUserHasWorld(World $userHasWorld): static
+    public function removeWorld(World $world): static
     {
-        $this->userHasWorld->removeElement($userHasWorld);
+        if ($this->worlds->removeElement($world)) {
+            $world->removeUser($this); // Important si la méthode existe dans World
+        }
+
         return $this;
     }
 }

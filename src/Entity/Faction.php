@@ -47,6 +47,7 @@ class Faction
      * @var Collection<int, Hero>
      */
     #[ORM\ManyToMany(targetEntity: Hero::class, inversedBy: 'Faction_Dirigeant')]
+
     #[ORM\JoinTable(name: 'faction_dirigeant')]
     private Collection $Dirigeant_hero;
     
