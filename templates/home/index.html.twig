@@ -1,22 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil | Project Fantasia{% endblock %}
+{% block title %}Home | Project Fantasia{% endblock %}
 
 {% block body %}
-<div class="container my-5">
-    <div class="row g-4">
-        
-            <div class="col-12 col-md-4"> <!-- 3 colonnes sur desktop, 1 sur mobile -->
-                <div class="card text-white">
-                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
-                    <div class="card-body bg-gray rounded-bottom d-flex justify-content-center align-items-center flex-column">
-                        <h5 class="card-title">Titre</h5>
-                        <p class="text-center card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, voluptates.</p>
-                        <a href="#" class="btn btn-danger w-40">Bouton</a>
+<div class="container my-5 text-white">
+
+    <!-- Section d'introduction -->
+    <section class="text-center mb-5">
+        <h2 class="display-4 fw-bold">Welcome to Project Fantasia</h2>
+        <p class="fs-5 mt-3">
+            Project Fantasia is a world-building tool designed for fantasy lovers, writers, and game masters.
+            Create rich universes filled with factions, races, heroes, guilds and more — all in one place.
+        </p>
+    </section>
+
+    <!-- Section "How to create worlds" -->
+    <section class="row justify-content-center mb-5">
+        <div class="col-md-8">
+            <div class="card border-0 text-white shadow rounded-4">
+                <div class="card-body p-5">
+                    <h2 class="card-title text-center mb-4">Start Building Your World</h2>
+                    <p class="card-text text-center">
+                        Dive into our intuitive interface to create your own fantasy world. Add custom continents, factions, races, heroes, and link them together.
+                        Whether you're crafting a campaign or designing a lore-rich story, Project Fantasia gives you full control.
+                    </p>
+                    <div class="text-center mt-4">
+                        <a href="{{ path('app_world') }}" class="btn btn-danger px-4 py-2">Create Your World</a>
                     </div>
                 </div>
             </div>
-        
-    </div>
+        </div>
+    </section>
+
 </div>
 {% endblock %}

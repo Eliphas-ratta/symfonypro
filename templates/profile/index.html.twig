@@ -1,21 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon Profil{% endblock %}
+{% block title %}My Profile{% endblock %}
 
 {% block body %}
-    <h1>Bienvenue sur votre profil, {{ user.username }} ! 👋</h1>
+<div class="container mt-5">
+    <div class="card shadow-lg p-4" style="background-color: #383838; color: #ffffff;">
+        <div class="card-body text-center">
+            <h1 class="mb-4"> Welcome, {{ user.username }}!</h1>
 
-    <ul>
-        <li><strong>Email :</strong> {{ user.email }}</li>
-        <li><strong>Username :</strong> {{ user.username }}</li>
-        <li><strong>Rôle :</strong> {{ user.roles|join(', ') }}</li>
-        {% if user.profileImage %}
-            <li>
-                <strong>Photo de profil :</strong>
-                <img src="{{ asset('uploads/profile_images/' ~ user.profileImage) }}" alt="Photo de profil" style="width:150px; border-radius:50%;">
-            </li>
-        {% endif %}
-    </ul>
+            {% if user.profileImage %}
+                <img src="{{ asset('uploads/profile_images/' ~ user.profileImage) }}" 
+                     alt="Profile Image" 
+                     class="rounded-circle mb-3" 
+                     style="width: 150px; height: 150px; object-fit: cover; border: 3px solid #4CAF50;">
+            {% else %}
+                <img src="{{ asset('images/default_profile.png') }}" 
+                     alt="Default Profile Image" 
+                     class="rounded-circle mb-3" 
+                     style="width: 150px; height: 150px; object-fit: cover; border: 3px solid #4CAF50;">
+            {% endif %}
 
-    <a href="{{ path('app_home') }}" class="btn btn-primary">Retour à l'accueil</a>
+            <ul class="list-group text-start" style="background-color: transparent; border: none;">
+                <li class="list-group-item" style="background-color: #383838; color: #ffffff; border: none;">
+                    <strong> Email:</strong> {{ user.email }}
+                </li>
+                <li class="list-group-item" style="background-color: #383838; color: #ffffff; border: none;">
+                    <strong> Username:</strong> {{ user.username }}
+                </li>
+                <li class="list-group-item" style="background-color: #383838; color: #ffffff; border: none;">
+                    <strong> Role(s):</strong> {{ user.roles|join(', ') }}
+                </li>
+            </ul>
+
+            <div class="mt-4">
+                <a href="{{ path('app_home') }}" class="btn btn-outline-primary">
+                    Return to Home
+                </a>
+
+                <a href="{{ path('app_logout') }}" class="btn btn-danger ms-2">
+                     Logout
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

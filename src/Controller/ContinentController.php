@@ -8,11 +8,12 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class ContinentController extends AbstractController
 {
-    #[Route('/continent', name: 'app_continent')]
-    public function index(): Response
-    {
-        return $this->render('continent/index.html.twig', [
-            'controller_name' => 'ContinentController',
-        ]);
-    }
+    #[Route('/world/{worldId}/continents', name: 'app_continents')]
+public function index(int $worldId): Response
+{
+    return $this->render('continent/index.html.twig', [
+        'worldId' => $worldId,
+    ]);
+}
+
 }

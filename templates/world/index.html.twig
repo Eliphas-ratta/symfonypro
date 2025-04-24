@@ -1,20 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello WorldController!{% endblock %}
+{% block title %}Your Worlds{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="container my-5 ">
+    <div class=""> 
+    <h2 class="mb-4">Create a New World</h2>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/wamp64/www/Project_fantasy/Project_Fantasia/src/Controller/WorldController.php</code></li>
-        <li>Your template at <code>C:/wamp64/www/Project_fantasy/Project_Fantasia/templates/world/index.html.twig</code></li>
-    </ul>
+    <div class="mb-3">
+        {{ form_label(form.Name) }}
+        {{ form_widget(form.Name) }}
+    </div>
+    <div class="mb-3">
+        {{ form_label(form.Description) }}
+        {{ form_widget(form.Description) }}
+    </div>
+    <div class="mb-3">
+        {{ form_label(form.Worldimage) }}
+        {{ form_widget(form.Worldimage) }}
+    </div>
+    <button type="submit" class="btn btn-danger">Create World</button>
+{{ form_end(form) }}
+</div>
+
+<hr class="my-5">
+
+<h2>Your Worlds</h2>
+
+{% if userWorlds is not empty %}
+    <div class="row">
+        {% for world in userWorlds %}
+            <div class="col-md-4 mb-3">
+                <div class="card bg-dark text-white">
+                    {% if world.worldimage %}
+                        <img src="{{ asset('uploads/world_images/' ~ world.worldimage) }}" class="card-img-top" alt="...">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ world.name }}</h5>
+                        <p class="card-text">{{ world.description|slice(0, 100) ~ '...' }}</p>
+                        <a href="{{ path('app_world_show', {id: world.id}) }}" class="btn btn-outline-light">Open</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p class="text-muted">You haven't created any worlds yet.</p>
+{% endif %}
 </div>
 {% endblock %}

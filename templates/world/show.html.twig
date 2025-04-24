@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ world.name }} - Dashboard{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <h1 class="mb-4">{{ world.name }}</h1>
+    <p>{{ world.description }}</p>
+
+ {% if world.worldimage %}
+    <img src="{{ asset('uploads/world_images/' ~ world.worldimage) }}" alt="{{ world.name }}" class="img-fluid mb-4" style="max-width: 300px; height: auto; border-radius: 10px;">
+{% endif %}
+
+
+    <!-- Onglets de navigation -->
+    <ul class="nav nav-tabs" id="worldTabs" role="tablist">
+        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#factions">Factions</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#heroes">Heroes</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#guilds">Guilds</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#races">Races</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#continents">Continents</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#domains">Domains of Magic</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#capacities">Magical Capacities</a></li>
+    </ul>
+
+    <!-- Contenu des onglets -->
+    <div class="tab-content mt-4">
+
+        <!-- Factions -->
+        <div class="tab-pane fade show active" id="factions">
+            <h3>Factions</h3>
+            {% if factions is not empty %}
+                <ul>
+                    {% for faction in factions %}
+                        <li><a href="{{ path('app_faction_show', {id: faction.id}) }}">{{ faction.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-muted">No factions yet.</p>
+            {% endif %}
+        </div>
+
+        <!-- Heroes -->
+        <div class="tab-pane fade" id="heroes">
+            <h3>Heroes</h3>
+            {% if heroes is not empty %}
+                <ul>
+                    {% for hero in heroes %}
+                        <li><a href="{{ path('app_hero_show', {id: hero.id}) }}">{{ hero.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-muted">No heroes yet.</p>
+            {% endif %}
+        </div>
+
+        <!-- Guilds -->
+        <div class="tab-pane fade" id="guilds">
+            <h3>Guilds</h3>
+            {% if guilds is not empty %}
+                <ul>
+                    {% for guild in guilds %}
+                        <li><a href="{{ path('app_guild_show', {id: guild.id}) }}">{{ guild.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-muted">No guilds yet.</p>
+            {% endif %}
+        </div>
+
+        <!-- Races -->
+        <div class="tab-pane fade" id="races">
+            <h3>Races</h3>
+            {% if races is not empty %}
+                <ul>
+                    {% for race in races %}
+                        <li><a href="{{ path('app_race_show', {id: race.id}) }}">{{ race.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-muted">No races yet.</p>
+            {% endif %}
+        </div>
+
+        <!-- Continents -->
+        <div class="tab-pane fade" id="continents">
+            <h3>Continents</h3>
+            {% if continents is not empty %}
+                <ul>
+                    {% for continent in continents %}
+                        <li><a href="{{ path('app_continent_show', {id: continent.id}) }}">{{ continent.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-muted">No continents yet.</p>
+            {% endif %}
+        </div>
+
+        <!-- Domains -->
+        <div class="tab-pane fade" id="domains">
+            <h3>Domains of Magic</h3>
+            {% if domains is not empty %}
+                <ul>
+                    {% for domain in domains %}
+                        <li><a href="{{ path('app_domain_show', {id: domain.id}) }}">{{ domain.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-muted">No domains yet.</p>
+            {% endif %}
+        </div>
+
+        <!-- Capacities -->
+        <div class="tab-pane fade" id="capacities">
+            <h3>Magical Capacities</h3>
+            {% if capacities is not empty %}
+                <ul>
+                    {% for capacity in capacities %}
+                        <li><a href="{{ path('app_capacity_show', {id: capacity.id}) }}">{{ capacity.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-muted">No magical capacities yet.</p>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+{% endblock %}

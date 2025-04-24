@@ -8,11 +8,12 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class RaceController extends AbstractController
 {
-    #[Route('/race', name: 'app_race')]
-    public function index(): Response
-    {
-        return $this->render('race/index.html.twig', [
-            'controller_name' => 'RaceController',
-        ]);
-    }
+    #[Route('/world/{worldId}/races', name: 'app_races')]
+public function index(int $worldId): Response
+{
+    return $this->render('race/index.html.twig', [
+        'worldId' => $worldId,
+    ]);
+}
+
 }

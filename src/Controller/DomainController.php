@@ -8,11 +8,12 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class DomainController extends AbstractController
 {
-    #[Route('/domain', name: 'app_domain')]
-    public function index(): Response
-    {
-        return $this->render('domain/index.html.twig', [
-            'controller_name' => 'DomainController',
-        ]);
-    }
+    #[Route('/world/{worldId}/domains', name: 'app_domains')]
+public function index(int $worldId): Response
+{
+    return $this->render('domain/index.html.twig', [
+        'worldId' => $worldId,
+    ]);
+}
+
 }

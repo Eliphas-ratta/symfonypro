@@ -8,11 +8,12 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class GuildController extends AbstractController
 {
-    #[Route('/guild', name: 'app_guild')]
-    public function index(): Response
-    {
-        return $this->render('guild/index.html.twig', [
-            'controller_name' => 'GuildController',
-        ]);
-    }
+    #[Route('/world/{worldId}/guilds', name: 'app_guilds')]
+public function index(int $worldId): Response
+{
+    return $this->render('guild/index.html.twig', [
+        'worldId' => $worldId,
+    ]);
+}
+
 }

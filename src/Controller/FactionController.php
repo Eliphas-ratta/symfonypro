@@ -8,11 +8,12 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class FactionController extends AbstractController
 {
-    #[Route('/faction', name: 'app_faction')]
-    public function index(): Response
+    #[Route('/world/{worldId}/factions', name: 'app_factions')]
+    public function index(int $worldId): Response
     {
         return $this->render('faction/index.html.twig', [
             'controller_name' => 'FactionController',
+            'worldId' => $worldId,
         ]);
     }
 }

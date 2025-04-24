@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫</text></svg>">
-{{ encore_entry_link_tags('app') }}
+    {{ encore_entry_link_tags('app') }}
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
@@ -13,37 +13,49 @@
         {{ encore_entry_script_tags('app') }}
         {% block importmap %}{{ importmap('app') }}{% endblock %}
     {% endblock %}
-    
-    
 </head>
 
-<header class=" text-white py-3">
+<header class="text-white py-3">
     <div class="d-flex justify-content-between align-items-center">
         <div>
-        <h1 class="me-3">Project Fantasia</h1>
+            <h1 class="me-3">Project Fantasia</h1>
         </div>
-        <nav class="navhead">
-            <ul class="d-flex gap-3 list-unstyled mb-0">
-                <li><a href="{{ path('app_home') }}" class="text-white text-decoration-none">Home</a></li>
-                <li><a href="{{ path('app_world') }}" class="text-white text-decoration-none">World</a></li>
 
-            </ul>
-        </nav>
+        <nav>
+    <ul class="d-flex gap-3 list-unstyled mb-0">
+        <li><a href="{{ path('app_home') }}" class="text-white text-decoration-none">Home</a></li>
+        <li><a href="{{ path('app_world') }}" class="text-white text-decoration-none">Worlds</a></li>
+
+        {# Si un monde est sélectionné, afficher la navigation liée au monde #}
+        {% if world is defined %}
+            <li><a href="{{ path('app_factions', {'worldId': world.id}) }}" class="text-white text-decoration-none">Factions</a></li>
+            <li><a href="{{ path('app_hero', {'worldId': world.id}) }}" class="text-white text-decoration-none">Heroes</a></li>
+            <li><a href="{{ path('app_races', {'worldId': world.id}) }}" class="text-white text-decoration-none">Races</a></li>
+            <li><a href="{{ path('app_continents', {'worldId': world.id}) }}" class="text-white text-decoration-none">Continents</a></li>
+            <li><a href="{{ path('app_domains', {'worldId': world.id}) }}" class="text-white text-decoration-none">Domains</a></li>
+            <li><a href="{{ path('app_capacities', {'worldId': world.id}) }}" class="text-white text-decoration-none">Capacities</a></li>
+            <li><a href="{{ path('app_guilds', {'worldId': world.id}) }}" class="text-white text-decoration-none">Guilds</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+
         <nav>
             <ul class="d-flex gap-3 list-unstyled mb-0">
-                
-                <li><a href="{{ path('app_profile') }}" class="text-white text-decoration-none">Profile</a></li>
-                <li><a href="{{ path('app_logout') }}" class="text-danger text-decoration-none">Logout</a></li>
+                {% if app.user %}
+                    <li><a href="{{ path('app_profile') }}" class="text-white text-decoration-none">Profile</a></li>
+                    <li><a href="{{ path('app_logout') }}" class="text-danger text-decoration-none">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ path('app_login') }}" class="text-white text-decoration-none">Login</a></li>
+                    <li><a href="{{ path('app_register') }}" class="text-white text-decoration-none">Register</a></li>
+                {% endif %}
             </ul>
         </nav>
-
-        
     </div>
 </header>
 
 <body>
     {% block body %}{% endblock %}
     {{ encore_entry_script_tags('app') }}
-    
 </body>
 </html>

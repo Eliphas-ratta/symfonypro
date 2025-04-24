@@ -6,7 +6,7 @@ security:
         app_user_provider:
             entity:
                 class: App\Entity\User
-                property: email  # Utilise 'email' si tu veux que les utilisateurs se connectent avec leur e-mail
+                property: email
 
     firewalls:
         dev:
@@ -16,21 +16,22 @@ security:
         main:
             lazy: true
             provider: app_user_provider
-            entry_point: App\Security\LoginFormAuthenticator  # 🔥 Ajout de l'entry_point ici
+            entry_point: App\Security\LoginFormAuthenticator
             form_login:
-                login_path: app_login       # Route vers la page de connexion
-                check_path: app_login       # Route vers l'action de vérification des identifiants
-                default_target_path: app_index # Page vers laquelle l'utilisateur est redirigé après connexion
-                enable_csrf: true          # Active la protection CSRF
+                login_path: app_login
+                check_path: app_login
+                default_target_path: app_index
+                enable_csrf: true
             logout:
-                path: app_logout           # Route de déconnexion
-            custom_authenticator: App\Security\LoginFormAuthenticator  # Ton authenticator personnalisé
-            access_denied_url: app_login   # Redirige vers la page de connexion si non connecté
+                path: app_logout
+            custom_authenticator: App\Security\LoginFormAuthenticator
+            access_denied_url: app_login
 
     access_control:
-        - { path: ^/login, roles: PUBLIC_ACCESS }       # Page de connexion accessible sans être connecté
-        - { path: ^/register, roles: PUBLIC_ACCESS }    # Page d'inscription accessible sans être connecté
-        - { path: ^/, roles: ROLE_USER }                # Protège toutes les autres pages (nécessite la connexion)
+        - { path: ^/login, roles: PUBLIC_ACCESS }
+        - { path: ^/register, roles: PUBLIC_ACCESS }
+        - { path: ^/$, roles: PUBLIC_ACCESS }         # ✅ page d'accueil accessible sans être connecté
+        - { path: ^/, roles: ROLE_USER }              # ✅ tout le reste nécessite la connexion
 
 when@test:
     security:

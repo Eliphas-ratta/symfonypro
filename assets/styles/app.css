@@ -12,7 +12,7 @@ header {
     background-color: #383838;
     color: #ffffff;
     padding: 10px;
-    border-bottom: 2px solid #e23737;
+    border-bottom: 2px solid #6b6b6b;
     
 }
 
@@ -51,4 +51,14 @@ nav li:hover {
 .card:hover {
     transform: scale(1.05);
     transition: transform 0.3s ease;
+}
+
+.card {
+    background-color: #383838;
+    color: #ffffff;
+    border: 1px solid #6b6b6b;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
