@@ -4,60 +4,69 @@
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫</text></svg>">
+    
     {{ encore_entry_link_tags('app') }}
+    
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
-
-    {% block javascripts %}
-    
-{% endblock %}
-
 </head>
 
-<header class="text-white py-3">
-    <div class="d-flex justify-content-between align-items-center">
-        <div>
-            <h1 class="me-3">Project Fantasia</h1>
+<body>
+<header class="navbar navbar-expand-lg navbar-dark bg-gray px-3 py-3">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand" href="#">Project Fantasia</a>
+
+        <!-- Bouton burger -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Menu -->
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+                <!-- Menu centré -->
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a href="{{ path('app_home') }}" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="{{ path('app_world') }}" class="nav-link">Worlds</a></li>
+
+                    {% if current_world() %}
+                        <li class="nav-item"><span class="nav-link text-info small">World: <strong>{{ current_world().Name }}</strong></span></li>
+                        <li class="nav-item"><a href="{{ path('app_hero', { worldId: current_world().id }) }}" class="nav-link">Heroes</a></li>
+                        <li class="nav-item"><a href="{{ path('app_factions', { worldId: current_world().id }) }}" class="nav-link">Factions</a></li>
+                        <li class="nav-item"><a href="{{ path('app_races', { worldId: current_world().id }) }}" class="nav-link">Races</a></li>
+                        <li class="nav-item"><a href="{{ path('app_continents', { worldId: current_world().id }) }}" class="nav-link">Continents</a></li>
+                        <li class="nav-item"><a href="{{ path('app_domains', { worldId: current_world().id }) }}" class="nav-link">Domains</a></li>
+                        <li class="nav-item"><a href="{{ path('app_capacities', { worldId: current_world().id }) }}" class="nav-link">Capacities</a></li>
+                        <li class="nav-item"><a href="{{ path('app_guilds', { worldId: current_world().id }) }}" class="nav-link">Guilds</a></li>
+                    {% endif %}
+                </ul>
+
+                <!-- Connexion à droite -->
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    {% if app.user %}
+                        <li class="nav-item"><a href="{{ path('app_profile') }}" class="nav-link">Profile</a></li>
+                        <li class="nav-item"><a href="{{ path('app_logout') }}" class="nav-link text-danger">Logout</a></li>
+                    {% else %}
+                        <li class="nav-item"><a href="{{ path('app_login') }}" class="nav-link">Login</a></li>
+                        <li class="nav-item"><a href="{{ path('app_register') }}" class="nav-link">Register</a></li>
+                    {% endif %}
+                </ul>
+
+            </div>
         </div>
-
-        <nav>
-    <ul class="d-flex gap-3 list-unstyled mb-0 align-items-center">
-    <li><a href="{{ path('app_home') }}" class="text-white text-decoration-none">Home</a></li>
-    <li><a href="{{ path('app_world') }}" class="text-white text-decoration-none">Worlds</a></li>
-
-    {% if current_world() %}
-        <li><span class="text-info small"> World: <strong>{{ current_world().Name }}</strong></span></li>
-        <li><a href="{{ path('app_hero', { worldId: current_world().id }) }}" class="text-white text-decoration-none">Heroes</a></li>
-        <li><a href="{{ path('app_factions', { worldId: current_world().id }) }}" class="text-white text-decoration-none">Factions</a></li>
-        <li><a href="{{ path('app_races', { worldId: current_world().id }) }}" class="text-white text-decoration-none">Races</a></li>
-        <li><a href="{{ path('app_continents', { worldId: current_world().id }) }}" class="text-white text-decoration-none">Continents</a></li>
-        <li><a href="{{ path('app_domains', { worldId: current_world().id }) }}" class="text-white text-decoration-none">Domains</a></li>
-        <li><a href="{{ path('app_capacities', { worldId: current_world().id }) }}" class="text-white text-decoration-none">Capacities</a></li>
-        <li><a href="{{ path('app_guilds', { worldId: current_world().id }) }}" class="text-white text-decoration-none">Guilds</a></li>
-    {% endif %}
-</ul>
-
-
-</nav>
-
-
-        <nav>
-            <ul class="d-flex gap-3 list-unstyled mb-0">
-                {% if app.user %}
-                    <li><a href="{{ path('app_profile') }}" class="text-white text-decoration-none">Profile</a></li>
-                    <li><a href="{{ path('app_logout') }}" class="text-danger text-decoration-none">Logout</a></li>
-                {% else %}
-                    <li><a href="{{ path('app_login') }}" class="text-white text-decoration-none">Login</a></li>
-                    <li><a href="{{ path('app_register') }}" class="text-white text-decoration-none">Register</a></li>
-                {% endif %}
-            </ul>
-        </nav>
     </div>
 </header>
 
-<body>
-    {% block body %}{% endblock %}
-    {{ encore_entry_script_tags('app') }}
+
+{% block body %}{% endblock %}
+{{ encore_entry_script_tags('app') }}
+
+{% block javascripts %}
+    {# Tu peux ajouter du JS ici si nécessaire #}
+{% endblock %}
 </body>
 </html>
