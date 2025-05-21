@@ -7,6 +7,12 @@ parameters:
         profile_images_directory: '%kernel.project_dir%/public/uploads/profile_images'
         world_images_directory: '%kernel.project_dir%/public/uploads/world_images'
         heroes_images_directory: '%kernel.project_dir%/public/uploads/heroes'
+        factions_images_directory: '%kernel.project_dir%/public/uploads/factions'
+        races_images_directory: '%kernel.project_dir%/public/uploads/races'
+        continents_images_directory: '%kernel.project_dir%/public/uploads/continents'
+        domains_images_directory: '%kernel.project_dir%/public/uploads/domains'
+        capacities_images_directory: '%kernel.project_dir%/public/uploads/capacities'
+        guilds_images_directory: '%kernel.project_dir%/public/uploads/guilds'
 
 services:
     # default configuration for services in *this* file

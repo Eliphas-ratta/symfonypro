@@ -1,0 +1,22 @@
+{# templates/domain/show.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ domain.Name }}{% endblock %}
+
+{% block body %}
+<div class="container text-white my-5">
+    <div class="row g-4 align-items-start">
+        <div class="col-md-4 text-center">
+            {% if domain.ImageDomain %}
+                <img src="{{ asset('uploads/domains/' ~ domain.ImageDomain) }}" alt="{{ domain.Name }}" class="img-fluid rounded-4">
+            {% endif %}
+        </div>
+
+        <div class="col-md-8">
+            <h2 class="text-primary fw-bold">{{ domain.Name }}</h2>
+            <p><strong>Type :</strong> {{ domain.Type ?: 'N/A' }}</p>
+            <p><strong>Description :</strong><br> {{ domain.Description ?: 'No description' }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

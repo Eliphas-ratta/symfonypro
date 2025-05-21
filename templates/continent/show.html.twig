@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ continent.Name }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .continent-image {
+            max-width: 300px;
+            border-radius: 1rem;
+            object-fit: cover;
+        }
+
+        .continent-description {
+            white-space: pre-line;
+        }
+
+        .info-label {
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .continent-flex {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="container text-white my-5">
+    <div class="row g-4 align-items-start continent-flex">
+        {# Image du continent #}
+        <div class="col-md-4 text-center">
+            {% if continent.ImageContinent %}
+                <img src="{{ asset('uploads/continents/' ~ continent.ImageContinent) }}" alt="{{ continent.Name }}" class="continent-image">
+            {% endif %}
+        </div>
+
+        {# Informations du continent #}
+        <div class="col-md-8">
+            <h2 class="text-warning fw-bold">{{ continent.Name }}</h2>
+            <p class="continent-description">
+                <span class="info-label">Description :</span><br>
+                {{ continent.Description ?: 'Aucune description disponible.' }}
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

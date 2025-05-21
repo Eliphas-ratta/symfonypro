@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
@@ -24,7 +25,6 @@ final class WorldController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Gérer l'upload de l'image
             $imageFile = $form->get('Worldimage')->getData();
 
             if ($imageFile) {
@@ -43,7 +43,6 @@ final class WorldController extends AbstractController
                 }
             }
 
-            // Associer le monde à l'utilisateur
             $world->addUser($user);
             $em->persist($world);
             $em->flush();
@@ -54,7 +53,6 @@ final class WorldController extends AbstractController
 
         $userWorlds = $user->getWorlds();
 
-
         return $this->render('world/index.html.twig', [
             'form' => $form->createView(),
             'userWorlds' => $userWorlds,
@@ -62,17 +60,20 @@ final class WorldController extends AbstractController
     }
 
     #[Route('/world/{id}', name: 'app_world_show')]
-    public function show(World $world): Response
+    public function show(World $world, SessionInterface $session): Response
     {
+        // Enregistrer l’ID du monde sélectionné dans la session
+        $session->set('current_world_id', $world->getId());
+
         return $this->render('world/show.html.twig', [
             'world' => $world,
             'factions' => $world->getWorldFaction(),
-        'heroes' => $world->getWorldHero(),
-        'guilds' => $world->getWorldGuild(),
-        'races' => $world->getWorldRace(),
-        'continents' => $world->getWorldContinent(),
-        'domains' => $world->getWorldDomain(),
-        'capacities' => $world->getWorldCapacity(),
+            'heroes' => $world->getWorldHero(),
+            'guilds' => $world->getWorldGuild(),
+            'races' => $world->getWorldRace(),
+            'continents' => $world->getWorldContinent(),
+            'domains' => $world->getWorldDomain(),
+            'capacities' => $world->getWorldCapacity(),
         ]);
     }
 }

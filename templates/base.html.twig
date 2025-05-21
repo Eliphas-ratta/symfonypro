@@ -10,9 +10,9 @@
     {% endblock %}
 
     {% block javascripts %}
-        {{ encore_entry_script_tags('app') }}
-        {% block importmap %}{{ importmap('app') }}{% endblock %}
-    {% endblock %}
+    
+{% endblock %}
+
 </head>
 
 <header class="text-white py-3">
@@ -22,22 +22,23 @@
         </div>
 
         <nav>
-    <ul class="d-flex gap-3 list-unstyled mb-0">
-        <li><a href="{{ path('app_home') }}" class="text-white text-decoration-none">Home</a></li>
-        <li><a href="{{ path('app_world') }}" class="text-white text-decoration-none">Worlds</a></li>
+    <ul class="d-flex gap-3 list-unstyled mb-0 align-items-center">
+    <li><a href="{{ path('app_home') }}" class="text-white text-decoration-none">Home</a></li>
+    <li><a href="{{ path('app_world') }}" class="text-white text-decoration-none">Worlds</a></li>
 
-        {# Si un monde est sélectionné, afficher la navigation liée au monde #}
-        {% if world is defined and world is not null %}
+    {% if current_world() %}
+        <li><span class="text-info small"> World: <strong>{{ current_world().Name }}</strong></span></li>
+        <li><a href="{{ path('app_hero', { worldId: current_world().id }) }}" class="text-white text-decoration-none">Heroes</a></li>
+        <li><a href="{{ path('app_factions', { worldId: current_world().id }) }}" class="text-white text-decoration-none">Factions</a></li>
+        <li><a href="{{ path('app_races', { worldId: current_world().id }) }}" class="text-white text-decoration-none">Races</a></li>
+        <li><a href="{{ path('app_continents', { worldId: current_world().id }) }}" class="text-white text-decoration-none">Continents</a></li>
+        <li><a href="{{ path('app_domains', { worldId: current_world().id }) }}" class="text-white text-decoration-none">Domains</a></li>
+        <li><a href="{{ path('app_capacities', { worldId: current_world().id }) }}" class="text-white text-decoration-none">Capacities</a></li>
+        <li><a href="{{ path('app_guilds', { worldId: current_world().id }) }}" class="text-white text-decoration-none">Guilds</a></li>
+    {% endif %}
+</ul>
 
-            <li><a href="{{ path('app_factions', {'worldId': world.id}) }}" class="text-white text-decoration-none">Factions</a></li>
-            <li><a href="{{ path('app_hero', {'worldId': world.id}) }}" class="text-white text-decoration-none">Heroes</a></li>
-            <li><a href="{{ path('app_races', {'worldId': world.id}) }}" class="text-white text-decoration-none">Races</a></li>
-            <li><a href="{{ path('app_continents', {'worldId': world.id}) }}" class="text-white text-decoration-none">Continents</a></li>
-            <li><a href="{{ path('app_domains', {'worldId': world.id}) }}" class="text-white text-decoration-none">Domains</a></li>
-            <li><a href="{{ path('app_capacities', {'worldId': world.id}) }}" class="text-white text-decoration-none">Capacities</a></li>
-            <li><a href="{{ path('app_guilds', {'worldId': world.id}) }}" class="text-white text-decoration-none">Guilds</a></li>
-        {% endif %}
-    </ul>
+
 </nav>
 
 

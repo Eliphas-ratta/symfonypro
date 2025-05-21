@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ capacity.Name }}{% endblock %}
+
+{% block body %}
+<div class="container text-white my-5">
+    <div class="row g-4 align-items-start">
+        <div class="col-md-4 text-center">
+            {% if capacity.ImageCapacity %}
+                <img src="{{ asset('uploads/capacities/' ~ capacity.ImageCapacity) }}" class="img-fluid rounded-4" alt="{{ capacity.Name }}">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <h2 class="fw-bold">{{ capacity.Name }}</h2>
+            <p><strong>Type:</strong> {{ capacity.Type ?: 'N/A' }}</p>
+            <p><strong>Description:</strong><br>{{ capacity.Description ?: 'No description available' }}</p>
+            {% if capacity.Domain|length > 0 %}
+                <p><strong>Domains:</strong>
+                    {% for domain in capacity.Domain %}
+                        <span class="badge bg-secondary me-1">{{ domain.Name }}</span>
+                    {% endfor %}
+                </p>
+            {% else %}
+                <p><strong>Domains:</strong> None</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

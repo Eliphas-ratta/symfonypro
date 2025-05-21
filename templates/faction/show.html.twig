@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ faction.Name }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .faction-image {
+            max-width: 300px;
+            border-radius: 1rem;
+            object-fit: cover;
+        }
+
+        .faction-description {
+            white-space: pre-line;
+        }
+
+        .info-label {
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .faction-flex {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="container text-white my-5">
+    <div class="row g-4 align-items-start faction-flex">
+        {# Image à gauche #}
+        <a href="{{ path('app_factions', { worldId: faction.FactionWorld.id }) }}" class="btn btn-outline-light mt-3">
+                ← Back to list
+            </a>
+        <div class="col-md-4 text-center">
+            {% if faction.ImageFaction %}
+                <img src="{{ asset('uploads/factions/' ~ faction.ImageFaction) }}" alt="{{ faction.Name }}" class="faction-image">
+            {% endif %}
+        </div>
+
+        {# Infos à droite #}
+        <div class="col-md-8">
+            <h2 class="text-warning fw-bold">{{ faction.Name }}</h2>
+
+            <p><span class="info-label">Type :</span> {{ faction.Type ?: 'Inconnu' }}</p>
+            <p><span class="info-label">Régime :</span> {{ faction.Regime ?: 'Inconnu' }}</p>
+            <p><span class="info-label">Capitale :</span> {{ faction.Capital ?: 'Inconnue' }}</p>
+            <p class="faction-description"><span class="info-label">Description :</span><br>{{ faction.Description ?: 'Aucune description fournie.' }}</p>
+
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

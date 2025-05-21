@@ -1,6 +1,90 @@
-body {
-    background-color: #282c34;
-    color: #ffffff;
-    font-family: Arial, sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+body {
+    background-color: #222222;
+}
+
+header {
+    background-color: #383838;
+    color: #ffffff;
+    padding: 10px;
+    border-bottom: 2px solid #6b6b6b;
+    
+}
+
+p {
+    color: #ffffff;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    padding: 5px 0;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+nav li {
+    display: inline;
+    padding:  5px;
+    margin: 0 5px;
+
+}
+
+nav li:hover {
+    
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.bg-gray {
+    background-color: #383838;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.card {
+    background-color: #383838;
+    color: #ffffff;
+    border: 1px solid #6b6b6b;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    color: #ffffff;
+}
+
+input[type="text"],
+input[type="file"],
+textarea,
+select {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #444;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #bbb;
+}
+
+ h2 {
+    color: #2abbff !important;
+}

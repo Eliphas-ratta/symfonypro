@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ guild.Name }}{% endblock %}
+
+{% block body %}
+<div class="container text-white my-5">
+    <div class="row g-4 align-items-start">
+        <div class="col-md-4 text-center">
+            {% if guild.ImageGuild %}
+                <img src="{{ asset('uploads/guilds/' ~ guild.ImageGuild) }}" class="img-fluid rounded-4" alt="{{ guild.Name }}">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <h2 class="fw-bold">{{ guild.Name }}</h2>
+            <p><strong>Type:</strong> {{ guild.Type ?: 'N/A' }}</p>
+            <p><strong>Description:</strong><br>{{ guild.Description ?: 'No description available' }}</p>
+            <p><strong>Visibility:</strong> {{ guild.VisibilityId?.Name ?: 'None' }}</p>
+
+            {% if guild.GuildFaction|length > 0 %}
+                <p><strong>Factions:</strong>
+                    {% for faction in guild.GuildFaction %}
+                        <span class="badge bg-secondary me-1">{{ faction.Name }}</span>
+                    {% endfor %}
+                </p>
+            {% else %}
+                <p><strong>Factions:</strong> None</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

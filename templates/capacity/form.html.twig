@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .form-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background-color: #1f1f1f;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+            color: white;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem 2rem;
+        }
+
+        .form-grid .full-width {
+            grid-column: span 2;
+        }
+
+        .form-container label {
+            margin-bottom: 0.2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .form-container input,
+        .form-container textarea,
+        .form-container select {
+            background-color: #2a2a2a;
+            color: white;
+            border: 1px solid #444;
+            border-radius: 6px;
+            padding: 0.5rem;
+            width: 100%;
+        }
+
+        .form-container button[type="submit"] {
+            background-color: #28a745;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            font-weight: bold;
+            color: white;
+            border-radius: 6px;
+            margin-top: 1.5rem;
+            display: block;
+            margin-left: auto;
+        }
+
+        .form-container button[type="submit"]:hover {
+            background-color: #218838;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="form-container">
+    <h2>{{ title }}</h2>
+
+    {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+        <div class="form-grid">
+            <div>
+                {{ form_label(form.Name) }}
+                {{ form_widget(form.Name) }}
+            </div>
+
+            <div>
+                {{ form_label(form.Domain) }}
+                {{ form_widget(form.Domain) }}
+            </div>
+
+            <div>
+                {{ form_label(form.Type) }}
+                {{ form_widget(form.Type) }}
+            </div>
+
+            <div>
+                {{ form_label(form.Image_Capacity) }}
+                {{ form_widget(form.Image_Capacity) }}
+            </div>
+
+            <div class="full-width">
+                {{ form_label(form.Description) }}
+                {{ form_widget(form.Description) }}
+            </div>
+        </div>
+
+        <button type="submit">Save</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

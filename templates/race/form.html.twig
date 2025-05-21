@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+<div class="container mt-5 text-white">
+    <h1 class="mb-4">{{ title }}</h1>
+
+    {{ form_start(form, { 'attr': {'enctype': 'multipart/form-data'} }) }}
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_row(form.Name) }}
+            {{ form_row(form.Image_Race) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.Description) }}
+        </div>
+    </div>
+
+    <button class="btn btn-success mt-3">Save</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_races', { worldId: worldId }) }}" class="btn btn-secondary mt-3">← Cancel</a>
+</div>
+{% endblock %}
