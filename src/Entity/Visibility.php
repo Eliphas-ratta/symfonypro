@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use Doctrine\DBAL\Types\Types;
 use App\Repository\VisibilityRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -32,5 +31,10 @@ class Visibility
         $this->Visibility = $Visibility;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->Visibility ?? 'Unknown';
     }
 }

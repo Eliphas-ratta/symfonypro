@@ -3,66 +3,99 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block stylesheets %}
-    {{ parent() }}
-    <style>
-        .form-container {
-            max-width: 800px;
-            margin: 2rem auto;
-            background-color: #1f1f1f;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
-            color: white;
-        }
+{{ parent() }}
+<style>
+    .form-container {
+        max-width: 900px;
+        margin: 2rem auto;
+        background-color: #1f1f1f;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+        color: white;
+    }
 
-        .form-container h2 {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #03A9F4;
+    }
 
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem 2rem;
-        }
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem 2rem;
+    }
 
-        .form-grid .full-width {
-            grid-column: span 2;
-        }
+    .form-grid .full-width {
+        grid-column: span 2;
+    }
 
-        .form-container label {
-            margin-bottom: 0.2rem;
-            font-weight: bold;
-            display: block;
-        }
+    .form-container input,
+    .form-container textarea,
+    .form-container select {
+        background-color: #2a2a2a;
+        color: white;
+        border: 1px solid #444;
+        border-radius: 6px;
+        padding: 0.5rem;
+        width: 100%;
+    }
 
-        .form-container input,
-        .form-container textarea,
-        .form-container select {
-            background-color: #2a2a2a;
-            color: white;
-            border: 1px solid #444;
-            border-radius: 6px;
-            padding: 0.5rem;
-            width: 100%;
-        }
+    .form-container button[type="submit"] {
+        background-color: #28a745;
+        border: none;
+        padding: 0.5rem 1.5rem;
+        font-weight: bold;
+        color: white;
+        border-radius: 6px;
+        margin-top: 1.5rem;
+        display: block;
+        margin-left: auto;
+    }
 
-        .form-container button[type="submit"] {
-            background-color: #28a745;
-            border: none;
-            padding: 0.5rem 1.5rem;
-            font-weight: bold;
-            color: white;
-            border-radius: 6px;
-            margin-top: 1.5rem;
-            display: block;
-            margin-left: auto;
-        }
+    .form-container button[type="submit"]:hover {
+        background-color: #218838;
+    }
 
-        .form-container button[type="submit"]:hover {
-            background-color: #218838;
-        }
-    </style>
+    .checkbox-group {
+        background-color: #2a2a2a;
+        border-radius: 12px;
+        padding: 1rem;
+        margin-top: 1.5rem;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .checkbox-group h4 {
+        margin-bottom: 0.8rem;
+        font-size: 1.1rem;
+        color: #90caf9;
+    }
+
+    .checkbox-list label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #2e2e2e;
+        padding: 0.6rem 1rem;
+        border-radius: 8px;
+        margin-bottom: 0.4rem;
+    }
+
+    .checkbox-info {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+</style>
 {% endblock %}
 
 {% block body %}
@@ -70,39 +103,94 @@
     <h2>{{ title }}</h2>
 
     {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
-        <div class="form-grid">
-            <div>
-                {{ form_label(form.Name) }}
-                {{ form_widget(form.Name) }}
-            </div>
-
-            <div>
-                {{ form_label(form.Type) }}
-                {{ form_widget(form.Type) }}
-            </div>
-
-            <div>
-                {{ form_label(form.Image_Guild) }}
-                {{ form_widget(form.Image_Guild) }}
-            </div>
-
-            <div>
-                {{ form_label(form.Visibility_id) }}
-                {{ form_widget(form.Visibility_id) }}
-            </div>
-
-            <div class="full-width">
-                {{ form_label(form.Description) }}
-                {{ form_widget(form.Description) }}
-            </div>
-
-            <div class="full-width">
-                {{ form_label(form.Guild_Faction) }}
-                {{ form_widget(form.Guild_Faction) }}
-            </div>
+    <div class="form-grid">
+        <div>
+            {{ form_label(form.Name) }}
+            {{ form_widget(form.Name) }}
         </div>
 
+        <div>
+            {{ form_label(form.Type) }}
+            {{ form_widget(form.Type) }}
+        </div>
+
+        <div>
+            {{ form_label(form.Image_Guild) }}
+            {{ form_widget(form.Image_Guild) }}
+        </div>
+
+        <div>
+            {{ form_label(form.Visibility_id) }}
+            {{ form_widget(form.Visibility_id) }}
+        </div>
+
+        <div class="full-width">
+            {{ form_label(form.Description) }}
+            {{ form_widget(form.Description) }}
+        </div>
+    </div>
+
+    {# Factions #}
+    <div class="checkbox-group">
+        <h4>{{ form_label(form.Guild_Faction) }}</h4>
+        <div class="checkbox-list">
+            {% for child in form.Guild_Faction %}
+                <label>
+                    <div class="checkbox-info">
+                        {% set img = child.vars.attr['data-image'] ?? null %}
+                        {% if img %}
+                            <img src="{{ asset('uploads/factions/' ~ img) }}" class="avatar" alt="{{ child.vars.label }}">
+                        {% endif %}
+                        <span>{{ child.vars.label }}</span>
+                    </div>
+                    {{ form_widget(child) }}
+                </label>
+            {% endfor %}
+        </div>
+    </div>
+
+    {# Héros #}
+    <div class="checkbox-group">
+        <h4>{{ form_label(form.heroes) }}</h4>
+        <div class="checkbox-list">
+            {% for child in form.heroes %}
+                <label>
+                    <div class="checkbox-info">
+                        {% set img = child.vars.attr['data-image'] ?? null %}
+                        {% if img %}
+                            <img src="{{ asset('uploads/heroes/' ~ img) }}" class="avatar" alt="{{ child.vars.label }}">
+                        {% endif %}
+                        <span>{{ child.vars.label }}</span>
+                    </div>
+                    {{ form_widget(child) }}
+                </label>
+            {% endfor %}
+        </div>
+    </div>
+
+    {# Continents #}
+    <div class="checkbox-group">
+        <h4>{{ form_label(form.Guild_Continent) }}</h4>
+        <div class="checkbox-list">
+            {% for child in form.Guild_Continent %}
+                <label>
+                    <div class="checkbox-info">
+                        {% set img = child.vars.attr['data-image'] ?? null %}
+                        {% if img %}
+                            <img src="{{ asset('uploads/continents/' ~ img) }}" class="avatar" alt="{{ child.vars.label }}">
+                        {% endif %}
+                        <span>{{ child.vars.label }}</span>
+                    </div>
+                    {{ form_widget(child) }}
+                </label>
+            {% endfor %}
+        </div>
+    </div>
+
+    {{ form_rest(form) }}
+    <div style="text-align: right; margin-top: 1rem;">
         <button type="submit">Save</button>
+    </div>
     {{ form_end(form) }}
 </div>
 {% endblock %}

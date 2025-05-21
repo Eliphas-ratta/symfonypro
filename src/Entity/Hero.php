@@ -152,5 +152,9 @@ class Hero
 {
     return $this->Hero_Faction;
 }
+public function __toString(): string
+{
+    return $this->Name; // ou getName() si tu préfères
+}
 
 }

@@ -2,6 +2,55 @@
 
 {% block title %}{{ guild.Name }}{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .section-title {
+            margin-top: 3rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
+        }
+
+        .card-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .entity-card {
+            background-color: #1f1f1f;
+            border-radius: 12px;
+            padding: 1rem;
+            width: 140px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .entity-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+
+        .entity-card .name {
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .entity-card .type {
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
 <div class="container text-white my-5">
     <div class="row g-4 align-items-start">
@@ -14,18 +63,59 @@
             <h2 class="fw-bold">{{ guild.Name }}</h2>
             <p><strong>Type:</strong> {{ guild.Type ?: 'N/A' }}</p>
             <p><strong>Description:</strong><br>{{ guild.Description ?: 'No description available' }}</p>
-            <p><strong>Visibility:</strong> {{ guild.VisibilityId?.Name ?: 'None' }}</p>
-
-            {% if guild.GuildFaction|length > 0 %}
-                <p><strong>Factions:</strong>
-                    {% for faction in guild.GuildFaction %}
-                        <span class="badge bg-secondary me-1">{{ faction.Name }}</span>
-                    {% endfor %}
-                </p>
-            {% else %}
-                <p><strong>Factions:</strong> None</p>
-            {% endif %}
+            <p><strong>Visibility:</strong> {{ guild.VisibilityId ? guild.VisibilityId.Visibility : 'None' }}</p>
         </div>
     </div>
+
+    {% if guild.GuildFaction|length > 0 %}
+        <div class="section-title">Factions</div>
+        <div class="card-group">
+            {% for faction in guild.GuildFaction %}
+                <div class="entity-card">
+                    {% if faction.Image %}
+                        <img src="{{ asset('uploads/factions/' ~ faction.Image) }}" alt="{{ faction.Name }}">
+                    {% else %}
+                        <img src="{{ asset('img/placeholder.png') }}" alt="No image">
+                    {% endif %}
+                    <div class="name">{{ faction.Name }}</div>
+                    <div class="type">{{ faction.Type ?: '' }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if guild.GuildContinent|length > 0 %}
+        <div class="section-title">Continents</div>
+        <div class="card-group">
+            {% for continent in guild.GuildContinent %}
+                <div class="entity-card">
+                    {% if continent.ImageContinent %}
+    <img src="{{ asset('uploads/continents/' ~ continent.ImageContinent) }}" alt="{{ continent.Name }}">
+{% else %}
+    <img src="{{ asset('img/placeholder.png') }}" alt="No image">
+{% endif %}
+
+                    <div class="name">{{ continent.Name }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if guild.heroes|length > 0 %}
+        <div class="section-title">Héros</div>
+        <div class="card-group">
+            {% for hero in guild.heroes %}
+                <div class="entity-card">
+                    {% if hero.ImageHero %}
+                        <img src="{{ asset('uploads/heroes/' ~ hero.ImageHero) }}" alt="{{ hero.Name }}">
+                    {% else %}
+                        <img src="{{ asset('img/placeholder.png') }}" alt="No image">
+                    {% endif %}
+                    <div class="name">{{ hero.Name }}</div>
+                    <div class="type">{{ hero.Fonction ?: '' }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 </div>
 {% endblock %}

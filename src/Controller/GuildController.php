@@ -23,7 +23,7 @@ final class GuildController extends AbstractController
             throw $this->createNotFoundException('World not found.');
         }
 
-        $guilds = $guildRepo->findAll(); // affichage libre sans restriction du monde
+        $guilds = $guildRepo->findAll(); // Affiche toutes les guildes sans filtrer par monde
 
         return $this->render('guild/index.html.twig', [
             'guilds' => $guilds,
@@ -51,8 +51,8 @@ final class GuildController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Gérer l'upload d'image
             $imageFile = $form->get('Image_Guild')->getData();
-
             if ($imageFile) {
                 $newFilename = $slugger->slug(pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME)) . '-' . uniqid() . '.' . $imageFile->guessExtension();
                 $imageFile->move($this->getParameter('guilds_images_directory'), $newFilename);
@@ -80,7 +80,6 @@ final class GuildController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $imageFile = $form->get('Image_Guild')->getData();
-
             if ($imageFile) {
                 $newFilename = $slugger->slug(pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME)) . '-' . uniqid() . '.' . $imageFile->guessExtension();
                 $imageFile->move($this->getParameter('guilds_images_directory'), $newFilename);
@@ -105,6 +104,7 @@ final class GuildController extends AbstractController
     public function delete(Guild $guild, EntityManagerInterface $em): Response
     {
         $worldId = $guild->getGuildWorld()->first()?->getId();
+
         $em->remove($guild);
         $em->flush();
 
