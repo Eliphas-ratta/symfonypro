@@ -3,29 +3,35 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block body %}
-<div class="container mt-5 text-white">
-    <h1 class="mb-4">{{ title }}</h1>
+<div class="form-container">
+    <h2>{{ title }}</h2>
 
-    {{ form_start(form) }}
-        <div class="row">
-            <div class="col-md-6">
-                {{ form_row(form.Name) }}
-            </div>
-            <div class="col-md-6">
-                {{ form_row(form.Image_Continent) }}
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-12">
-                {{ form_row(form.Description) }}
-            </div>
+    {{ form_start(form, { 'attr': {'enctype': 'multipart/form-data'} }) }}
+    
+    <div class="form-grid">
+        <div>
+            {{ form_label(form.Name) }}
+            {{ form_widget(form.Name) }}
         </div>
 
-        <button class="btn btn-success mt-3">Save</button>
+        <div>
+            {{ form_label(form.Image_Continent) }}
+            {{ form_widget(form.Image_Continent) }}
+        </div>
+
+        <div class="full-width">
+            {{ form_label(form.Description) }}
+            {{ form_widget(form.Description) }}
+        </div>
+    </div>
+
+    {{ form_rest(form) }}
+
+    <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
+        <a href="{{ path('app_continents', { worldId: worldId }) }}" class="btn btn-secondary">← Cancel</a>
+        <button type="submit">Save</button>
+    </div>
+
     {{ form_end(form) }}
-
-    <a href="{{ path('app_continents', { worldId: worldId }) }}" class="btn btn-secondary mt-3">
-        Cancel
-    </a>
 </div>
 {% endblock %}

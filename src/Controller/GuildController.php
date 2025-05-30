@@ -6,6 +6,7 @@ use App\Entity\Guild;
 use App\Form\GuildType;
 use App\Repository\GuildRepository;
 use App\Repository\WorldRepository;
+use App\Service\ImageResizerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,20 +17,21 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 final class GuildController extends AbstractController
 {
     #[Route('/world/{worldId}/guilds', name: 'app_guilds')]
-    public function index(int $worldId, GuildRepository $guildRepo, WorldRepository $worldRepo): Response
-    {
-        $world = $worldRepo->find($worldId);
-        if (!$world) {
-            throw $this->createNotFoundException('World not found.');
-        }
-
-        $guilds = $guildRepo->findAll(); // Affiche toutes les guildes sans filtrer par monde
-
-        return $this->render('guild/index.html.twig', [
-            'guilds' => $guilds,
-            'world' => $world,
-        ]);
+public function index(int $worldId, GuildRepository $guildRepo, WorldRepository $worldRepo): Response
+{
+    $world = $worldRepo->find($worldId);
+    if (!$world) {
+        throw $this->createNotFoundException('World not found.');
     }
+
+    $guilds = $guildRepo->findByWorld($world); // ✅ seulement les guildes du monde
+
+    return $this->render('guild/index.html.twig', [
+        'guilds' => $guilds,
+        'world' => $world,
+    ]);
+}
+
 
     #[Route('/world/{worldId}/guild/create', name: 'app_guild_create')]
     public function create(
@@ -37,7 +39,8 @@ final class GuildController extends AbstractController
         Request $request,
         EntityManagerInterface $em,
         WorldRepository $worldRepo,
-        SluggerInterface $slugger
+        SluggerInterface $slugger,
+        ImageResizerService $imageResizer
     ): Response {
         $world = $worldRepo->find($worldId);
         if (!$world) {
@@ -47,15 +50,24 @@ final class GuildController extends AbstractController
         $guild = new Guild();
         $guild->addGuildWorld($world);
 
-        $form = $this->createForm(GuildType::class, $guild);
+        $form = $this->createForm(GuildType::class, $guild, [
+            'world' => $world, // 👈 Nécessaire pour filtrer
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Gérer l'upload d'image
+            foreach ($guild->getHeroes() as $hero) {
+                $hero->addGuild($guild);
+            }
+            foreach ($guild->getGuildFaction() as $faction) {
+                $faction->addFactionGuild($guild);
+            }
+
             $imageFile = $form->get('Image_Guild')->getData();
             if ($imageFile) {
                 $newFilename = $slugger->slug(pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME)) . '-' . uniqid() . '.' . $imageFile->guessExtension();
-                $imageFile->move($this->getParameter('guilds_images_directory'), $newFilename);
+                $targetDirectory = $this->getParameter('guilds_images_directory');
+                $imageResizer->resizeAndSave($imageFile, $targetDirectory, $newFilename);
                 $guild->setImageGuild($newFilename);
             }
 
@@ -73,30 +85,46 @@ final class GuildController extends AbstractController
     }
 
     #[Route('/guild/edit/{id}', name: 'app_guild_edit')]
-    public function edit(Request $request, Guild $guild, EntityManagerInterface $em, SluggerInterface $slugger): Response
-    {
-        $form = $this->createForm(GuildType::class, $guild);
+    public function edit(
+        Request $request,
+        Guild $guild,
+        EntityManagerInterface $em,
+        SluggerInterface $slugger,
+        ImageResizerService $imageResizer
+    ): Response {
+        $world = $guild->getGuildWorld()->first();
+        $form = $this->createForm(GuildType::class, $guild, [
+            'world' => $world, // 👈 Ajout pour le filtrage
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($guild->getHeroes() as $hero) {
+                $hero->addGuild($guild);
+            }
+            foreach ($guild->getGuildFaction() as $faction) {
+                $faction->addFactionGuild($guild);
+            }
+
             $imageFile = $form->get('Image_Guild')->getData();
             if ($imageFile) {
                 $newFilename = $slugger->slug(pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME)) . '-' . uniqid() . '.' . $imageFile->guessExtension();
-                $imageFile->move($this->getParameter('guilds_images_directory'), $newFilename);
+                $targetDirectory = $this->getParameter('guilds_images_directory');
+                $imageResizer->resizeAndSave($imageFile, $targetDirectory, $newFilename);
                 $guild->setImageGuild($newFilename);
             }
 
             $em->flush();
 
             return $this->redirectToRoute('app_guilds', [
-                'worldId' => $guild->getGuildWorld()->first()?->getId(),
+                'worldId' => $world->getId(),
             ]);
         }
 
         return $this->render('guild/form.html.twig', [
             'form' => $form->createView(),
             'title' => 'Edit Guild',
-            'worldId' => $guild->getGuildWorld()->first()?->getId(),
+            'worldId' => $world->getId(),
         ]);
     }
 

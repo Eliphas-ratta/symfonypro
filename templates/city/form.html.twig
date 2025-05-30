@@ -8,9 +8,7 @@
 
     {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
         {{ form_widget(form) }}
-        <div style="text-align: right; margin-top: 1rem;">
-            <button type="submit">Save</button>
-        </div>
+        <button type="submit">Save</button>
     {{ form_end(form) }}
 </div>
 {% endblock %}

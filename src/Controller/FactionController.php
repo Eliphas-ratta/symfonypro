@@ -6,6 +6,7 @@ use App\Entity\Faction;
 use App\Form\FactionType;
 use App\Repository\WorldRepository;
 use App\Repository\FactionRepository;
+use App\Service\ImageResizerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +38,8 @@ final class FactionController extends AbstractController
         Request $request,
         EntityManagerInterface $em,
         WorldRepository $worldRepo,
-        SluggerInterface $slugger
+        SluggerInterface $slugger,
+        ImageResizerService $imageResizer
     ): Response {
         $world = $worldRepo->find($worldId);
         if (!$world) {
@@ -58,10 +60,8 @@ final class FactionController extends AbstractController
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
 
-                $imageFile->move(
-                    $this->getParameter('factions_images_directory'),
-                    $newFilename
-                );
+                $targetDir = $this->getParameter('factions_images_directory');
+                $imageResizer->resizeAndSave($imageFile, $targetDir, $newFilename);
 
                 $faction->setImageFaction($newFilename);
             }
@@ -84,7 +84,8 @@ final class FactionController extends AbstractController
         Request $request,
         Faction $faction,
         EntityManagerInterface $em,
-        SluggerInterface $slugger
+        SluggerInterface $slugger,
+        ImageResizerService $imageResizer
     ): Response {
         $form = $this->createForm(FactionType::class, $faction);
         $form->handleRequest($request);
@@ -97,10 +98,8 @@ final class FactionController extends AbstractController
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
 
-                $imageFile->move(
-                    $this->getParameter('factions_images_directory'),
-                    $newFilename
-                );
+                $targetDir = $this->getParameter('factions_images_directory');
+                $imageResizer->resizeAndSave($imageFile, $targetDir, $newFilename);
 
                 $faction->setImageFaction($newFilename);
             }

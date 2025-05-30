@@ -3,29 +3,50 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block body %}
-<div class="container mt-5 text-white">
-    <h1 class="mb-4">{{ title }}</h1>
+<div class="form-container">
+    <h2>{{ title }}</h2>
 
-    {{ form_start(form) }}
-        <div class="row">
-            <div class="col-md-6">
-                {{ form_row(form.Name) }}
-                {{ form_row(form.Type) }}
-                {{ form_row(form.Regime) }}
-                {{ form_row(form.Capital) }}
-                {{ form_row(form.Couleur) }}
-            </div>
-            <div class="col-md-6">
-                {{ form_row(form.Description) }}
-            </div>
+    {{ form_start(form, { 'attr': {'enctype': 'multipart/form-data'} }) }}
+    
+    <div class="form-grid">
+        <div>
+            {{ form_label(form.Name) }}
+            {{ form_widget(form.Name) }}
         </div>
 
-        <button class="btn btn-success mt-3">Save</button>
+        <div>
+            {{ form_label(form.Type) }}
+            {{ form_widget(form.Type) }}
+        </div>
+
+        <div>
+            {{ form_label(form.Regime) }}
+            {{ form_widget(form.Regime) }}
+        </div>
+
+        <div>
+            {{ form_label(form.Capital) }}
+            {{ form_widget(form.Capital) }}
+        </div>
+
+        <div class="full-width">
+            {{ form_label(form.Couleur) }}
+            {{ form_widget(form.Couleur) }}
+        </div>
+
+        <div class="full-width">
+            {{ form_label(form.Description) }}
+            {{ form_widget(form.Description) }}
+        </div>
+    </div>
+
+    {{ form_rest(form) }}
+
+    <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
+        <a href="{{ path('app_factions', { worldId: worldId }) }}" class="btn btn-secondary">← Cancel</a>
+        <button type="submit">Save</button>
+    </div>
+    
     {{ form_end(form) }}
-
-    <a href="{{ path('app_factions', { worldId: worldId }) }}" class="btn btn-secondary mt-3">
-
-        Cancel
-    </a>
 </div>
 {% endblock %}

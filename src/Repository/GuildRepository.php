@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Guild;
+use App\Entity\World;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -16,28 +17,19 @@ class GuildRepository extends ServiceEntityRepository
         parent::__construct($registry, Guild::class);
     }
 
-//    /**
-//     * @return Guild[] Returns an array of Guild objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('g')
-//            ->andWhere('g.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('g.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Guild
-//    {
-//        return $this->createQueryBuilder('g')
-//            ->andWhere('g.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    /**
+     * Retourne les guildes associées à un monde spécifique (ManyToMany)
+     *
+     * @param World $world
+     * @return Guild[]
+     */
+    public function findByWorld(World $world): array
+    {
+        return $this->createQueryBuilder('g')
+            ->innerJoin('g.Guild_World', 'w')
+            ->andWhere('w = :world')
+            ->setParameter('world', $world)
+            ->getQuery()
+            ->getResult();
+    }
 }

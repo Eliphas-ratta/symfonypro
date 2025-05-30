@@ -68,21 +68,22 @@
     </div>
 
     {% if guild.GuildFaction|length > 0 %}
-        <div class="section-title">Factions</div>
-        <div class="card-group">
-            {% for faction in guild.GuildFaction %}
-                <div class="entity-card">
-                    {% if faction.Image %}
-                        <img src="{{ asset('uploads/factions/' ~ faction.Image) }}" alt="{{ faction.Name }}">
-                    {% else %}
-                        <img src="{{ asset('img/placeholder.png') }}" alt="No image">
-                    {% endif %}
-                    <div class="name">{{ faction.Name }}</div>
-                    <div class="type">{{ faction.Type ?: '' }}</div>
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
+    <div class="section-title">Factions</div>
+    <div class="card-group">
+        {% for faction in guild.GuildFaction %}
+            <div class="entity-card">
+                {% if faction.ImageFaction %}
+                    <img src="{{ asset('uploads/factions/' ~ faction.ImageFaction) }}" alt="{{ faction.Name }}">
+                {% else %}
+                    <img src="{{ asset('img/placeholder.png') }}" alt="No image">
+                {% endif %}
+                <div class="name">{{ faction.Name }}</div>
+                <div class="type">{{ faction.Type ?: '' }}</div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
 
     {% if guild.GuildContinent|length > 0 %}
         <div class="section-title">Continents</div>

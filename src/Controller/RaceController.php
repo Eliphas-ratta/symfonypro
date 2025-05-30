@@ -6,12 +6,12 @@ use App\Entity\Race;
 use App\Form\RaceType;
 use App\Repository\RaceRepository;
 use App\Repository\WorldRepository;
+use App\Service\ImageResizerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 final class RaceController extends AbstractController
@@ -39,7 +39,8 @@ final class RaceController extends AbstractController
         Request $request,
         EntityManagerInterface $em,
         WorldRepository $worldRepo,
-        SluggerInterface $slugger
+        SluggerInterface $slugger,
+        ImageResizerService $imageResizer
     ): Response {
         $world = $worldRepo->find($worldId);
         if (!$world) {
@@ -60,14 +61,8 @@ final class RaceController extends AbstractController
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
 
-                try {
-                    $imageFile->move(
-                        $this->getParameter('races_images_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    $this->addFlash('error', 'Error while uploading image.');
-                }
+                $targetDir = $this->getParameter('races_images_directory');
+                $imageResizer->resizeAndSave($imageFile, $targetDir, $newFilename);
 
                 $race->setImageRace($newFilename);
             }
@@ -98,7 +93,8 @@ final class RaceController extends AbstractController
         Request $request,
         Race $race,
         EntityManagerInterface $em,
-        SluggerInterface $slugger
+        SluggerInterface $slugger,
+        ImageResizerService $imageResizer
     ): Response {
         $form = $this->createForm(RaceType::class, $race);
         $form->handleRequest($request);
@@ -111,14 +107,8 @@ final class RaceController extends AbstractController
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
 
-                try {
-                    $imageFile->move(
-                        $this->getParameter('races_images_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    $this->addFlash('error', 'Error while uploading image.');
-                }
+                $targetDir = $this->getParameter('races_images_directory');
+                $imageResizer->resizeAndSave($imageFile, $targetDir, $newFilename);
 
                 $race->setImageRace($newFilename);
             }

@@ -6,6 +6,7 @@ use App\Entity\Capacity;
 use App\Form\CapacityType;
 use App\Repository\CapacityRepository;
 use App\Repository\WorldRepository;
+use App\Service\ImageResizerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,8 +33,14 @@ final class CapacityController extends AbstractController
     }
 
     #[Route('/world/{worldId}/capacity/create', name: 'app_capacity_create')]
-    public function create(int $worldId, Request $request, EntityManagerInterface $em, WorldRepository $worldRepo, SluggerInterface $slugger): Response
-    {
+    public function create(
+        int $worldId,
+        Request $request,
+        EntityManagerInterface $em,
+        WorldRepository $worldRepo,
+        SluggerInterface $slugger,
+        ImageResizerService $imageResizer
+    ): Response {
         $world = $worldRepo->find($worldId);
         if (!$world) {
             throw $this->createNotFoundException('World not found.');
@@ -42,14 +49,17 @@ final class CapacityController extends AbstractController
         $capacity = new Capacity();
         $capacity->setCapacityWorld($world);
 
-        $form = $this->createForm(CapacityType::class, $capacity);
+        $form = $this->createForm(CapacityType::class, $capacity, [
+            'world' => $world, // ✅ on passe le monde ici
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $imageFile = $form->get('Image_Capacity')->getData();
             if ($imageFile) {
                 $filename = $slugger->slug(pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME)) . '-' . uniqid() . '.' . $imageFile->guessExtension();
-                $imageFile->move($this->getParameter('capacities_images_directory'), $filename);
+                $targetDir = $this->getParameter('capacities_images_directory');
+                $imageResizer->resizeAndSave($imageFile, $targetDir, $filename);
                 $capacity->setImageCapacity($filename);
             }
 
@@ -67,30 +77,40 @@ final class CapacityController extends AbstractController
     }
 
     #[Route('/capacity/edit/{id}', name: 'app_capacity_edit')]
-    public function edit(Request $request, Capacity $capacity, EntityManagerInterface $em, SluggerInterface $slugger): Response
-    {
-        $form = $this->createForm(CapacityType::class, $capacity);
+    public function edit(
+        Request $request,
+        Capacity $capacity,
+        EntityManagerInterface $em,
+        SluggerInterface $slugger,
+        ImageResizerService $imageResizer
+    ): Response {
+        $world = $capacity->getCapacityWorld();
+
+        $form = $this->createForm(CapacityType::class, $capacity, [
+            'world' => $world, // ✅ on passe le monde ici aussi
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $imageFile = $form->get('Image_Capacity')->getData();
             if ($imageFile) {
                 $filename = $slugger->slug(pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME)) . '-' . uniqid() . '.' . $imageFile->guessExtension();
-                $imageFile->move($this->getParameter('capacities_images_directory'), $filename);
+                $targetDir = $this->getParameter('capacities_images_directory');
+                $imageResizer->resizeAndSave($imageFile, $targetDir, $filename);
                 $capacity->setImageCapacity($filename);
             }
 
             $em->flush();
 
             return $this->redirectToRoute('app_capacities', [
-                'worldId' => $capacity->getCapacityWorld()->getId(),
+                'worldId' => $world->getId(),
             ]);
         }
 
         return $this->render('capacity/form.html.twig', [
             'form' => $form->createView(),
             'title' => 'Edit Capacity',
-            'worldId' => $capacity->getCapacityWorld()->getId(),
+            'worldId' => $world->getId(),
         ]);
     }
 

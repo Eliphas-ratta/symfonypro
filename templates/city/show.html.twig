@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ city.Name }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .section-title {
+            margin-top: 3rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
+        }
+
+        .card-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .entity-card {
+            background-color: #1f1f1f;
+            border-radius: 12px;
+            padding: 1rem;
+            width: 140px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .entity-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+
+        .entity-card .name {
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .entity-card .type {
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
+        .city-image {
+            max-width: 300px;
+            border-radius: 1rem;
+            object-fit: cover;
+        }
+
+        .city-description {
+            white-space: pre-line;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="container text-white my-5">
+    <div class="row g-4 align-items-start">
+        <div class="col-md-4 text-center">
+            {% if city.ImageCity %}
+                <img src="{{ asset('uploads/cities/' ~ city.ImageCity) }}" alt="{{ city.Name }}" class="city-image">
+            {% endif %}
+        </div>
+
+        <div class="col-md-8">
+            <h2 class="text-info fw-bold">{{ city.Name }}</h2>
+            <p class="city-description"><strong>Description :</strong> {{ city.Description }}</p>
+        </div>
+    </div>
+
+    {% if city.cityFaction|length > 0 %}
+        <div class="section-title">Factions</div>
+        <div class="card-group">
+            {% for faction in city.cityFaction %}
+                <div class="entity-card">
+                    {% if faction.ImageFaction %}
+                        <img src="{{ asset('uploads/factions/' ~ faction.ImageFaction) }}" alt="{{ faction.Name }}">
+                    {% else %}
+                        <img src="{{ asset('img/placeholder.png') }}" alt="No image">
+                    {% endif %}
+                    <div class="name">{{ faction.Name }}</div>
+                    <div class="type">{{ faction.Type ?: '' }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

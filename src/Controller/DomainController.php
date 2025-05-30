@@ -6,6 +6,7 @@ use App\Entity\Domain;
 use App\Form\DomainType;
 use App\Repository\DomainRepository;
 use App\Repository\WorldRepository;
+use App\Service\ImageResizerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +38,8 @@ final class DomainController extends AbstractController
         Request $request,
         EntityManagerInterface $em,
         WorldRepository $worldRepo,
-        SluggerInterface $slugger
+        SluggerInterface $slugger,
+        ImageResizerService $imageResizer
     ): Response {
         $world = $worldRepo->find($worldId);
         if (!$world) {
@@ -58,11 +60,8 @@ final class DomainController extends AbstractController
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
 
-                $imageFile->move(
-                    $this->getParameter('domains_images_directory'),
-                    $newFilename
-                );
-
+                $targetDir = $this->getParameter('domains_images_directory');
+                $imageResizer->resizeAndSave($imageFile, $targetDir, $newFilename);
                 $domain->setImageDomain($newFilename);
             }
 
@@ -76,7 +75,7 @@ final class DomainController extends AbstractController
             'form' => $form->createView(),
             'title' => 'Create Domain',
             'worldId' => $worldId,
-            'domain' => $domain, // ✅ Pour éviter les erreurs Twig
+            'domain' => $domain,
         ]);
     }
 
@@ -85,7 +84,8 @@ final class DomainController extends AbstractController
         Request $request,
         Domain $domain,
         EntityManagerInterface $em,
-        SluggerInterface $slugger
+        SluggerInterface $slugger,
+        ImageResizerService $imageResizer
     ): Response {
         $form = $this->createForm(DomainType::class, $domain);
         $form->handleRequest($request);
@@ -98,11 +98,8 @@ final class DomainController extends AbstractController
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
 
-                $imageFile->move(
-                    $this->getParameter('domains_images_directory'),
-                    $newFilename
-                );
-
+                $targetDir = $this->getParameter('domains_images_directory');
+                $imageResizer->resizeAndSave($imageFile, $targetDir, $newFilename);
                 $domain->setImageDomain($newFilename);
             }
 
@@ -117,7 +114,7 @@ final class DomainController extends AbstractController
             'form' => $form->createView(),
             'title' => 'Edit Domain',
             'worldId' => $domain->getDomainWorld()->getId(),
-            'domain' => $domain, // ✅ Pour éviter les erreurs Twig
+            'domain' => $domain,
         ]);
     }
 

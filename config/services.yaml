@@ -13,13 +13,16 @@ parameters:
         domains_images_directory: '%kernel.project_dir%/public/uploads/domains'
         capacities_images_directory: '%kernel.project_dir%/public/uploads/capacities'
         guilds_images_directory: '%kernel.project_dir%/public/uploads/guilds'
+        cities_images_directory: '%kernel.project_dir%/public/uploads/cities'
 
 services:
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-
+    App\Service\ImageResizerService:
+        arguments:
+            $targetSize: 1024
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:

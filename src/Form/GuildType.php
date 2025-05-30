@@ -7,6 +7,9 @@ use App\Entity\Hero;
 use App\Entity\Faction;
 use App\Entity\Continent;
 use App\Entity\Visibility;
+use App\Repository\HeroRepository;
+use App\Repository\FactionRepository;
+use App\Repository\ContinentRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,6 +21,8 @@ class GuildType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $world = $options['world']; // 👈 Monde passé depuis le contrôleur
+
         $builder
             ->add('Name')
             ->add('Type')
@@ -39,9 +44,14 @@ class GuildType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'label' => 'Factions',
+                'query_builder' => function (FactionRepository $repo) use ($world) {
+                    return $repo->createQueryBuilder('f')
+                        ->where('f.Faction_World = :world')
+                        ->setParameter('world', $world);
+                },
                 'choice_attr' => function ($faction) {
                     return [
-                        'data-image' => $faction->getImageFaction(), // ✅ méthode correcte
+                        'data-image' => $faction->getImageFaction(),
                     ];
                 },
             ])
@@ -51,9 +61,14 @@ class GuildType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'label' => 'Continents',
+                'query_builder' => function (ContinentRepository $repo) use ($world) {
+                    return $repo->createQueryBuilder('c')
+                        ->where('c.Continent_World = :world')
+                        ->setParameter('world', $world);
+                },
                 'choice_attr' => function ($continent) {
                     return [
-                        'data-image' => $continent->getImageContinent(), // ✅ méthode correcte
+                        'data-image' => $continent->getImageContinent(),
                     ];
                 },
             ])
@@ -63,9 +78,14 @@ class GuildType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'label' => 'Héros associés',
+                'query_builder' => function (HeroRepository $repo) use ($world) {
+                    return $repo->createQueryBuilder('h')
+                        ->where('h.Hero_World = :world')
+                        ->setParameter('world', $world);
+                },
                 'choice_attr' => function ($hero) {
                     return [
-                        'data-image' => $hero->getImageHero(), // ✅ méthode correcte
+                        'data-image' => $hero->getImageHero(),
                     ];
                 },
             ]);
@@ -75,6 +95,7 @@ class GuildType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Guild::class,
+            'world' => null, // 👈 Ajout obligatoire pour passer le monde
         ]);
     }
 }

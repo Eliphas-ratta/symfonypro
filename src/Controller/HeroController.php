@@ -6,15 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
 use App\Entity\Hero;
-use App\Entity\World;
 use App\Form\HeroType;
 use App\Repository\HeroRepository;
 use App\Repository\WorldRepository;
+use App\Service\ImageResizerService;
 
 final class HeroController extends AbstractController
 {
@@ -35,8 +34,14 @@ final class HeroController extends AbstractController
     }
 
     #[Route('/hero/create/{worldId}', name: 'app_hero_create')]
-    public function create(Request $request, EntityManagerInterface $em, WorldRepository $worldRepo, int $worldId, SluggerInterface $slugger): Response
-    {
+    public function create(
+        Request $request,
+        EntityManagerInterface $em,
+        WorldRepository $worldRepo,
+        int $worldId,
+        SluggerInterface $slugger,
+        ImageResizerService $imageResizer
+    ): Response {
         $world = $worldRepo->find($worldId);
         if (!$world) {
             throw $this->createNotFoundException('World not found');
@@ -55,14 +60,8 @@ final class HeroController extends AbstractController
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
 
-                try {
-                    $imageFile->move(
-                        $this->getParameter('heroes_images_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // Log or handle the error if needed
-                }
+                $targetDir = $this->getParameter('heroes_images_directory');
+                $imageResizer->resizeAndSave($imageFile, $targetDir, $newFilename);
 
                 $hero->setImageHero($newFilename);
             }
@@ -80,8 +79,13 @@ final class HeroController extends AbstractController
     }
 
     #[Route('/hero/edit/{id}', name: 'app_hero_edit')]
-    public function edit(Request $request, Hero $hero, EntityManagerInterface $em, SluggerInterface $slugger): Response
-    {
+    public function edit(
+        Request $request,
+        Hero $hero,
+        EntityManagerInterface $em,
+        SluggerInterface $slugger,
+        ImageResizerService $imageResizer
+    ): Response {
         $form = $this->createForm(HeroType::class, $hero);
         $form->handleRequest($request);
 
@@ -92,14 +96,8 @@ final class HeroController extends AbstractController
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
 
-                try {
-                    $imageFile->move(
-                        $this->getParameter('heroes_images_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // Log or handle the error if needed
-                }
+                $targetDir = $this->getParameter('heroes_images_directory');
+                $imageResizer->resizeAndSave($imageFile, $targetDir, $newFilename);
 
                 $hero->setImageHero($newFilename);
             }

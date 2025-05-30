@@ -6,9 +6,9 @@ use App\Entity\Continent;
 use App\Form\ContinentType;
 use App\Repository\ContinentRepository;
 use App\Repository\WorldRepository;
+use App\Service\ImageResizerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -39,7 +39,8 @@ final class ContinentController extends AbstractController
         Request $request,
         EntityManagerInterface $em,
         WorldRepository $worldRepo,
-        SluggerInterface $slugger
+        SluggerInterface $slugger,
+        ImageResizerService $imageResizer
     ): Response {
         $world = $worldRepo->find($worldId);
 
@@ -61,14 +62,8 @@ final class ContinentController extends AbstractController
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
 
-                try {
-                    $imageFile->move(
-                        $this->getParameter('continents_images_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    $this->addFlash('error', 'Error while uploading image.');
-                }
+                $targetDir = $this->getParameter('continents_images_directory');
+                $imageResizer->resizeAndSave($imageFile, $targetDir, $newFilename);
 
                 $continent->setImageContinent($newFilename);
             }
@@ -99,7 +94,8 @@ final class ContinentController extends AbstractController
         Continent $continent,
         Request $request,
         EntityManagerInterface $em,
-        SluggerInterface $slugger
+        SluggerInterface $slugger,
+        ImageResizerService $imageResizer
     ): Response {
         $form = $this->createForm(ContinentType::class, $continent);
         $form->handleRequest($request);
@@ -112,14 +108,8 @@ final class ContinentController extends AbstractController
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
 
-                try {
-                    $imageFile->move(
-                        $this->getParameter('continents_images_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    $this->addFlash('error', 'Error while uploading image.');
-                }
+                $targetDir = $this->getParameter('continents_images_directory');
+                $imageResizer->resizeAndSave($imageFile, $targetDir, $newFilename);
 
                 $continent->setImageContinent($newFilename);
             }

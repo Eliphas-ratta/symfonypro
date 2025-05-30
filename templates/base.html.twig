@@ -16,7 +16,7 @@
 <header class="navbar navbar-expand-lg navbar-dark bg-gray px-3 py-3">
     <div class="container-fluid">
         <!-- Logo -->
-        <a class="navbar-brand" href="#">Project Fantasia</a>
+        <a class="navbar-brand" href="#"><h1>Project Fantasia</h1></a>
 
         <!-- Bouton burger -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
@@ -42,6 +42,8 @@
                         <li class="nav-item"><a href="{{ path('app_domains', { worldId: current_world().id }) }}" class="nav-link">Domains</a></li>
                         <li class="nav-item"><a href="{{ path('app_capacities', { worldId: current_world().id }) }}" class="nav-link">Capacities</a></li>
                         <li class="nav-item"><a href="{{ path('app_guilds', { worldId: current_world().id }) }}" class="nav-link">Guilds</a></li>
+                        <li class="nav-item"><a href="{{ path('app_city', { worldId: current_world().id }) }}" class="nav-link">Cities</a></li>
+
                     {% endif %}
                 </ul>
 

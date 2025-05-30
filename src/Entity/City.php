@@ -34,8 +34,10 @@ class City
     /**
      * @var Collection<int, Faction>
      */
-    #[ORM\ManyToMany(targetEntity: Faction::class, mappedBy: 'Faction_City')]
-    private Collection $City_Faction;
+    #[ORM\ManyToMany(targetEntity: Faction::class, inversedBy: 'Faction_City')]
+#[ORM\JoinTable(name: 'faction_city')]
+private Collection $City_Faction;
+
 
     #[ORM\ManyToOne(inversedBy: 'World_City')]
     #[ORM\JoinColumn(nullable: false)]

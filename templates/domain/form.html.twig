@@ -3,39 +3,39 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block body %}
-<div class="container text-white my-5">
-    <h2 class="mb-4">{{ title }}</h2>
+<div class="form-container">
+    <h2>{{ title }}</h2>
 
-    <div class="row g-4 align-items-start">
-        <div class="col-md-4 text-center">
-            {# Si domain est défini, on affiche l’image #}
-            {% if domain is defined and domain.ImageDomain %}
-                <img src="{{ asset('uploads/domains/' ~ domain.ImageDomain) }}" alt="{{ domain.Name }}" class="img-fluid rounded-4">
-            {% endif %}
+    {{ form_start(form, { 'attr': {'enctype': 'multipart/form-data'} }) }}
+
+    <div class="form-grid">
+        <div>
+            {{ form_label(form.Name) }}
+            {{ form_widget(form.Name) }}
         </div>
 
-        <div class="col-md-8">
-            {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
-                <div class="mb-3">
-                    {{ form_label(form.Name) }}
-                    {{ form_widget(form.Name, {'attr': {'class': 'form-control'}}) }}
-                </div>
-                <div class="mb-3">
-                    {{ form_label(form.Type) }}
-                    {{ form_widget(form.Type, {'attr': {'class': 'form-control'}}) }}
-                </div>
-                <div class="mb-3">
-                    {{ form_label(form.Description) }}
-                    {{ form_widget(form.Description, {'attr': {'class': 'form-control'}}) }}
-                </div>
-                <div class="mb-3">
-                    {{ form_label(form.Image_Domain) }}
-                    {{ form_widget(form.Image_Domain, {'attr': {'class': 'form-control'}}) }}
-                </div>
+        <div>
+            {{ form_label(form.Type) }}
+            {{ form_widget(form.Type) }}
+        </div>
 
-                <button type="submit" class="btn btn-success">Save Domain</button>
-            {{ form_end(form) }}
+        <div class="full-width">
+            {{ form_label(form.Description) }}
+            {{ form_widget(form.Description) }}
+        </div>
+
+        <div class="full-width">
+            {{ form_label(form.Image_Domain) }}
+            {{ form_widget(form.Image_Domain) }}
         </div>
     </div>
+
+    {{ form_rest(form) }}
+
+    <div style="text-align: right; margin-top: 1rem;">
+        <button type="submit">Save</button>
+    </div>
+
+    {{ form_end(form) }}
 </div>
 {% endblock %}
