@@ -50,7 +50,9 @@ final class RaceController extends AbstractController
         $race = new Race();
         $race->setRaceWorld($world);
 
-        $form = $this->createForm(RaceType::class, $race);
+        $form = $this->createForm(RaceType::class, $race, [
+            'world' => $world,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -96,7 +98,11 @@ final class RaceController extends AbstractController
         SluggerInterface $slugger,
         ImageResizerService $imageResizer
     ): Response {
-        $form = $this->createForm(RaceType::class, $race);
+        $world = $race->getRaceWorld();
+
+        $form = $this->createForm(RaceType::class, $race, [
+            'world' => $world,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -116,14 +122,14 @@ final class RaceController extends AbstractController
             $em->flush();
 
             return $this->redirectToRoute('app_races', [
-                'worldId' => $race->getRaceWorld()->getId(),
+                'worldId' => $world->getId(),
             ]);
         }
 
         return $this->render('race/form.html.twig', [
             'form' => $form->createView(),
             'title' => 'Edit Race',
-            'worldId' => $race->getRaceWorld()->getId(),
+            'worldId' => $world->getId(),
         ]);
     }
 

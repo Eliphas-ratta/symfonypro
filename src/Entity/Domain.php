@@ -142,13 +142,13 @@ class Domain
      */
     public function getHeroes(): Collection
     {
-        return $this->heroes;
+        return $this->Heroes;
     }
 
     public function addHero(Hero $hero): static
     {
-        if (!$this->heroes->contains($hero)) {
-            $this->heroes->add($hero);
+        if (!$this->Heroes->contains($hero)) {
+            $this->Heroes->add($hero);
             $hero->addHeroDomain($this);
         }
 
@@ -157,7 +157,7 @@ class Domain
 
     public function removeHero(Hero $hero): static
     {
-        if ($this->heroes->removeElement($hero)) {
+        if ($this->Heroes->removeElement($hero)) {
             $hero->removeHeroDomain($this);
         }
 

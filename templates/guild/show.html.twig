@@ -3,87 +3,116 @@
 {% block title %}{{ guild.Name }}{% endblock %}
 
 {% block stylesheets %}
-    {{ parent() }}
-    <style>
-        .section-title {
-            margin-top: 3rem;
-            font-size: 1.5rem;
-            font-weight: bold;
+{{ parent() }}
+<style>
+    .section-title {
+        margin-top: 3rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: center;
+        color: #fff;
+    }
+
+    .card-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    .entity-card {
+        background-color: #1f1f1f;
+        border-radius: 12px;
+        padding: 1rem;
+        width: 140px;
+        text-align: center;
+        color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .entity-card img {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+    }
+
+    .entity-card .name {
+        font-weight: bold;
+        font-size: 0.95rem;
+    }
+
+    .entity-card .type {
+        font-size: 0.8rem;
+        color: #aaa;
+    }
+
+    .guild-image {
+        max-width: 300px;
+        width: 100%;
+        border-radius: 1rem;
+        object-fit: cover;
+    }
+
+    .guild-description {
+        white-space: pre-line;
+    }
+
+    .guild-flex {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+        .guild-flex {
+            flex-direction: column !important;
+            align-items: center !important;
             text-align: center;
-            color: #fff;
         }
 
-        .card-group {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1rem;
+        .guild-flex .col-md-4,
+        .guild-flex .col-md-8 {
+            max-width: 100%;
+            flex: 0 0 100%;
         }
-
-        .entity-card {
-            background-color: #1f1f1f;
-            border-radius: 12px;
-            padding: 1rem;
-            width: 140px;
-            text-align: center;
-            color: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-        }
-
-        .entity-card img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 0.5rem;
-        }
-
-        .entity-card .name {
-            font-weight: bold;
-            font-size: 0.95rem;
-        }
-
-        .entity-card .type {
-            font-size: 0.8rem;
-            color: #aaa;
-        }
-    </style>
+    }
+</style>
 {% endblock %}
 
 {% block body %}
 <div class="container text-white my-5">
-    <div class="row g-4 align-items-start">
+    <div class="row g-4 align-items-start guild-flex">
         <div class="col-md-4 text-center">
             {% if guild.ImageGuild %}
-                <img src="{{ asset('uploads/guilds/' ~ guild.ImageGuild) }}" class="img-fluid rounded-4" alt="{{ guild.Name }}">
+                <img src="{{ asset('uploads/guilds/' ~ guild.ImageGuild) }}" alt="{{ guild.Name }}" class="guild-image">
             {% endif %}
         </div>
         <div class="col-md-8">
-            <h2 class="fw-bold">{{ guild.Name }}</h2>
+            <h2 class="fw-bold text-primary">{{ guild.Name }}</h2>
             <p><strong>Type:</strong> {{ guild.Type ?: 'N/A' }}</p>
-            <p><strong>Description:</strong><br>{{ guild.Description ?: 'No description available' }}</p>
+            <p class="guild-description"><strong>Description:</strong><br>{{ guild.Description ?: 'No description available' }}</p>
             <p><strong>Visibility:</strong> {{ guild.VisibilityId ? guild.VisibilityId.Visibility : 'None' }}</p>
         </div>
     </div>
 
     {% if guild.GuildFaction|length > 0 %}
-    <div class="section-title">Factions</div>
-    <div class="card-group">
-        {% for faction in guild.GuildFaction %}
-            <div class="entity-card">
-                {% if faction.ImageFaction %}
-                    <img src="{{ asset('uploads/factions/' ~ faction.ImageFaction) }}" alt="{{ faction.Name }}">
-                {% else %}
-                    <img src="{{ asset('img/placeholder.png') }}" alt="No image">
-                {% endif %}
-                <div class="name">{{ faction.Name }}</div>
-                <div class="type">{{ faction.Type ?: '' }}</div>
-            </div>
-        {% endfor %}
-    </div>
-{% endif %}
-
+        <div class="section-title">Factions</div>
+        <div class="card-group">
+            {% for faction in guild.GuildFaction %}
+                <div class="entity-card">
+                    {% if faction.ImageFaction %}
+                        <img src="{{ asset('uploads/factions/' ~ faction.ImageFaction) }}" alt="{{ faction.Name }}">
+                    {% else %}
+                        <img src="{{ asset('img/placeholder.png') }}" alt="No image">
+                    {% endif %}
+                    <div class="name">{{ faction.Name }}</div>
+                    <div class="type">{{ faction.Type ?: '' }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 
     {% if guild.GuildContinent|length > 0 %}
         <div class="section-title">Continents</div>
@@ -91,11 +120,10 @@
             {% for continent in guild.GuildContinent %}
                 <div class="entity-card">
                     {% if continent.ImageContinent %}
-    <img src="{{ asset('uploads/continents/' ~ continent.ImageContinent) }}" alt="{{ continent.Name }}">
-{% else %}
-    <img src="{{ asset('img/placeholder.png') }}" alt="No image">
-{% endif %}
-
+                        <img src="{{ asset('uploads/continents/' ~ continent.ImageContinent) }}" alt="{{ continent.Name }}">
+                    {% else %}
+                        <img src="{{ asset('img/placeholder.png') }}" alt="No image">
+                    {% endif %}
                     <div class="name">{{ continent.Name }}</div>
                 </div>
             {% endfor %}

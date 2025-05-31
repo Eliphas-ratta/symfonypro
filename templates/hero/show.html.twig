@@ -3,84 +3,147 @@
 {% block title %}{{ hero.name }}{% endblock %}
 
 {% block stylesheets %}
-    {{ parent() }}
-    <style>
-        .hero-image {
-            max-width: 300px;
-            border-radius: 1rem;
-            object-fit: cover;
-        }
+{{ parent() }}
+<style>
+    .section-title {
+        margin-top: 3rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: center;
+        color: #fff;
+    }
 
-        .hero-description {
-            white-space: pre-line;
-        }
+    .card-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 1rem;
+    }
 
-        .faction-card {
-            background-color: #1c1c1c;
-            padding: 1rem;
-            border-radius: 1rem;
+    .entity-card {
+        background-color: #1f1f1f;
+        border-radius: 12px;
+        padding: 1rem;
+        width: 140px;
+        text-align: center;
+        color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .entity-card img {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+    }
+
+    .entity-card .name {
+        font-weight: bold;
+        font-size: 0.95rem;
+    }
+
+    .entity-card .type {
+        font-size: 0.8rem;
+        color: #aaa;
+    }
+
+    .hero-image {
+        max-width: 300px;
+        width: 100%;
+        border-radius: 1rem;
+        object-fit: cover;
+    }
+
+    .hero-description {
+        white-space: pre-line;
+    }
+
+    .hero-flex {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+        .hero-flex {
+            flex-direction: column !important;
+            align-items: center !important;
             text-align: center;
         }
 
-        .faction-card img {
-            border-radius: 0.75rem;
+        .hero-flex .col-md-4,
+        .hero-flex .col-md-8 {
             max-width: 100%;
-            height: auto;
-            object-fit: cover;
+            flex: 0 0 100%;
         }
-
-        .faction-card .title {
-            font-weight: bold;
-            margin-top: 0.5rem;
-            color: #66ccff;
-        }
-
-        @media (max-width: 768px) {
-            .hero-flex {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .faction-card {
-                margin-top: 2rem;
-            }
-        }
-    </style>
+    }
+</style>
 {% endblock %}
-
 
 {% block body %}
 <div class="container text-white my-5">
-    <div class="row g-4 align-items-start">
-        {# Image à gauche #}
+    <div class="row g-4 align-items-start hero-flex">
         <div class="col-md-4 text-center">
             {% if hero.imageHero %}
                 <img src="{{ asset('uploads/heroes/' ~ hero.imageHero) }}" alt="{{ hero.name }}" class="hero-image">
             {% endif %}
         </div>
 
-        {# Infos à droite #}
         <div class="col-md-8">
-            <h2 class="text-danger fw-bold">{{ hero.name }}</h2>
-            <p><strong>Âge :</strong> {{ hero.age ? hero.age ~ ' ans' : 'Inconnu' }}</p>
+            <h2 class="text-info fw-bold">{{ hero.name }}</h2>
+            <p><strong>Age :</strong> {{ hero.age ? hero.age : 'Inconnu' }}</p>
             <p><strong>Taille :</strong> {{ hero.size ?: 'N/A' }}</p>
             <p><strong>Fonction :</strong> {{ hero.fonction ?: 'Inconnue' }}</p>
-            <p class="hero-description"><strong>Description :</strong> {{ hero.description }}</p>
-
-            {# Faction #}
-            {% if hero.factions|length > 0 %}
-                {% set faction = hero.factions[0] %}
-                <div class="faction-card mt-4">
-                    <p class="fw-bold">Faction</p>
-                    {% if faction.image %}
-                        <img src="{{ asset('uploads/factions/' ~ faction.image) }}" alt="{{ faction.name }}">
-                    {% endif %}
-                    <div class="title mt-2">{{ faction.name }}</div>
-                    <small class="text-muted">{{ faction.regime }}</small>
-                </div>
-            {% endif %}
+            <p class="hero-description"><strong>Description :</strong><br>{{ hero.description }}</p>
         </div>
     </div>
+
+    {% set imagePaths = {
+        'Factions': 'uploads/factions/',
+        'Guilds': 'uploads/guilds/',
+        'Races': 'uploads/races/',
+        'Cities': 'uploads/cities/',
+        'Domains': 'uploads/domains/'
+    } %}
+
+    {% set methodMap = {
+        'Factions': 'getImageFaction',
+        'Guilds': 'getImageGuild',
+        'Races': 'getImageRace',
+        'Cities': 'getImageCity',
+        'Domains': 'getImageDomain'
+    } %}
+
+    {% for section, collection in {
+        'Factions': hero.heroFaction,
+        'Guilds': hero.guilds,
+        'Races': hero.heroRace,
+        'Cities': hero.heroCity,
+        'Domains': hero.heroDomain
+    } %}
+        {% if collection is defined and collection|length > 0 %}
+            <div class="section-title">{{ section }}</div>
+            <div class="card-group">
+                {% for item in collection %}
+                    {% set method = methodMap[section] %}
+                    {% set imageAttr = attribute(item, method) %}
+                    {% set imagePath = imagePaths[section] %}
+
+                    <div class="entity-card">
+                        {% if imageAttr %}
+                            <img src="{{ asset(imagePath ~ imageAttr) }}" alt="{{ item.name }}">
+                        {% else %}
+                            <img src="{{ asset('img/placeholder.png') }}" alt="No image">
+                        {% endif %}
+                        <div class="name">{{ item.name }}</div>
+                        {% if item.type is defined %}
+                            <div class="type">{{ item.type }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endfor %}
 </div>
 {% endblock %}
-

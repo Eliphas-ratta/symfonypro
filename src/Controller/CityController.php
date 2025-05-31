@@ -49,17 +49,17 @@ final class CityController extends AbstractController
         $city = new City();
         $city->setCityWorld($world);
 
-        $form = $this->createForm(CityType::class, $city);
+        $form = $this->createForm(CityType::class, $city, [
+            'world' => $world,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Ajout manuel des factions sélectionnées
             $factions = $form->get('CityFaction')->getData();
             foreach ($factions as $faction) {
                 $city->addCityFaction($faction);
             }
 
-            // Gestion image
             $imageFile = $form->get('Image_City')->getData();
             if ($imageFile) {
                 $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
@@ -81,6 +81,7 @@ final class CityController extends AbstractController
         return $this->render('city/form.html.twig', [
             'form' => $form->createView(),
             'title' => 'Create City',
+            'worldId' => $worldId,
         ]);
     }
 
@@ -92,18 +93,20 @@ final class CityController extends AbstractController
         SluggerInterface $slugger,
         ImageResizerService $imageResizer
     ): Response {
-        $form = $this->createForm(CityType::class, $city);
+        $world = $city->getCityWorld();
+
+        $form = $this->createForm(CityType::class, $city, [
+            'world' => $world,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Réinitialiser puis re-synchroniser les factions
             $city->getCityFaction()->clear();
             $factions = $form->get('CityFaction')->getData();
             foreach ($factions as $faction) {
                 $city->addCityFaction($faction);
             }
 
-            // Gestion image
             $imageFile = $form->get('Image_City')->getData();
             if ($imageFile) {
                 $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
@@ -118,12 +121,13 @@ final class CityController extends AbstractController
 
             $em->flush();
 
-            return $this->redirectToRoute('app_city', ['worldId' => $city->getCityWorld()->getId()]);
+            return $this->redirectToRoute('app_city', ['worldId' => $world->getId()]);
         }
 
         return $this->render('city/form.html.twig', [
             'form' => $form->createView(),
             'title' => 'Edit City',
+            'worldId' => $world->getId(),
         ]);
     }
 

@@ -50,7 +50,9 @@ final class HeroController extends AbstractController
         $hero = new Hero();
         $hero->setHeroWorld($world);
 
-        $form = $this->createForm(HeroType::class, $hero);
+        $form = $this->createForm(HeroType::class, $hero, [
+            'world' => $world,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -74,7 +76,7 @@ final class HeroController extends AbstractController
 
         return $this->render('hero/form.html.twig', [
             'form' => $form->createView(),
-            'title' => 'Create Hero'
+            'title' => 'Create Hero',
         ]);
     }
 
@@ -86,7 +88,11 @@ final class HeroController extends AbstractController
         SluggerInterface $slugger,
         ImageResizerService $imageResizer
     ): Response {
-        $form = $this->createForm(HeroType::class, $hero);
+        $world = $hero->getHeroWorld();
+
+        $form = $this->createForm(HeroType::class, $hero, [
+            'world' => $world,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -104,12 +110,12 @@ final class HeroController extends AbstractController
 
             $em->flush();
 
-            return $this->redirectToRoute('app_hero', ['worldId' => $hero->getHeroWorld()->getId()]);
+            return $this->redirectToRoute('app_hero', ['worldId' => $world->getId()]);
         }
 
         return $this->render('hero/form.html.twig', [
             'form' => $form->createView(),
-            'title' => 'Edit Hero'
+            'title' => 'Edit Hero',
         ]);
     }
 

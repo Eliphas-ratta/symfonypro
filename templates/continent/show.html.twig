@@ -7,6 +7,7 @@
     <style>
         .continent-image {
             max-width: 300px;
+            width: 100%;
             border-radius: 1rem;
             object-fit: cover;
         }
@@ -19,10 +20,66 @@
             font-weight: bold;
         }
 
+        .section-title {
+            margin-top: 3rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
+        }
+
+        .card-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .entity-card {
+            background-color: #1f1f1f;
+            border-radius: 12px;
+            padding: 1rem;
+            width: 140px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .entity-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+
+        .entity-card .name {
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .entity-card .type {
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
+        .continent-flex {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
         @media (max-width: 768px) {
             .continent-flex {
-                flex-direction: column;
-                align-items: center;
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center;
+            }
+
+            .continent-flex .col-md-4,
+            .continent-flex .col-md-8 {
+                max-width: 100%;
+                flex: 0 0 100%;
             }
         }
     </style>
@@ -31,14 +88,12 @@
 {% block body %}
 <div class="container text-white my-5">
     <div class="row g-4 align-items-start continent-flex">
-        {# Image du continent #}
         <div class="col-md-4 text-center">
             {% if continent.ImageContinent %}
                 <img src="{{ asset('uploads/continents/' ~ continent.ImageContinent) }}" alt="{{ continent.Name }}" class="continent-image">
             {% endif %}
         </div>
 
-        {# Informations du continent #}
         <div class="col-md-8">
             <h2 class="text-warning fw-bold">{{ continent.Name }}</h2>
             <p class="continent-description">
@@ -47,5 +102,87 @@
             </p>
         </div>
     </div>
+
+    {# Factions #}
+    {% if continent.ContinentFaction is not empty %}
+        <div class="section-title">Factions liées</div>
+        <div class="card-group">
+            {% for faction in continent.ContinentFaction %}
+                <div class="entity-card">
+                    {% if faction.ImageFaction %}
+                        <img src="{{ asset('uploads/factions/' ~ faction.ImageFaction) }}" alt="{{ faction.Name }}">
+                    {% else %}
+                        <img src="{{ asset('img/placeholder.png') }}" alt="No image">
+                    {% endif %}
+                    <div class="name">{{ faction.Name }}</div>
+                    <div class="type">{{ faction.Type ?: '' }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {# Guildes liées #}
+    {% set allGuilds = [] %}
+    {% for faction in continent.ContinentFaction %}
+        {% for guild in faction.FactionGuild %}
+            {% for world in guild.GuildWorld %}
+                {% if world.id == continent.ContinentWorld.id %}
+                    {% set allGuilds = allGuilds|merge([guild]) %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+
+    {% if allGuilds is not empty %}
+        <div class="section-title">Guildes associées</div>
+        <div class="card-group">
+            {% set shownGuilds = [] %}
+            {% for guild in allGuilds %}
+                {% if guild.id not in shownGuilds %}
+                    {% set shownGuilds = shownGuilds|merge([guild.id]) %}
+                    <div class="entity-card">
+                        {% if guild.ImageGuild %}
+                            <img src="{{ asset('uploads/guilds/' ~ guild.ImageGuild) }}" alt="{{ guild.Name }}">
+                        {% else %}
+                            <img src="{{ asset('img/placeholder.png') }}" alt="No image">
+                        {% endif %}
+                        <div class="name">{{ guild.Name }}</div>
+                        <div class="type">{{ guild.Type ?: '' }}</div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {# Héros liés #}
+    {% set allHeroes = [] %}
+    {% for faction in continent.ContinentFaction %}
+        {% for hero in faction.FactionHero %}
+            {% if hero.HeroWorld.id == continent.ContinentWorld.id %}
+                {% set allHeroes = allHeroes|merge([hero]) %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+
+    {% if allHeroes is not empty %}
+        <div class="section-title">Héros associés</div>
+        <div class="card-group">
+            {% set shownHeroes = [] %}
+            {% for hero in allHeroes %}
+                {% if hero.id not in shownHeroes %}
+                    {% set shownHeroes = shownHeroes|merge([hero.id]) %}
+                    <div class="entity-card">
+                        {% if hero.ImageHero %}
+                            <img src="{{ asset('uploads/heroes/' ~ hero.ImageHero) }}" alt="{{ hero.Name }}">
+                        {% else %}
+                            <img src="{{ asset('img/placeholder.png') }}" alt="No image">
+                        {% endif %}
+                        <div class="name">{{ hero.Name }}</div>
+                        <div class="type">{{ hero.Fonction ?: '' }}</div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
 </div>
 {% endblock %}

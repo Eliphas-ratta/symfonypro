@@ -2,28 +2,113 @@
 
 {% block title %}{{ capacity.Name }}{% endblock %}
 
+{% block stylesheets %}
+{{ parent() }}
+<style>
+    .section-title {
+        margin-top: 3rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: center;
+        color: #fff;
+    }
+
+    .card-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    .entity-card {
+        background-color: #1f1f1f;
+        border-radius: 12px;
+        padding: 1rem;
+        width: 140px;
+        text-align: center;
+        color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .entity-card img {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+    }
+
+    .entity-card .name {
+        font-weight: bold;
+        font-size: 0.95rem;
+    }
+
+    .entity-card .type {
+        font-size: 0.8rem;
+        color: #aaa;
+    }
+
+    .capacity-image {
+        max-width: 300px;
+        width: 100%;
+        border-radius: 1rem;
+        object-fit: cover;
+    }
+
+    .capacity-description {
+        white-space: pre-line;
+    }
+
+    .capacity-flex {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+        .capacity-flex {
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center;
+        }
+
+        .capacity-flex .col-md-4,
+        .capacity-flex .col-md-8 {
+            max-width: 100%;
+            flex: 0 0 100%;
+        }
+    }
+</style>
+{% endblock %}
+
 {% block body %}
 <div class="container text-white my-5">
-    <div class="row g-4 align-items-start">
+    <div class="row g-4 align-items-start capacity-flex">
         <div class="col-md-4 text-center">
             {% if capacity.ImageCapacity %}
-                <img src="{{ asset('uploads/capacities/' ~ capacity.ImageCapacity) }}" class="img-fluid rounded-4" alt="{{ capacity.Name }}">
+                <img src="{{ asset('uploads/capacities/' ~ capacity.ImageCapacity) }}" class="capacity-image" alt="{{ capacity.Name }}">
             {% endif %}
         </div>
         <div class="col-md-8">
-            <h2 class="fw-bold">{{ capacity.Name }}</h2>
+            <h2 class="fw-bold text-primary">{{ capacity.Name }}</h2>
             <p><strong>Type:</strong> {{ capacity.Type ?: 'N/A' }}</p>
-            <p><strong>Description:</strong><br>{{ capacity.Description ?: 'No description available' }}</p>
-            {% if capacity.Domain|length > 0 %}
-                <p><strong>Domains:</strong>
-                    {% for domain in capacity.Domain %}
-                        <span class="badge bg-secondary me-1">{{ domain.Name }}</span>
-                    {% endfor %}
-                </p>
-            {% else %}
-                <p><strong>Domains:</strong> None</p>
-            {% endif %}
+            <p class="capacity-description"><strong>Description:</strong><br>{{ capacity.Description ?: 'No description available' }}</p>
         </div>
     </div>
+
+    {% set filteredDomains = capacity.Domain|filter(d => d.DomainWorld.id == capacity.CapacityWorld.id) %}
+    {% if filteredDomains|length > 0 %}
+        <div class="section-title">Associated Domains</div>
+        <div class="card-group">
+            {% for domain in filteredDomains %}
+                <div class="entity-card">
+                    {% if domain.ImageDomain %}
+                        <img src="{{ asset('uploads/domains/' ~ domain.ImageDomain) }}" alt="{{ domain.Name }}">
+                    {% endif %}
+                    <div class="name">{{ domain.Name }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 </div>
 {% endblock %}

@@ -51,6 +51,7 @@
 
         .city-image {
             max-width: 300px;
+            width: 100%;
             border-radius: 1rem;
             object-fit: cover;
         }
@@ -58,12 +59,31 @@
         .city-description {
             white-space: pre-line;
         }
+
+        .city-flex {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .city-flex {
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center;
+            }
+
+            .city-flex .col-md-4,
+            .city-flex .col-md-8 {
+                max-width: 100%;
+                flex: 0 0 100%;
+            }
+        }
     </style>
 {% endblock %}
 
 {% block body %}
 <div class="container text-white my-5">
-    <div class="row g-4 align-items-start">
+    <div class="row g-4 align-items-start city-flex">
         <div class="col-md-4 text-center">
             {% if city.ImageCity %}
                 <img src="{{ asset('uploads/cities/' ~ city.ImageCity) }}" alt="{{ city.Name }}" class="city-image">
@@ -71,11 +91,12 @@
         </div>
 
         <div class="col-md-8">
-            <h2 class="text-info fw-bold">{{ city.Name }}</h2>
-            <p class="city-description"><strong>Description :</strong> {{ city.Description }}</p>
+            <h2 class="fw-bold text-info">{{ city.Name }}</h2>
+            <p class="city-description"><strong>Description :</strong><br>{{ city.Description }}</p>
         </div>
     </div>
 
+    {# Factions liées à la ville #}
     {% if city.cityFaction|length > 0 %}
         <div class="section-title">Factions</div>
         <div class="card-group">
@@ -88,6 +109,28 @@
                     {% endif %}
                     <div class="name">{{ faction.Name }}</div>
                     <div class="type">{{ faction.Type ?: '' }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {# Héros liés à cette ville #}
+    {% if city.getCityHero is defined and city.getCityHero|length > 0 %}
+        <div class="section-title">Héros associés</div>
+        <div class="card-group">
+            {% for hero in city.getCityHero %}
+                <div class="entity-card">
+                    {% if hero.ImageHero %}
+                        <img src="{{ asset('uploads/heroes/' ~ hero.ImageHero) }}" alt="{{ hero.Name }}">
+                    {% else %}
+                        <img src="{{ asset('img/placeholder.png') }}" alt="No image">
+                    {% endif %}
+                    <div class="name">
+                        <a href="{{ path('app_hero_show', { id: hero.id }) }}" class="text-decoration-none text-white">
+                            {{ hero.Name }}
+                        </a>
+                    </div>
+                    <div class="type">{{ hero.Fonction ?: '' }}</div>
                 </div>
             {% endfor %}
         </div>

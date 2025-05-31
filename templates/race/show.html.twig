@@ -5,8 +5,53 @@
 {% block stylesheets %}
     {{ parent() }}
     <style>
+        .section-title {
+            margin-top: 3rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
+        }
+
+        .card-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .entity-card {
+            background-color: #1f1f1f;
+            border-radius: 12px;
+            padding: 1rem;
+            width: 140px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .entity-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+
+        .entity-card .name {
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .entity-card .type {
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
         .race-image {
             max-width: 300px;
+            width: 100%;
             border-radius: 1rem;
             object-fit: cover;
         }
@@ -19,10 +64,22 @@
             font-weight: bold;
         }
 
+        .race-flex {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
         @media (max-width: 768px) {
             .race-flex {
-                flex-direction: column;
-                align-items: center;
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center;
+            }
+
+            .race-flex .col-md-4,
+            .race-flex .col-md-8 {
+                max-width: 100%;
+                flex: 0 0 100%;
             }
         }
     </style>
@@ -30,44 +87,56 @@
 
 {% block body %}
 <div class="container text-white my-5">
-    <a href="{{ path('app_races', { worldId: race.RaceWorld.id }) }}" class="btn btn-outline-light mb-4">
-        ← Back to list
-    </a>
+    
 
     <div class="row g-4 align-items-start race-flex">
-        {# Image à gauche #}
         <div class="col-md-4 text-center">
             {% if race.ImageRace %}
                 <img src="{{ asset('uploads/races/' ~ race.ImageRace) }}" alt="{{ race.Name }}" class="race-image">
             {% endif %}
         </div>
 
-        {# Infos à droite #}
         <div class="col-md-8">
             <h2 class="text-info fw-bold">{{ race.Name }}</h2>
-
             <p class="race-description">
                 <span class="info-label">Description :</span><br>
                 {{ race.Description ?: 'Aucune description fournie.' }}
             </p>
-
-            <p class="mt-3">
-                <span class="info-label">Nombre de héros associés :</span>
-                {{ race.RaceHero|length }}
-            </p>
-
-            {% if race.RaceHero|length > 0 %}
-                <ul class="list-group bg-dark text-white">
-                    {% for hero in race.RaceHero %}
-                        <li class="list-group-item bg-dark text-white">
-                            <a href="{{ path('app_hero_show', { id: hero.id }) }}" class="text-info">
-                                {{ hero.Name }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
         </div>
     </div>
+
+    {# Domaines associés #}
+    {% if race.RaceDomain|length > 0 %}
+        <div class="section-title">Domaines Associés</div>
+        <div class="card-group">
+            {% for domain in race.RaceDomain %}
+                <div class="entity-card">
+                    {% if domain.ImageDomain %}
+                        <img src="{{ asset('uploads/domains/' ~ domain.ImageDomain) }}" alt="{{ domain.Name }}">
+                    {% endif %}
+                    <div class="name">{{ domain.Name }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {# Héros associés #}
+    {% if race.RaceHero|length > 0 %}
+        <div class="section-title">Héros Associés</div>
+        <div class="card-group">
+            {% for hero in race.RaceHero %}
+                <div class="entity-card">
+                    {% if hero.ImageHero %}
+                        <img src="{{ asset('uploads/heroes/' ~ hero.ImageHero) }}" alt="{{ hero.Name }}">
+                    {% endif %}
+                    <div class="name">
+                        <a href="{{ path('app_hero_show', { id: hero.id }) }}" class="text-decoration-none text-white">
+                            {{ hero.Name }}
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 </div>
 {% endblock %}

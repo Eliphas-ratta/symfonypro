@@ -49,7 +49,9 @@ final class FactionController extends AbstractController
         $faction = new Faction();
         $faction->setFactionWorld($world);
 
-        $form = $this->createForm(FactionType::class, $faction);
+        $form = $this->createForm(FactionType::class, $faction, [
+            'world' => $world,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -87,7 +89,9 @@ final class FactionController extends AbstractController
         SluggerInterface $slugger,
         ImageResizerService $imageResizer
     ): Response {
-        $form = $this->createForm(FactionType::class, $faction);
+        $form = $this->createForm(FactionType::class, $faction, [
+            'world' => $faction->getFactionWorld(),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

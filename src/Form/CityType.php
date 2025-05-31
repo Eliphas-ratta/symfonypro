@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\City;
 use App\Entity\Faction;
+use App\Repository\FactionRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -17,6 +18,8 @@ class CityType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $world = $options['world'];
+
         $builder
             ->add('Name', TextType::class, [
                 'label' => 'City Name',
@@ -48,6 +51,11 @@ class CityType extends AbstractType
                 'multiple' => true,
                 'expanded' => false,
                 'required' => false,
+                'query_builder' => function (FactionRepository $repo) use ($world) {
+                    return $repo->createQueryBuilder('f')
+                        ->where('f.Faction_World = :world')
+                        ->setParameter('world', $world);
+                },
             ]);
     }
 
@@ -55,6 +63,7 @@ class CityType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => City::class,
+            'world' => null, // Option personnalisée à transmettre depuis le contrôleur
         ]);
     }
 }

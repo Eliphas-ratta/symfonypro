@@ -5,8 +5,53 @@
 {% block stylesheets %}
     {{ parent() }}
     <style>
+        .section-title {
+            margin-top: 3rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
+        }
+
+        .card-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .entity-card {
+            background-color: #1f1f1f;
+            border-radius: 12px;
+            padding: 1rem;
+            width: 140px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .entity-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+
+        .entity-card .name {
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .entity-card .type {
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
         .faction-image {
             max-width: 300px;
+            width: 100%;
             border-radius: 1rem;
             object-fit: cover;
         }
@@ -19,10 +64,22 @@
             font-weight: bold;
         }
 
+        .faction-flex {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
         @media (max-width: 768px) {
             .faction-flex {
-                flex-direction: column;
-                align-items: center;
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center;
+            }
+
+            .faction-flex .col-md-4,
+            .faction-flex .col-md-8 {
+                max-width: 100%;
+                flex: 0 0 100%;
             }
         }
     </style>
@@ -31,27 +88,64 @@
 {% block body %}
 <div class="container text-white my-5">
     <div class="row g-4 align-items-start faction-flex">
-        {# Image à gauche #}
-        <a href="{{ path('app_factions', { worldId: faction.FactionWorld.id }) }}" class="btn btn-outline-light mt-3">
-                ← Back to list
-            </a>
         <div class="col-md-4 text-center">
             {% if faction.ImageFaction %}
                 <img src="{{ asset('uploads/factions/' ~ faction.ImageFaction) }}" alt="{{ faction.Name }}" class="faction-image">
             {% endif %}
         </div>
 
-        {# Infos à droite #}
         <div class="col-md-8">
             <h2 class="text-warning fw-bold">{{ faction.Name }}</h2>
-
             <p><span class="info-label">Type :</span> {{ faction.Type ?: 'Inconnu' }}</p>
             <p><span class="info-label">Régime :</span> {{ faction.Regime ?: 'Inconnu' }}</p>
             <p><span class="info-label">Capitale :</span> {{ faction.Capital ?: 'Inconnue' }}</p>
-            <p class="faction-description"><span class="info-label">Description :</span><br>{{ faction.Description ?: 'Aucune description fournie.' }}</p>
-
-            
+            <p class="faction-description">
+                <span class="info-label">Description :</span><br>
+                {{ faction.Description ?: 'Aucune description fournie.' }}
+            </p>
         </div>
     </div>
+
+    {% if faction.FactionContinent|length > 0 %}
+        <div class="section-title">Continents</div>
+        <div class="card-group">
+            {% for continent in faction.FactionContinent %}
+                <div class="entity-card">
+                    {% if continent.ImageContinent %}
+                        <img src="{{ asset('uploads/continents/' ~ continent.ImageContinent) }}" alt="{{ continent.Name }}">
+                    {% endif %}
+                    <div class="name">{{ continent.Name }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if faction.FactionCity|length > 0 %}
+        <div class="section-title">Cities</div>
+        <div class="card-group">
+            {% for city in faction.FactionCity %}
+                <div class="entity-card">
+                    {% if city.ImageCity %}
+                        <img src="{{ asset('uploads/cities/' ~ city.ImageCity) }}" alt="{{ city.Name }}">
+                    {% endif %}
+                    <div class="name">{{ city.Name }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if faction.FactionGuild|length > 0 %}
+        <div class="section-title">Guilds</div>
+        <div class="card-group">
+            {% for guild in faction.FactionGuild %}
+                <div class="entity-card">
+                    {% if guild.ImageGuild %}
+                        <img src="{{ asset('uploads/guilds/' ~ guild.ImageGuild) }}" alt="{{ guild.Name }}">
+                    {% endif %}
+                    <div class="name">{{ guild.Name }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 </div>
 {% endblock %}

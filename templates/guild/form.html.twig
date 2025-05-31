@@ -149,45 +149,8 @@
         </div>
     </div>
 
-    {# Héros #}
-    <div class="checkbox-group">
-        <h4>{{ form_label(form.heroes) }}</h4>
-        <div class="checkbox-list">
-            {% for child in form.heroes %}
-                <label>
-                    <div class="checkbox-info">
-                        {% set img = child.vars.attr['data-image'] ?? null %}
-                        {% if img %}
-                            <img src="{{ asset('uploads/heroes/' ~ img) }}" class="avatar" alt="{{ child.vars.label }}">
-                        {% endif %}
-                        <span>{{ child.vars.label }}</span>
-                    </div>
-                    {{ form_widget(child) }}
-                </label>
-            {% endfor %}
-        </div>
-    </div>
-
-    {# Continents #}
-    <div class="checkbox-group">
-        <h4>{{ form_label(form.Guild_Continent) }}</h4>
-        <div class="checkbox-list">
-            {% for child in form.Guild_Continent %}
-                <label>
-                    <div class="checkbox-info">
-                        {% set img = child.vars.attr['data-image'] ?? null %}
-                        {% if img %}
-                            <img src="{{ asset('uploads/continents/' ~ img) }}" class="avatar" alt="{{ child.vars.label }}">
-                        {% endif %}
-                        <span>{{ child.vars.label }}</span>
-                    </div>
-                    {{ form_widget(child) }}
-                </label>
-            {% endfor %}
-        </div>
-    </div>
-
     {{ form_rest(form) }}
+
     <div style="text-align: right; margin-top: 1rem;">
         <button type="submit">Save</button>
     </div>

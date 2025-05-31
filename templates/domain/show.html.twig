@@ -1,7 +1,91 @@
-{# templates/domain/show.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ domain.Name }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .section-title {
+            margin-top: 3rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
+        }
+
+        .card-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .entity-card {
+            background-color: #1f1f1f;
+            border-radius: 12px;
+            padding: 1rem;
+            width: 140px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .entity-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+
+        .entity-card .name {
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .entity-card .type {
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
+        /* Nouvelle disposition pour les capacités */
+        .capacity-card {
+            background-color: #1a1a1a;
+            border-radius: 12px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            color: white;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .capacity-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            background-color: #ccc;
+        }
+
+        .capacity-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .capacity-info .name {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .capacity-info .description {
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
 <div class="container text-white my-5">
@@ -18,5 +102,62 @@
             <p><strong>Description :</strong><br> {{ domain.Description ?: 'No description' }}</p>
         </div>
     </div>
+
+    {# Capacités associées (version horizontale) #}
+    {% if domain.capacities is not empty %}
+        <div class="section-title">Capacités associées</div>
+        <div>
+            {% for capacity in domain.capacities %}
+                <div class="capacity-card">
+                    {% if capacity.ImageCapacity %}
+                        <img src="{{ asset('uploads/capacities/' ~ capacity.ImageCapacity) }}" alt="{{ capacity.Name }}">
+                    {% else %}
+                        <div style="width:100px;height:100px;background:#ccc;border-radius:10px;display:flex;align-items:center;justify-content:center;">Image<br>Capacity</div>
+                    {% endif %}
+                    <div class="capacity-info">
+                        <div class="name">{{ capacity.Name }}</div>
+                        <div class="description">{{ capacity.Description ?: 'Aucune description' }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {# Héros associés #}
+    {% set heroes = domain.getHeroes() %}
+    {% if heroes is not empty %}
+        <div class="section-title">Héros associés</div>
+        <div class="card-group">
+            {% for hero in heroes %}
+                <div class="entity-card">
+                    {% if hero.ImageHero %}
+                        <img src="{{ asset('uploads/heroes/' ~ hero.ImageHero) }}" alt="{{ hero.Name }}">
+                    {% else %}
+                        <img src="{{ asset('img/placeholder.png') }}" alt="No image">
+                    {% endif %}
+                    <div class="name">{{ hero.Name }}</div>
+                    <div class="type">{{ hero.Fonction ?: '' }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {# Races associées #}
+    {% set races = domain.getDomainRace() %}
+    {% if races is not empty %}
+        <div class="section-title">Races associées</div>
+        <div class="card-group">
+            {% for race in races %}
+                <div class="entity-card">
+                    {% if race.ImageRace %}
+                        <img src="{{ asset('uploads/races/' ~ race.ImageRace) }}" alt="{{ race.Name }}">
+                    {% else %}
+                        <img src="{{ asset('img/placeholder.png') }}" alt="No image">
+                    {% endif %}
+                    <div class="name">{{ race.Name }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 </div>
 {% endblock %}
