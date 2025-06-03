@@ -147,5 +147,21 @@
             {% endfor %}
         </div>
     {% endif %}
+
+    {% if faction.FactionHero|length > 0 %}
+    <div class="section-title">Heroes</div>
+    <div class="card-group">
+        {% for hero in faction.FactionHero %}
+            <div class="entity-card">
+                {% if hero.ImageHero %}
+                    <img src="{{ asset('uploads/heroes/' ~ hero.ImageHero) }}" alt="{{ hero.Name }}">
+                {% endif %}
+                <div class="name">{{ hero.Name }}</div>
+                <div class="type">{{ hero.Fonction ?: 'Fonction inconnue' }}</div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
 </div>
 {% endblock %}
