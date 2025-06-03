@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Capacity;
+use App\Form\CapacityFilterType;
 use App\Form\CapacityType;
 use App\Repository\CapacityRepository;
+use App\Repository\DomainRepository;
 use App\Repository\WorldRepository;
 use App\Service\ImageResizerService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,18 +19,32 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 final class CapacityController extends AbstractController
 {
     #[Route('/world/{worldId}/capacities', name: 'app_capacities')]
-    public function index(int $worldId, CapacityRepository $capacityRepo, WorldRepository $worldRepo): Response
-    {
+    public function index(
+        int $worldId,
+        Request $request,
+        CapacityRepository $capacityRepo,
+        WorldRepository $worldRepo,
+        DomainRepository $domainRepo
+    ): Response {
         $world = $worldRepo->find($worldId);
         if (!$world) {
             throw $this->createNotFoundException('World not found.');
         }
 
-        $capacities = $capacityRepo->findBy(['Capacity_world' => $world]);
+        $form = $this->createForm(CapacityFilterType::class, null, [
+            'method' => 'GET',
+            'world' => $world,
+        ]);
+        $form->handleRequest($request);
+
+        $filters = $form->getData() ?? [];
+        $capacities = $capacityRepo->findFilteredCapacities($filters, $world);
+
 
         return $this->render('capacity/index.html.twig', [
             'capacities' => $capacities,
             'world' => $world,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -50,7 +66,7 @@ final class CapacityController extends AbstractController
         $capacity->setCapacityWorld($world);
 
         $form = $this->createForm(CapacityType::class, $capacity, [
-            'world' => $world, // ✅ on passe le monde ici
+            'world' => $world,
         ]);
         $form->handleRequest($request);
 
@@ -87,7 +103,7 @@ final class CapacityController extends AbstractController
         $world = $capacity->getCapacityWorld();
 
         $form = $this->createForm(CapacityType::class, $capacity, [
-            'world' => $world, // ✅ on passe le monde ici aussi
+            'world' => $world,
         ]);
         $form->handleRequest($request);
 

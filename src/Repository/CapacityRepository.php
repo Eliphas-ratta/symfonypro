@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Capacity;
+use App\Entity\World;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -16,28 +17,32 @@ class CapacityRepository extends ServiceEntityRepository
         parent::__construct($registry, Capacity::class);
     }
 
-    //    /**
-    //     * @return Capacity[] Returns an array of Capacity objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('c.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    /**
+     * Retourne les capacités filtrées par nom et domaine, pour un monde donné.
+     *
+     * @param array $filters
+     * @param World $world
+     * @return Capacity[]
+     */
+    public function findFilteredCapacities(array $filters, World $world): array
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->leftJoin('c.Domain', 'd')
+            ->addSelect('d')
+            ->where('c.Capacity_world = :world')
+            ->setParameter('world', $world);
 
-    //    public function findOneBySomeField($value): ?Capacity
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        if (!empty($filters['name'])) {
+            $qb->andWhere('LOWER(c.Name) LIKE :name')
+               ->setParameter('name', '%' . strtolower($filters['name']) . '%');
+        }
+
+        if (!empty($filters['domains'])) {
+            // Utilisation de MEMBER OF pour ManyToMany
+            $qb->andWhere(':domain MEMBER OF c.Domain')
+               ->setParameter('domain', $filters['domains']);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
 }
