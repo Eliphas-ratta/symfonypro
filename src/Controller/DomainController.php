@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Domain;
+use App\Form\DomainFilterType;
 use App\Form\DomainType;
 use App\Repository\DomainRepository;
+use App\Repository\RaceRepository;
 use App\Repository\WorldRepository;
 use App\Service\ImageResizerService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,18 +19,34 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 final class DomainController extends AbstractController
 {
     #[Route('/world/{worldId}/domains', name: 'app_domains')]
-    public function index(int $worldId, DomainRepository $domainRepo, WorldRepository $worldRepo): Response
-    {
+    public function index(
+        int $worldId,
+        Request $request,
+        DomainRepository $domainRepo,
+        WorldRepository $worldRepo,
+        RaceRepository $raceRepo // ✅ Ajouté pour injecter les races du monde courant
+    ): Response {
         $world = $worldRepo->find($worldId);
         if (!$world) {
             throw $this->createNotFoundException('World not found.');
         }
 
-        $domains = $domainRepo->findBy(['Domain_World' => $world]);
+        // ✅ Récupération des races liées au monde courant
+        $races = $raceRepo->findBy(['Race_World' => $world]);
+
+        $form = $this->createForm(DomainFilterType::class, null, [
+            'method' => 'GET',
+            'world' => $world,
+            'races' => $races, // ✅ Injectées dans le formulaire
+        ]);
+        $form->handleRequest($request);
+
+        $domains = $domainRepo->findFilteredDomains($form->getData(), $world);
 
         return $this->render('domain/index.html.twig', [
             'domains' => $domains,
             'world' => $world,
+            'form' => $form->createView(),
         ]);
     }
 

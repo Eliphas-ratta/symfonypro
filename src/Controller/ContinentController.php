@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Continent;
 use App\Form\ContinentType;
+use App\Form\ContinentFilterType;
 use App\Repository\ContinentRepository;
 use App\Repository\WorldRepository;
 use App\Service\ImageResizerService;
@@ -17,19 +18,39 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 final class ContinentController extends AbstractController
 {
     #[Route('/world/{worldId}/continents', name: 'app_continents')]
-    public function index(int $worldId, ContinentRepository $continentRepo, WorldRepository $worldRepo): Response
-    {
+    public function index(
+        int $worldId,
+        Request $request,
+        EntityManagerInterface $em,
+        ContinentRepository $continentRepo,
+        WorldRepository $worldRepo
+    ): Response {
         $world = $worldRepo->find($worldId);
 
         if (!$world) {
             throw $this->createNotFoundException('World not found');
         }
 
-        $continents = $continentRepo->findBy(['Continent_World' => $world]);
+        $form = $this->createForm(ContinentFilterType::class, null, [
+            'method' => 'GET',
+        ]);
+        $form->handleRequest($request);
+
+        $qb = $em->getRepository(Continent::class)->createQueryBuilder('c')
+            ->where('c.Continent_World = :world')
+            ->setParameter('world', $world);
+
+        if ($form->isSubmitted() && $form->isValid() && !empty($form->getData()['name'])) {
+            $qb->andWhere('LOWER(c.Name) LIKE :name')
+               ->setParameter('name', '%' . strtolower($form->getData()['name']) . '%');
+        }
+
+        $continents = $qb->getQuery()->getResult();
 
         return $this->render('continent/index.html.twig', [
             'world' => $world,
             'continents' => $continents,
+            'form' => $form->createView(),
         ]);
     }
 

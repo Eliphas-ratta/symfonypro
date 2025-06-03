@@ -17,21 +17,20 @@
         }
 
         .action-buttons {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    gap: 0.5rem;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
-}
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            gap: 0.5rem;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+        }
 
-.continent-card.show-actions .action-buttons {
-    max-height: 50px;
-    opacity: 1;
-}
-
+        .continent-card.show-actions .action-buttons {
+            max-height: 50px;
+            opacity: 1;
+        }
 
         .toggle-btn {
             position: absolute;
@@ -56,6 +55,17 @@
             inset: 0;
             z-index: 1;
         }
+
+        .form-filter input {
+            background-color: #2a2a2a;
+            border: 1px solid #555;
+            color: #fff;
+        }
+
+        .form-filter input::placeholder {
+            color: #fff;
+            opacity: 1;
+        }
     </style>
 {% endblock %}
 
@@ -66,6 +76,23 @@
     <a href="{{ path('app_continent_create', { worldId: world.id }) }}" class="btn btn-success mb-4">
         + Create a New Continent
     </a>
+
+    {# === BARRE DE RECHERCHE === #}
+    {{ form_start(form, { method: 'GET', attr: { class: 'form-filter mb-4' } }) }}
+    <div class="d-flex justify-content-center">
+        <div class="input-group" style="width: 250px;">
+            {{ form_widget(form.name, {
+                attr: {
+                    class: 'form-control',
+                    placeholder: 'Recherche...'
+                }
+            }) }}
+            <button class="btn btn-danger" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+    {{ form_end(form) }}
 
     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
         {% for continent in continents %}
@@ -89,11 +116,9 @@
                            class="btn btn-sm btn-outline-danger">Delete</a>
                     </div>
 
-                    <button class="toggle-btn">
-                    <span id="toggle-icon-{{ continent.id }}">+</span>
+                    <button class="toggle-btn" onclick="toggleActions(event, {{ continent.id }});">
+                        <span id="toggle-icon-{{ continent.id }}">+</span>
                     </button>
-
-
 
                     <a href="{{ path('app_continent_show', { id: continent.id }) }}" class="overlay-link"></a>
                 </div>
@@ -109,5 +134,12 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script>
+        function toggleActions(event, id) {
+            event.stopPropagation();
+            event.preventDefault();
+            const card = document.getElementById(`card-${id}`);
+            card.classList.toggle('show-actions');
+        }
+    </script>
 {% endblock %}
-

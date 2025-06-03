@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Faction;
 use App\Form\FactionType;
+use App\Form\FactionFilterType;
 use App\Repository\WorldRepository;
 use App\Repository\FactionRepository;
 use App\Service\ImageResizerService;
@@ -17,18 +18,50 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 final class FactionController extends AbstractController
 {
     #[Route('/world/{worldId}/factions', name: 'app_factions')]
-    public function index(int $worldId, FactionRepository $factionRepo, WorldRepository $worldRepo): Response
-    {
+    public function index(
+        int $worldId,
+        FactionRepository $factionRepo,
+        WorldRepository $worldRepo,
+        Request $request,
+        EntityManagerInterface $em
+    ): Response {
         $world = $worldRepo->find($worldId);
         if (!$world) {
             throw $this->createNotFoundException('World not found.');
         }
 
-        $factions = $factionRepo->findBy(['Faction_World' => $world]);
+        $form = $this->createForm(FactionFilterType::class, null, [
+            'method' => 'GET',
+            'world' => $world,
+        ]);
+        $form->handleRequest($request);
+
+        $qb = $em->getRepository(Faction::class)->createQueryBuilder('f')
+            ->leftJoin('f.Faction_Continent', 'c')
+            ->addSelect('c')
+            ->where('f.Faction_World = :world')
+            ->setParameter('world', $world);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            if (!empty($data['continent'])) {
+                $qb->andWhere('c = :continent')
+                   ->setParameter('continent', $data['continent']);
+            }
+
+            if (!empty($data['name'])) {
+                $qb->andWhere('LOWER(f.Name) LIKE :name')
+                   ->setParameter('name', '%' . strtolower($data['name']) . '%');
+            }
+        }
+
+        $factions = $qb->getQuery()->getResult();
 
         return $this->render('faction/index.html.twig', [
             'factions' => $factions,
             'world' => $world,
+            'form' => $form->createView(),
         ]);
     }
 

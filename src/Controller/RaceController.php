@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Race;
 use App\Form\RaceType;
+use App\Form\RaceFilterType;
 use App\Repository\RaceRepository;
 use App\Repository\WorldRepository;
 use App\Service\ImageResizerService;
@@ -17,19 +18,42 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 final class RaceController extends AbstractController
 {
     #[Route('/world/{worldId}/races', name: 'app_races')]
-    public function index(int $worldId, RaceRepository $raceRepo, WorldRepository $worldRepo): Response
-    {
+    public function index(
+        int $worldId,
+        Request $request,
+        EntityManagerInterface $em,
+        RaceRepository $raceRepo,
+        WorldRepository $worldRepo
+    ): Response {
         $world = $worldRepo->find($worldId);
 
         if (!$world) {
             throw $this->createNotFoundException('World not found');
         }
 
-        $races = $raceRepo->findBy(['Race_World' => $world]);
+        $form = $this->createForm(RaceFilterType::class, null, [
+            'method' => 'GET',
+        ]);
+        $form->handleRequest($request);
+
+        $qb = $em->getRepository(Race::class)->createQueryBuilder('r')
+            ->where('r.Race_World = :world')
+            ->setParameter('world', $world);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            if (!empty($data['name'])) {
+                $qb->andWhere('LOWER(r.Name) LIKE :name')
+                   ->setParameter('name', '%' . strtolower($data['name']) . '%');
+            }
+        }
+
+        $races = $qb->getQuery()->getResult();
 
         return $this->render('race/index.html.twig', [
             'world' => $world,
             'races' => $races,
+            'form' => $form->createView(),
         ]);
     }
 

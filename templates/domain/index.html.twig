@@ -50,6 +50,22 @@
             inset: 0;
             z-index: 1;
         }
+
+        .form-filter label {
+            font-weight: bold;
+        }
+
+        .form-filter select,
+        .form-filter input {
+            background-color: #2a2a2a;
+            border: 1px solid #555;
+            color: #fff;
+        }
+
+        .form-filter input::placeholder {
+            color: #fff; 
+            opacity: 1;
+        }
     </style>
 {% endblock %}
 
@@ -61,7 +77,40 @@
         + Create a New Domain
     </a>
 
-    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
+    {{ form_start(form, { attr: { class: 'form-filter mb-4' }, method: 'GET' }) }}
+    <div class="d-flex justify-content-center">
+        <div class="d-flex flex-wrap gap-2 justify-content-center align-items-end" style="max-width: 1000px; width: 100%;">
+            <div class="input-group" style="width: 250px;">
+                {{ form_widget(form.name, {
+                    attr: {
+                        class: 'form-control',
+                        placeholder: 'Search by name'
+                    }
+                }) }}
+                <button class="btn btn-danger" type="submit" style="min-width: 45px;">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+            <div style="width: 200px;">
+                {{ form_widget(form.races, {
+                    attr: {
+                        class: 'form-select',
+                        onchange: 'this.form.submit()'
+                    }
+                }) }}
+            </div>
+
+            <div>
+                <a href="{{ path('app_domains', { worldId: world.id }) }}" class="btn btn-secondary" style="min-width: 120px;">
+                    Réinitialiser
+                </a>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3 mt-3">
         {% for domain in domains %}
             <div class="col">
                 <div class="card bg-dark text-white border-0 shadow rounded-4 domain-card position-relative" id="card-{{ domain.id }}">

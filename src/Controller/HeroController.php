@@ -2,34 +2,79 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\String\Slugger\SluggerInterface;
-use Doctrine\ORM\EntityManagerInterface;
-
 use App\Entity\Hero;
 use App\Form\HeroType;
+use App\Form\HeroFilterType;
 use App\Repository\HeroRepository;
 use App\Repository\WorldRepository;
 use App\Service\ImageResizerService;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 final class HeroController extends AbstractController
 {
     #[Route('/hero/{worldId}', name: 'app_hero')]
-    public function index(int $worldId, HeroRepository $heroRepository, WorldRepository $worldRepo): Response
-    {
+    public function index(
+        int $worldId,
+        Request $request,
+        HeroRepository $heroRepository,
+        WorldRepository $worldRepo,
+        EntityManagerInterface $em
+    ): Response {
         $world = $worldRepo->find($worldId);
         if (!$world) {
             throw $this->createNotFoundException('World not found.');
         }
 
-        $heroes = $heroRepository->findBy(['Hero_World' => $world]);
+        $form = $this->createForm(HeroFilterType::class, null, [
+            'method' => 'GET',
+            'world' => $world
+        ]);
+        $form->handleRequest($request);
+
+        $qb = $em->getRepository(Hero::class)->createQueryBuilder('h')
+            ->leftJoin('h.Hero_Faction', 'f')
+            ->leftJoin('h.guilds', 'g')
+            ->leftJoin('h.Hero_Race', 'r')
+            ->addSelect('f', 'g', 'r')
+            ->where('h.Hero_World = :world')
+            ->setParameter('world', $world);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            if (!empty($data['name'])) {
+                $qb->andWhere('LOWER(h.Name) LIKE :name')
+                   ->setParameter('name', '%' . strtolower($data['name']) . '%');
+            }
+
+           if (!empty($data['factions'])) {
+    $qb->andWhere('f = :factions')
+       ->setParameter('factions', $data['factions']);
+}
+
+if (!empty($data['guilds'])) {
+    $qb->andWhere('g = :guilds')
+       ->setParameter('guilds', $data['guilds']);
+}
+
+if (!empty($data['races'])) {
+    $qb->andWhere('r = :races')
+       ->setParameter('races', $data['races']);
+}
+
+        }
+
+        $heroes = $qb->getQuery()->getResult();
 
         return $this->render('hero/index.html.twig', [
             'heroes' => $heroes,
-            'world' => $world
+            'world' => $world,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -50,9 +95,7 @@ final class HeroController extends AbstractController
         $hero = new Hero();
         $hero->setHeroWorld($world);
 
-        $form = $this->createForm(HeroType::class, $hero, [
-            'world' => $world,
-        ]);
+        $form = $this->createForm(HeroType::class, $hero, ['world' => $world]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -64,7 +107,6 @@ final class HeroController extends AbstractController
 
                 $targetDir = $this->getParameter('heroes_images_directory');
                 $imageResizer->resizeAndSave($imageFile, $targetDir, $newFilename);
-
                 $hero->setImageHero($newFilename);
             }
 
@@ -90,9 +132,7 @@ final class HeroController extends AbstractController
     ): Response {
         $world = $hero->getHeroWorld();
 
-        $form = $this->createForm(HeroType::class, $hero, [
-            'world' => $world,
-        ]);
+        $form = $this->createForm(HeroType::class, $hero, ['world' => $world]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -104,7 +144,6 @@ final class HeroController extends AbstractController
 
                 $targetDir = $this->getParameter('heroes_images_directory');
                 $imageResizer->resizeAndSave($imageFile, $targetDir, $newFilename);
-
                 $hero->setImageHero($newFilename);
             }
 
