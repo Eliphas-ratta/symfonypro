@@ -16,6 +16,24 @@ header {
     
 }
 
+footer {
+    background-color: #383838 !important;
+    color: #ffffff;
+    padding: 2rem;
+    border-top: 2px solid #6b6b6b;
+    
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+footer a:hover {
+    color: #bbbbbb;
+}
+
+
 p {
     color: #ffffff;
 }
