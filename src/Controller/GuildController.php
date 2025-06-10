@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Guild;
+use App\Form\GuildFilterType;
 use App\Form\GuildType;
 use App\Repository\GuildRepository;
 use App\Repository\WorldRepository;
@@ -17,21 +18,52 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 final class GuildController extends AbstractController
 {
     #[Route('/world/{worldId}/guilds', name: 'app_guilds')]
-public function index(int $worldId, GuildRepository $guildRepo, WorldRepository $worldRepo): Response
-{
-    $world = $worldRepo->find($worldId);
-    if (!$world) {
-        throw $this->createNotFoundException('World not found.');
+    public function index(
+        int $worldId,
+        Request $request,
+        EntityManagerInterface $em,
+        WorldRepository $worldRepo
+    ): Response {
+        $world = $worldRepo->find($worldId);
+        if (!$world) {
+            throw $this->createNotFoundException('World not found.');
+        }
+
+        $form = $this->createForm(GuildFilterType::class, null, [
+            'method' => 'GET',
+            'world' => $world,
+        ]);
+        $form->handleRequest($request);
+
+        $qb = $em->getRepository(Guild::class)->createQueryBuilder('g')
+            ->leftJoin('g.Guild_Faction', 'f')
+            ->addSelect('f')
+            ->leftJoin('g.Guild_World', 'w')
+            ->where(':world MEMBER OF g.Guild_World')
+            ->setParameter('world', $world);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            if (!empty($data['name'])) {
+                $qb->andWhere('LOWER(g.Name) LIKE :name')
+                   ->setParameter('name', '%' . strtolower($data['name']) . '%');
+            }
+
+            if (!empty($data['factions'])) {
+                $qb->andWhere(':faction MEMBER OF g.Guild_Faction')
+                   ->setParameter('faction', $data['factions']);
+            }
+        }
+
+        $guilds = $qb->getQuery()->getResult();
+
+        return $this->render('guild/index.html.twig', [
+            'guilds' => $guilds,
+            'world' => $world,
+            'form' => $form->createView(),
+        ]);
     }
-
-    $guilds = $guildRepo->findByWorld($world); // ✅ seulement les guildes du monde
-
-    return $this->render('guild/index.html.twig', [
-        'guilds' => $guilds,
-        'world' => $world,
-    ]);
-}
-
 
     #[Route('/world/{worldId}/guild/create', name: 'app_guild_create')]
     public function create(
@@ -51,7 +83,7 @@ public function index(int $worldId, GuildRepository $guildRepo, WorldRepository 
         $guild->addGuildWorld($world);
 
         $form = $this->createForm(GuildType::class, $guild, [
-            'world' => $world, // 👈 Nécessaire pour filtrer
+            'world' => $world,
         ]);
         $form->handleRequest($request);
 
@@ -93,8 +125,9 @@ public function index(int $worldId, GuildRepository $guildRepo, WorldRepository 
         ImageResizerService $imageResizer
     ): Response {
         $world = $guild->getGuildWorld()->first();
+
         $form = $this->createForm(GuildType::class, $guild, [
-            'world' => $world, // 👈 Ajout pour le filtrage
+            'world' => $world,
         ]);
         $form->handleRequest($request);
 

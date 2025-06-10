@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\City;
 use App\Form\CityType;
+use App\Form\CityFilterType;
 use App\Repository\CityRepository;
 use App\Repository\WorldRepository;
 use App\Service\ImageResizerService;
@@ -17,18 +18,49 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 final class CityController extends AbstractController
 {
     #[Route('/city/{worldId}', name: 'app_city')]
-    public function index(int $worldId, CityRepository $cityRepository, WorldRepository $worldRepo): Response
-    {
+    public function index(
+        int $worldId,
+        Request $request,
+        EntityManagerInterface $em,
+        WorldRepository $worldRepo
+    ): Response {
         $world = $worldRepo->find($worldId);
         if (!$world) {
             throw $this->createNotFoundException('World not found.');
         }
 
-        $cities = $cityRepository->findBy(['City_World' => $world]);
+        $form = $this->createForm(CityFilterType::class, null, [
+            'method' => 'GET',
+            'world' => $world,
+        ]);
+        $form->handleRequest($request);
+
+        $qb = $em->getRepository(City::class)->createQueryBuilder('c')
+            ->leftJoin('c.City_Faction', 'f')
+            ->addSelect('f')
+            ->where('c.City_World = :world')
+            ->setParameter('world', $world);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            if (!empty($data['name'])) {
+                $qb->andWhere('LOWER(c.Name) LIKE :name')
+                   ->setParameter('name', '%' . strtolower($data['name']) . '%');
+            }
+
+            if (!empty($data['factions'])) {
+                $qb->andWhere(':faction MEMBER OF c.City_Faction')
+                   ->setParameter('faction', $data['factions']);
+            }
+        }
+
+        $cities = $qb->getQuery()->getResult();
 
         return $this->render('city/index.html.twig', [
             'cities' => $cities,
             'world' => $world,
+            'form' => $form->createView(),
         ]);
     }
 

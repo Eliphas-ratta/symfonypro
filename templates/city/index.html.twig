@@ -50,6 +50,22 @@
             inset: 0;
             z-index: 1;
         }
+
+        .form-filter label {
+            font-weight: bold;
+        }
+
+        .form-filter select,
+        .form-filter input {
+            background-color: #2a2a2a;
+            border: 1px solid #555;
+            color: #fff;
+        }
+
+        .form-filter input::placeholder {
+            color: #fff;
+            opacity: 1;
+        }
     </style>
 {% endblock %}
 
@@ -61,6 +77,45 @@
         + Create a New City
     </a>
 
+    {# === FORMULAIRE DE FILTRE === #}
+    {{ form_start(form, { attr: { class: 'form-filter mb-4' }, method: 'GET' }) }}
+    <div class="d-flex justify-content-center">
+        <div class="d-flex flex-wrap gap-2 justify-content-center align-items-end" style="max-width: 800px; width: 100%;">
+
+            {# Recherche par nom #}
+            <div class="input-group" style="width: 250px;">
+                {{ form_widget(form.name, {
+                    attr: {
+                        class: 'form-control',
+                        placeholder: 'Recherche...'
+                    }
+                }) }}
+                <button class="btn btn-danger" type="submit" style="min-width: 45px;">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+            {# Dropdown Faction #}
+            <div style="width: 200px;">
+                {{ form_widget(form.factions, {
+                    attr: {
+                        class: 'form-select',
+                        onchange: 'this.form.submit()'
+                    }
+                }) }}
+            </div>
+
+            {# Reset #}
+            <div>
+                <a href="{{ path('app_city', { worldId: world.id }) }}" class="btn btn-secondary" style="min-width: 120px;">
+                    Réinitialiser
+                </a>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+    {# === LISTE DES CITIES === #}
     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
         {% for city in cities %}
             <div class="col">

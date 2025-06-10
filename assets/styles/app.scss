@@ -97,6 +97,31 @@ textarea::placeholder {
     color: #ffffff !important;
 }
 
+//register et login
+
+.bg-custom-dark {
+    background-color: #222222 !important;
+}
+.bg-custom-card {
+    background-color: #383838 !important;
+}
+
+.register-card {
+    width: 100%;
+    padding-inline: 1rem;
+    padding-block: 2rem ; 
+    min-height: 80vh;   
+
+    @media (min-width: 576px) {
+        width: 100%;
+        max-width: 400px;
+        padding-inline: 0;
+        min-height: auto;
+    }
+}
+
+
+
 
 //form
 

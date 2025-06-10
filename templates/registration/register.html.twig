@@ -3,20 +3,47 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+<div class="d-flex flex-column align-items-center bg-custom-dark" style="min-height: 100vh; padding-top: 2rem; padding-bottom: 2rem;">
+    <div class="p-4 rounded-4 shadow bg-custom-card register-card">
+        <h2 class="text-white text-center mb-4">Register</h2>
 
-    {{ form_errors(registrationForm) }}
+        {{ form_start(registrationForm, {'attr': {'enctype': 'multipart/form-data'}}) }}
+            <div class="mb-3">
+                {{ form_label(registrationForm.username, null, {'label_attr': {'class': 'form-label text-white'}}) }}
+                {{ form_widget(registrationForm.username, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(registrationForm.username) }}
+            </div>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.username) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.profileImage) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+            <div class="mb-3">
+                {{ form_label(registrationForm.email, null, {'label_attr': {'class': 'form-label text-white'}}) }}
+                {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(registrationForm.email) }}
+            </div>
 
-        <button type="submit" class="btn btn-lg btn-primary">Register</button>
-    {{ form_end(registrationForm) }}
-    <p>Already have an account? <a href="{{ path('app_login') }}">Login here</a></p>
+            <div class="mb-3">
+                {{ form_label(registrationForm.plainPassword, 'Password', {'label_attr': {'class': 'form-label text-white'}}) }}
+                {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(registrationForm.plainPassword) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(registrationForm.profileImage, 'Profile Picture', {'label_attr': {'class': 'form-label text-white'}}) }}
+                {{ form_widget(registrationForm.profileImage, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(registrationForm.profileImage) }}
+            </div>
+
+            <div class="form-check mb-3">
+                {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+                {{ form_label(registrationForm.agreeTerms, null, {'label_attr': {'class': 'form-check-label text-white'}}) }}
+                {{ form_errors(registrationForm.agreeTerms) }}
+            </div>
+
+            <button type="submit" class="btn btn-danger w-100">Register</button>
+        {{ form_end(registrationForm) }}
+
+        <p class="text-center text-danger mt-3 fst-italic">
+            Déjà inscrit : <a href="{{ path('app_login') }}" class="text-decoration-underline text-danger">Login</a>
+        </p>
+    </div>
+</div>
 {% endblock %}
