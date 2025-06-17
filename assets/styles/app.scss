@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+.fantasy-title {
+    font-family: 'Uncial Antiqua', cursive;
+}
+
+
 body {
     background-color: #222222;
 }
@@ -104,7 +109,7 @@ textarea::placeholder {
 }
 
  h2, h3 {
-    color: #2abbff !important;
+    color: #ffffff !important;
 }
 
 .tab-pane.fade.show.active h3 {
