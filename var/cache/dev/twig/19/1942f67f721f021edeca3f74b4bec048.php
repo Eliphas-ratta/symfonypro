@@ -367,7 +367,52 @@ class __TwigTemplate_211d3f6f2a7f389e75670225ccce4a1c extends Template
     ";
         }
         // line 150
-        yield "</div>
+        yield "
+    ";
+        // line 151
+        if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, (isset($context["faction"]) || array_key_exists("faction", $context) ? $context["faction"] : (function () { throw new RuntimeError('Variable "faction" does not exist.', 151, $this->source); })()), "FactionHero", [], "any", false, false, false, 151)) > 0)) {
+            // line 152
+            yield "    <div class=\"section-title\">Heroes</div>
+    <div class=\"card-group\">
+        ";
+            // line 154
+            $context['_parent'] = $context;
+            $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["faction"]) || array_key_exists("faction", $context) ? $context["faction"] : (function () { throw new RuntimeError('Variable "faction" does not exist.', 154, $this->source); })()), "FactionHero", [], "any", false, false, false, 154));
+            foreach ($context['_seq'] as $context["_key"] => $context["hero"]) {
+                // line 155
+                yield "            <div class=\"entity-card\">
+                ";
+                // line 156
+                if (CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "ImageHero", [], "any", false, false, false, 156)) {
+                    // line 157
+                    yield "                    <img src=\"";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/heroes/" . CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "ImageHero", [], "any", false, false, false, 157))), "html", null, true);
+                    yield "\" alt=\"";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "Name", [], "any", false, false, false, 157), "html", null, true);
+                    yield "\">
+                ";
+                }
+                // line 159
+                yield "                <div class=\"name\">";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "Name", [], "any", false, false, false, 159), "html", null, true);
+                yield "</div>
+                <div class=\"type\">";
+                // line 160
+                yield ((CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "Fonction", [], "any", false, false, false, 160)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "Fonction", [], "any", false, false, false, 160), "html", null, true)) : ("Fonction inconnue"));
+                yield "</div>
+            </div>
+        ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_key'], $context['hero'], $context['_parent']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 163
+            yield "    </div>
+";
+        }
+        // line 165
+        yield "
+</div>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -399,7 +444,7 @@ class __TwigTemplate_211d3f6f2a7f389e75670225ccce4a1c extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  370 => 150,  366 => 148,  356 => 145,  348 => 143,  346 => 142,  343 => 141,  339 => 140,  335 => 138,  333 => 137,  330 => 136,  326 => 134,  316 => 131,  308 => 129,  306 => 128,  303 => 127,  299 => 126,  295 => 124,  293 => 123,  290 => 122,  286 => 120,  276 => 117,  268 => 115,  266 => 114,  263 => 113,  259 => 112,  255 => 110,  253 => 109,  245 => 104,  239 => 101,  235 => 100,  231 => 99,  227 => 98,  222 => 95,  214 => 93,  212 => 92,  207 => 89,  194 => 88,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
+        return array (  414 => 165,  410 => 163,  401 => 160,  396 => 159,  388 => 157,  386 => 156,  383 => 155,  379 => 154,  375 => 152,  373 => 151,  370 => 150,  366 => 148,  356 => 145,  348 => 143,  346 => 142,  343 => 141,  339 => 140,  335 => 138,  333 => 137,  330 => 136,  326 => 134,  316 => 131,  308 => 129,  306 => 128,  303 => 127,  299 => 126,  295 => 124,  293 => 123,  290 => 122,  286 => 120,  276 => 117,  268 => 115,  266 => 114,  263 => 113,  259 => 112,  255 => 110,  253 => 109,  245 => 104,  239 => 101,  235 => 100,  231 => 99,  227 => 98,  222 => 95,  214 => 93,  212 => 92,  207 => 89,  194 => 88,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -553,6 +598,22 @@ class __TwigTemplate_211d3f6f2a7f389e75670225ccce4a1c extends Template
             {% endfor %}
         </div>
     {% endif %}
+
+    {% if faction.FactionHero|length > 0 %}
+    <div class=\"section-title\">Heroes</div>
+    <div class=\"card-group\">
+        {% for hero in faction.FactionHero %}
+            <div class=\"entity-card\">
+                {% if hero.ImageHero %}
+                    <img src=\"{{ asset('uploads/heroes/' ~ hero.ImageHero) }}\" alt=\"{{ hero.Name }}\">
+                {% endif %}
+                <div class=\"name\">{{ hero.Name }}</div>
+                <div class=\"type\">{{ hero.Fonction ?: 'Fonction inconnue' }}</div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
 </div>
 {% endblock %}
 ", "faction/show.html.twig", "C:\\wamp64\\www\\Site_Fantasia\\Project_fantasia\\templates\\faction\\show.html.twig");

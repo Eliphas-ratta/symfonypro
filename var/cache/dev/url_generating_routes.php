@@ -64,6 +64,8 @@ return [
     'app_logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], [], []],
     'app_world' => [[], ['_controller' => 'App\\Controller\\WorldController::index'], [], [['text', '/world']], [], [], []],
     'app_world_show' => [['id'], ['_controller' => 'App\\Controller\\WorldController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/world']], [], [], []],
+    'app_world_edit' => [['id'], ['_controller' => 'App\\Controller\\WorldController::edit'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'id', true], ['text', '/world']], [], [], []],
+    'app_world_delete' => [['id'], ['_controller' => 'App\\Controller\\WorldController::delete'], [], [['text', '/delete'], ['variable', '/', '[^/]++', 'id', true], ['text', '/world']], [], [], []],
     'App\Controller\CapacityController::index' => [['worldId'], ['_controller' => 'App\\Controller\\CapacityController::index'], [], [['text', '/capacities'], ['variable', '/', '[^/]++', 'worldId', true], ['text', '/world']], [], [], []],
     'App\Controller\CapacityController::create' => [['worldId'], ['_controller' => 'App\\Controller\\CapacityController::create'], [], [['text', '/capacity/create'], ['variable', '/', '[^/]++', 'worldId', true], ['text', '/world']], [], [], []],
     'App\Controller\CapacityController::edit' => [['id'], ['_controller' => 'App\\Controller\\CapacityController::edit'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/capacity/edit']], [], [], []],
@@ -111,4 +113,6 @@ return [
     'App\Controller\SecurityController::logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], [], []],
     'App\Controller\WorldController::index' => [[], ['_controller' => 'App\\Controller\\WorldController::index'], [], [['text', '/world']], [], [], []],
     'App\Controller\WorldController::show' => [['id'], ['_controller' => 'App\\Controller\\WorldController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/world']], [], [], []],
+    'App\Controller\WorldController::edit' => [['id'], ['_controller' => 'App\\Controller\\WorldController::edit'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'id', true], ['text', '/world']], [], [], []],
+    'App\Controller\WorldController::delete' => [['id'], ['_controller' => 'App\\Controller\\WorldController::delete'], [], [['text', '/delete'], ['variable', '/', '[^/]++', 'id', true], ['text', '/world']], [], [], []],
 ];

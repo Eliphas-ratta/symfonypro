@@ -108,26 +108,55 @@ class __TwigTemplate_f95405fe788e8c8317640f51d7f9cad4 extends Template
         </p>
     </section>
 
-    <!-- Section \"How to create worlds\" -->
-    <section class=\"row justify-content-center mb-5\">
-        <div class=\"col-md-8\">
-            <div class=\"card border-0 text-white shadow rounded-4\">
-                <div class=\"card-body p-5\">
-                    <h3 class=\"card-title text-center mb-4\">Start Building Your World</h3>
-                    <p class=\"card-text text-center\">
-                        Dive into our intuitive interface to create your own fantasy world. Add custom continents, factions, races, heroes, and link them together.
-                        Whether you're crafting a campaign or designing a lore-rich story, Project Fantasia gives you full control.
-                    </p>
-                    <div class=\"text-center mt-4\">
-                        <a href=\"";
-        // line 28
+   <section class=\"row justify-content-center mb-5\">
+    <div class=\"col-md-8\">
+        <div class=\"card border-0 text-white shadow rounded-4 text-center p-4 d-flex flex-column align-items-center bg-dark\">
+            
+          
+            <img src=\"/images/create_world_knight.jpeg\" alt=\"Armored knight creating a world\" 
+                 class=\"img-fluid rounded-4 mb-4 \" style=\"max-width: 400px;\">
+
+            <h3 class=\"card-title mb-4\">Start Building Your World</h3>
+            <p class=\"card-text\">
+                Dive into our intuitive interface to create your own fantasy world. Add custom continents, factions, races, heroes, and link them together.
+                Whether you're crafting a campaign or designing a lore-rich story, Project Fantasia gives you full control.
+            </p>
+            <div class=\"mt-4\">
+                <a href=\"";
+        // line 31
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_world");
         yield "\" class=\"btn btn-danger px-4 py-2\">Create Your World</a>
-                    </div>
-                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+
+
+
+    <section aria-labelledby=\"how-to-use-title\" class=\"p-8 bg-neutral-800 text-white text-center\">
+    <h2 id=\"how-to-use-title\" class=\"display-5 fw-bold mb-4\">How to Use the Site</h2>
+
+    <div class=\"d-flex justify-content-center mb-4\">
+        <img src=\"/images/How_to_use_goblin.jpeg\" alt=\"A fantasy goblin writing in a book\" class=\"img-fluid rounded shadow\" style=\"max-width: 300px;\">
+    </div>
+
+    <p class=\"mb-4 mx-auto\" style=\"max-width: 700px;\">
+        Welcome to our fantasy world builder! Here’s a quick guide on how to navigate and use the platform:
+    </p>
+
+    <ul class=\"text-start mx-auto\" style=\"max-width: 700px;\">
+        <li><strong>Create a World:</strong> Go to the <em>World</em> section and start your own world by entering its name and details.</li>
+        <li><strong>Add Content:</strong> Inside your world, you can create factions, heroes, guilds, races, continents, domains, and more. Each category has a form with fields to guide your input.</li>
+        <li><strong>Manage Your Worlds:</strong> View and edit your worlds anytime from your profile. You can invite other users to collaborate or view your worlds with specific roles.</li>
+        <li><strong>Visualize Your Universe:</strong> Navigate through the cards to see the details of each hero, guild, or faction. Use search and filters to easily find your data.</li>
+        <li><strong>Safe Storage:</strong> All your content is safely stored and linked to your account. Make sure to log in to save your work!</li>
+    </ul>
+</section>
+
+
+
+
 
 </div>
 ";
@@ -161,7 +190,7 @@ class __TwigTemplate_f95405fe788e8c8317640f51d7f9cad4 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  124 => 28,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  127 => 31,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -182,23 +211,52 @@ class __TwigTemplate_f95405fe788e8c8317640f51d7f9cad4 extends Template
         </p>
     </section>
 
-    <!-- Section \"How to create worlds\" -->
-    <section class=\"row justify-content-center mb-5\">
-        <div class=\"col-md-8\">
-            <div class=\"card border-0 text-white shadow rounded-4\">
-                <div class=\"card-body p-5\">
-                    <h3 class=\"card-title text-center mb-4\">Start Building Your World</h3>
-                    <p class=\"card-text text-center\">
-                        Dive into our intuitive interface to create your own fantasy world. Add custom continents, factions, races, heroes, and link them together.
-                        Whether you're crafting a campaign or designing a lore-rich story, Project Fantasia gives you full control.
-                    </p>
-                    <div class=\"text-center mt-4\">
-                        <a href=\"{{ path('app_world') }}\" class=\"btn btn-danger px-4 py-2\">Create Your World</a>
-                    </div>
-                </div>
+   <section class=\"row justify-content-center mb-5\">
+    <div class=\"col-md-8\">
+        <div class=\"card border-0 text-white shadow rounded-4 text-center p-4 d-flex flex-column align-items-center bg-dark\">
+            
+          
+            <img src=\"/images/create_world_knight.jpeg\" alt=\"Armored knight creating a world\" 
+                 class=\"img-fluid rounded-4 mb-4 \" style=\"max-width: 400px;\">
+
+            <h3 class=\"card-title mb-4\">Start Building Your World</h3>
+            <p class=\"card-text\">
+                Dive into our intuitive interface to create your own fantasy world. Add custom continents, factions, races, heroes, and link them together.
+                Whether you're crafting a campaign or designing a lore-rich story, Project Fantasia gives you full control.
+            </p>
+            <div class=\"mt-4\">
+                <a href=\"{{ path('app_world') }}\" class=\"btn btn-danger px-4 py-2\">Create Your World</a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+
+
+
+    <section aria-labelledby=\"how-to-use-title\" class=\"p-8 bg-neutral-800 text-white text-center\">
+    <h2 id=\"how-to-use-title\" class=\"display-5 fw-bold mb-4\">How to Use the Site</h2>
+
+    <div class=\"d-flex justify-content-center mb-4\">
+        <img src=\"/images/How_to_use_goblin.jpeg\" alt=\"A fantasy goblin writing in a book\" class=\"img-fluid rounded shadow\" style=\"max-width: 300px;\">
+    </div>
+
+    <p class=\"mb-4 mx-auto\" style=\"max-width: 700px;\">
+        Welcome to our fantasy world builder! Here’s a quick guide on how to navigate and use the platform:
+    </p>
+
+    <ul class=\"text-start mx-auto\" style=\"max-width: 700px;\">
+        <li><strong>Create a World:</strong> Go to the <em>World</em> section and start your own world by entering its name and details.</li>
+        <li><strong>Add Content:</strong> Inside your world, you can create factions, heroes, guilds, races, continents, domains, and more. Each category has a form with fields to guide your input.</li>
+        <li><strong>Manage Your Worlds:</strong> View and edit your worlds anytime from your profile. You can invite other users to collaborate or view your worlds with specific roles.</li>
+        <li><strong>Visualize Your Universe:</strong> Navigate through the cards to see the details of each hero, guild, or faction. Use search and filters to easily find your data.</li>
+        <li><strong>Safe Storage:</strong> All your content is safely stored and linked to your account. Make sure to log in to save your work!</li>
+    </ul>
+</section>
+
+
+
+
 
 </div>
 {% endblock %}

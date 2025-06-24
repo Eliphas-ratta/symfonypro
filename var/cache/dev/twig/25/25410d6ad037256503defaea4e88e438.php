@@ -149,6 +149,22 @@ class __TwigTemplate_d8ea78bcee3cb19b4e294066a252b1ce extends Template
             inset: 0;
             z-index: 1;
         }
+
+        .form-filter label {
+            font-weight: bold;
+        }
+
+        .form-filter select,
+        .form-filter input {
+            background-color: #2a2a2a;
+            border: 1px solid #555;
+            color: #fff;
+        }
+
+        .form-filter input::placeholder {
+            color: #fff;
+            opacity: 1;
+        }
     </style>
 ";
         
@@ -160,7 +176,7 @@ class __TwigTemplate_d8ea78bcee3cb19b4e294066a252b1ce extends Template
         yield from [];
     }
 
-    // line 56
+    // line 72
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -173,89 +189,139 @@ class __TwigTemplate_d8ea78bcee3cb19b4e294066a252b1ce extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 57
+        // line 73
         yield "<div class=\"container text-white py-4\">
     <h1 class=\"mb-4\">Guilds of ";
-        // line 58
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["world"]) || array_key_exists("world", $context) ? $context["world"] : (function () { throw new RuntimeError('Variable "world" does not exist.', 58, $this->source); })()), "Name", [], "any", false, false, false, 58), "html", null, true);
+        // line 74
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["world"]) || array_key_exists("world", $context) ? $context["world"] : (function () { throw new RuntimeError('Variable "world" does not exist.', 74, $this->source); })()), "Name", [], "any", false, false, false, 74), "html", null, true);
         yield "</h1>
 
     <a href=\"";
-        // line 60
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_guild_create", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["world"]) || array_key_exists("world", $context) ? $context["world"] : (function () { throw new RuntimeError('Variable "world" does not exist.', 60, $this->source); })()), "id", [], "any", false, false, false, 60)]), "html", null, true);
+        // line 76
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_guild_create", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["world"]) || array_key_exists("world", $context) ? $context["world"] : (function () { throw new RuntimeError('Variable "world" does not exist.', 76, $this->source); })()), "id", [], "any", false, false, false, 76)]), "html", null, true);
         yield "\" class=\"btn btn-success mb-4\">
         + Create a New Guild
     </a>
 
-    <div class=\"row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3\">
+    ";
+        // line 81
+        yield "    ";
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 81, $this->source); })()), 'form_start', ["attr" => ["class" => "form-filter mb-4"], "method" => "GET"]);
+        yield "
+    <div class=\"d-flex justify-content-center\">
+        <div class=\"d-flex flex-wrap gap-2 justify-content-center align-items-end\" style=\"max-width: 800px; width: 100%;\">
+
+            ";
+        // line 86
+        yield "            <div class=\"input-group\" style=\"width: 250px;\">
+                ";
+        // line 87
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 87, $this->source); })()), "name", [], "any", false, false, false, 87), 'widget', ["attr" => ["class" => "form-control", "placeholder" => "Recherche..."]]);
+        // line 92
+        yield "
+                <button class=\"btn btn-danger\" type=\"submit\" style=\"min-width: 45px;\">
+                    <i class=\"fas fa-search\"></i>
+                </button>
+            </div>
+
+            ";
+        // line 99
+        yield "            <div style=\"width: 200px;\">
+                ";
+        // line 100
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 100, $this->source); })()), "factions", [], "any", false, false, false, 100), 'widget', ["attr" => ["class" => "form-select", "onchange" => "this.form.submit()"]]);
+        // line 105
+        yield "
+            </div>
+
+            ";
+        // line 109
+        yield "            <div>
+                <a href=\"";
+        // line 110
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_guilds", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["world"]) || array_key_exists("world", $context) ? $context["world"] : (function () { throw new RuntimeError('Variable "world" does not exist.', 110, $this->source); })()), "id", [], "any", false, false, false, 110)]), "html", null, true);
+        yield "\" class=\"btn btn-secondary\" style=\"min-width: 120px;\">
+                    Réinitialiser
+                </a>
+            </div>
+        </div>
+    </div>
+    ";
+        // line 116
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 116, $this->source); })()), 'form_end');
+        yield "
+
+    ";
+        // line 119
+        yield "    <div class=\"row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3\">
         ";
-        // line 65
+        // line 120
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["guilds"]) || array_key_exists("guilds", $context) ? $context["guilds"] : (function () { throw new RuntimeError('Variable "guilds" does not exist.', 65, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["guilds"]) || array_key_exists("guilds", $context) ? $context["guilds"] : (function () { throw new RuntimeError('Variable "guilds" does not exist.', 120, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["guild"]) {
-            // line 66
+            // line 121
             yield "            <div class=\"col\">
                 <div class=\"card bg-dark text-white border-0 shadow rounded-4 guild-card position-relative\" id=\"card-";
-            // line 67
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "id", [], "any", false, false, false, 67), "html", null, true);
+            // line 122
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "id", [], "any", false, false, false, 122), "html", null, true);
             yield "\">
                     ";
-            // line 68
-            if (CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "ImageGuild", [], "any", false, false, false, 68)) {
-                // line 69
+            // line 123
+            if (CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "ImageGuild", [], "any", false, false, false, 123)) {
+                // line 124
                 yield "                        <img src=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/guilds/" . CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "ImageGuild", [], "any", false, false, false, 69))), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/guilds/" . CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "ImageGuild", [], "any", false, false, false, 124))), "html", null, true);
                 yield "\" class=\"card-img-top rounded-top-4\" alt=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "Name", [], "any", false, false, false, 69), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "Name", [], "any", false, false, false, 124), "html", null, true);
                 yield "\">
                     ";
             }
-            // line 71
+            // line 126
             yield "
                     <div class=\"card-body p-2\">
                         <h6 class=\"card-title mb-1 fw-bold\">";
-            // line 73
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "Name", [], "any", false, false, false, 73), "html", null, true);
+            // line 128
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "Name", [], "any", false, false, false, 128), "html", null, true);
             yield "</h6>
-                        <p class=\"card-text text-muted small mb-0\">";
-            // line 74
-            yield ((CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "Type", [], "any", false, false, false, 74)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "Type", [], "any", false, false, false, 74), "html", null, true)) : ("No type"));
+                        <p class=\"card-text text-white small mb-0\">";
+            // line 129
+            yield ((CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "Type", [], "any", false, false, false, 129)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "Type", [], "any", false, false, false, 129), "html", null, true)) : ("No type"));
             yield "</p>
                     </div>
 
                     <div class=\"action-buttons justify-content-around gap-1 px-3 pb-2\">
                         <a href=\"";
-            // line 78
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_guild_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "id", [], "any", false, false, false, 78)]), "html", null, true);
+            // line 133
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_guild_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "id", [], "any", false, false, false, 133)]), "html", null, true);
             yield "\" class=\"btn btn-sm btn-outline-warning\">Edit</a>
                         <a href=\"";
-            // line 79
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_guild_delete", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "id", [], "any", false, false, false, 79)]), "html", null, true);
+            // line 134
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_guild_delete", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "id", [], "any", false, false, false, 134)]), "html", null, true);
             yield "\"
                            class=\"btn btn-sm btn-outline-danger\"
                            onclick=\"return confirm('Are you sure you want to delete this guild?');\">Delete</a>
                     </div>
 
                     <button class=\"toggle-btn\" onclick=\"toggleActions(event, ";
-            // line 84
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "id", [], "any", false, false, false, 84), "html", null, true);
+            // line 139
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "id", [], "any", false, false, false, 139), "html", null, true);
             yield ");\">
                         +
                     </button>
 
                     <a href=\"";
-            // line 88
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_guild_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "id", [], "any", false, false, false, 88)]), "html", null, true);
+            // line 143
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_guild_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["guild"], "id", [], "any", false, false, false, 143)]), "html", null, true);
             yield "\" class=\"overlay-link\"></a>
                 </div>
             </div>
         ";
             $context['_iterated'] = true;
         }
-        // line 91
+        // line 146
         if (!$context['_iterated']) {
-            // line 92
+            // line 147
             yield "            <div class=\"col-12\">
                 <p class=\"text-muted\">No guilds found in this world.</p>
             </div>
@@ -264,7 +330,7 @@ class __TwigTemplate_d8ea78bcee3cb19b4e294066a252b1ce extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['guild'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 96
+        // line 151
         yield "    </div>
 </div>
 ";
@@ -277,7 +343,7 @@ class __TwigTemplate_d8ea78bcee3cb19b4e294066a252b1ce extends Template
         yield from [];
     }
 
-    // line 100
+    // line 155
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -290,7 +356,7 @@ class __TwigTemplate_d8ea78bcee3cb19b4e294066a252b1ce extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 101
+        // line 156
         yield "    ";
         yield from $this->yieldParentBlock("javascripts", $context, $blocks);
         yield "
@@ -333,7 +399,7 @@ class __TwigTemplate_d8ea78bcee3cb19b4e294066a252b1ce extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  294 => 101,  281 => 100,  268 => 96,  259 => 92,  257 => 91,  249 => 88,  242 => 84,  234 => 79,  230 => 78,  223 => 74,  219 => 73,  215 => 71,  207 => 69,  205 => 68,  201 => 67,  198 => 66,  193 => 65,  185 => 60,  180 => 58,  177 => 57,  164 => 56,  103 => 6,  90 => 5,  66 => 3,  43 => 1,);
+        return array (  360 => 156,  347 => 155,  334 => 151,  325 => 147,  323 => 146,  315 => 143,  308 => 139,  300 => 134,  296 => 133,  289 => 129,  285 => 128,  281 => 126,  273 => 124,  271 => 123,  267 => 122,  264 => 121,  259 => 120,  256 => 119,  251 => 116,  242 => 110,  239 => 109,  234 => 105,  232 => 100,  229 => 99,  221 => 92,  219 => 87,  216 => 86,  208 => 81,  201 => 76,  196 => 74,  193 => 73,  180 => 72,  103 => 6,  90 => 5,  66 => 3,  43 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -390,6 +456,22 @@ class __TwigTemplate_d8ea78bcee3cb19b4e294066a252b1ce extends Template
             inset: 0;
             z-index: 1;
         }
+
+        .form-filter label {
+            font-weight: bold;
+        }
+
+        .form-filter select,
+        .form-filter input {
+            background-color: #2a2a2a;
+            border: 1px solid #555;
+            color: #fff;
+        }
+
+        .form-filter input::placeholder {
+            color: #fff;
+            opacity: 1;
+        }
     </style>
 {% endblock %}
 
@@ -401,6 +483,45 @@ class __TwigTemplate_d8ea78bcee3cb19b4e294066a252b1ce extends Template
         + Create a New Guild
     </a>
 
+    {# === FORMULAIRE DE FILTRAGE === #}
+    {{ form_start(form, { attr: { class: 'form-filter mb-4' }, method: 'GET' }) }}
+    <div class=\"d-flex justify-content-center\">
+        <div class=\"d-flex flex-wrap gap-2 justify-content-center align-items-end\" style=\"max-width: 800px; width: 100%;\">
+
+            {# Recherche par nom #}
+            <div class=\"input-group\" style=\"width: 250px;\">
+                {{ form_widget(form.name, {
+                    attr: {
+                        class: 'form-control',
+                        placeholder: 'Recherche...'
+                    }
+                }) }}
+                <button class=\"btn btn-danger\" type=\"submit\" style=\"min-width: 45px;\">
+                    <i class=\"fas fa-search\"></i>
+                </button>
+            </div>
+
+            {# Dropdown Faction #}
+            <div style=\"width: 200px;\">
+                {{ form_widget(form.factions, {
+                    attr: {
+                        class: 'form-select',
+                        onchange: 'this.form.submit()'
+                    }
+                }) }}
+            </div>
+
+            {# Reset #}
+            <div>
+                <a href=\"{{ path('app_guilds', { worldId: world.id }) }}\" class=\"btn btn-secondary\" style=\"min-width: 120px;\">
+                    Réinitialiser
+                </a>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+    {# === LISTE DES GUILDES === #}
     <div class=\"row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3\">
         {% for guild in guilds %}
             <div class=\"col\">
@@ -411,7 +532,7 @@ class __TwigTemplate_d8ea78bcee3cb19b4e294066a252b1ce extends Template
 
                     <div class=\"card-body p-2\">
                         <h6 class=\"card-title mb-1 fw-bold\">{{ guild.Name }}</h6>
-                        <p class=\"card-text text-muted small mb-0\">{{ guild.Type ?: 'No type' }}</p>
+                        <p class=\"card-text text-white small mb-0\">{{ guild.Type ?: 'No type' }}</p>
                     </div>
 
                     <div class=\"action-buttons justify-content-around gap-1 px-3 pb-2\">

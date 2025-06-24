@@ -458,28 +458,52 @@
         <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\WorldController"/>
       </call>
     </service>
+    <service id="App\Form\CapacityFilterType" class="App\Form\CapacityFilterType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\CapacityType" class="App\Form\CapacityType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\CityFilterType" class="App\Form\CityFilterType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\CityType" class="App\Form\CityType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Form\ContinentFilterType" class="App\Form\ContinentFilterType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\ContinentType" class="App\Form\ContinentType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\DomainFilterType" class="App\Form\DomainFilterType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\DomainType" class="App\Form\DomainType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Form\FactionFilterType" class="App\Form\FactionFilterType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\FactionType" class="App\Form\FactionType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Form\GuildFilterType" class="App\Form\GuildFilterType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\GuildType" class="App\Form\GuildType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\HeroFilterType" class="App\Form\HeroFilterType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\HeroType" class="App\Form\HeroType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\ProfileFormType" class="App\Form\ProfileFormType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\RaceFilterType" class="App\Form\RaceFilterType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\RaceType" class="App\Form\RaceType" autowire="true" autoconfigure="true">
@@ -570,7 +594,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.MMY.xoM"/>
+      <argument type="service" id=".service_locator.yKjNOE1"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -1506,14 +1530,22 @@
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
       </argument>
       <argument type="collection">
+        <argument>App\Form\CapacityFilterType</argument>
         <argument>App\Form\CapacityType</argument>
+        <argument>App\Form\CityFilterType</argument>
         <argument>App\Form\CityType</argument>
+        <argument>App\Form\ContinentFilterType</argument>
         <argument>App\Form\ContinentType</argument>
+        <argument>App\Form\DomainFilterType</argument>
         <argument>App\Form\DomainType</argument>
+        <argument>App\Form\FactionFilterType</argument>
         <argument>App\Form\FactionType</argument>
+        <argument>App\Form\GuildFilterType</argument>
         <argument>App\Form\GuildType</argument>
+        <argument>App\Form\HeroFilterType</argument>
         <argument>App\Form\HeroType</argument>
         <argument>App\Form\ProfileFormType</argument>
+        <argument>App\Form\RaceFilterType</argument>
         <argument>App\Form\RaceType</argument>
         <argument>App\Form\RegistrationFormType</argument>
         <argument>App\Form\WorldType</argument>
@@ -3510,7 +3542,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.MMY.xoM"/>
+      <argument type="service" id=".service_locator.yKjNOE1"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -3999,7 +4031,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.iHkT11o"/>
+      <argument type="service" id=".service_locator.xJqGdjc"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -7535,22 +7567,38 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\WorldController" class="App\Controller\WorldController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\WorldController" class="App\Controller\WorldController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\WorldController" class="App\Controller\WorldController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CapacityFilterType" class="App\Form\CapacityFilterType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\CapacityFilterType" class="App\Form\CapacityFilterType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CapacityType" class="App\Form\CapacityType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\CapacityType" class="App\Form\CapacityType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CityFilterType" class="App\Form\CityFilterType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\CityFilterType" class="App\Form\CityFilterType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CityType" class="App\Form\CityType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\CityType" class="App\Form\CityType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ContinentFilterType" class="App\Form\ContinentFilterType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ContinentFilterType" class="App\Form\ContinentFilterType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ContinentType" class="App\Form\ContinentType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ContinentType" class="App\Form\ContinentType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\DomainFilterType" class="App\Form\DomainFilterType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\DomainFilterType" class="App\Form\DomainFilterType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\DomainType" class="App\Form\DomainType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\DomainType" class="App\Form\DomainType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\FactionFilterType" class="App\Form\FactionFilterType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\FactionFilterType" class="App\Form\FactionFilterType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\FactionType" class="App\Form\FactionType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\FactionType" class="App\Form\FactionType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\GuildFilterType" class="App\Form\GuildFilterType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\GuildFilterType" class="App\Form\GuildFilterType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\GuildType" class="App\Form\GuildType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\GuildType" class="App\Form\GuildType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\HeroFilterType" class="App\Form\HeroFilterType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\HeroFilterType" class="App\Form\HeroFilterType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\HeroType" class="App\Form\HeroType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\HeroType" class="App\Form\HeroType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ProfileFormType" class="App\Form\ProfileFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ProfileFormType" class="App\Form\ProfileFormType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RaceFilterType" class="App\Form\RaceFilterType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\RaceFilterType" class="App\Form\RaceFilterType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RaceType" class="App\Form\RaceType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\RaceType" class="App\Form\RaceType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
@@ -8004,10 +8052,11 @@
         <argument key="loader" type="service_closure" id=".errored..service_locator.y4_Zrx..Symfony\Component\Config\Loader\LoaderInterface"/>
       </argument>
     </service>
-    <service id=".service_locator.Lc6GHvC" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.pNzY.ib" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="capacityRepo" type="service_closure" id="App\Repository\CapacityRepository"/>
+        <argument key="domainRepo" type="service_closure" id="App\Repository\DomainRepository"/>
         <argument key="worldRepo" type="service_closure" id="App\Repository\WorldRepository"/>
       </argument>
     </service>
@@ -8042,10 +8091,10 @@
         <argument key="capacity" type="service_closure" id=".errored..service_locator.BeTQNY6.App\Entity\Capacity"/>
       </argument>
     </service>
-    <service id=".service_locator.SLOOwji" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.RBku4hl" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="cityRepository" type="service_closure" id="App\Repository\CityRepository"/>
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
         <argument key="worldRepo" type="service_closure" id="App\Repository\WorldRepository"/>
       </argument>
     </service>
@@ -8071,10 +8120,11 @@
         <argument key="city" type="service_closure" id=".errored..service_locator.ycxdVNz.App\Entity\City"/>
       </argument>
     </service>
-    <service id=".service_locator.cWU5_11" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.xy9WqE3" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="continentRepo" type="service_closure" id="App\Repository\ContinentRepository"/>
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
         <argument key="worldRepo" type="service_closure" id="App\Repository\WorldRepository"/>
       </argument>
     </service>
@@ -8100,10 +8150,11 @@
         <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.zfXndwq" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.mPrf6PF" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="domainRepo" type="service_closure" id="App\Repository\DomainRepository"/>
+        <argument key="raceRepo" type="service_closure" id="App\Repository\RaceRepository"/>
         <argument key="worldRepo" type="service_closure" id="App\Repository\WorldRepository"/>
       </argument>
     </service>
@@ -8129,9 +8180,10 @@
         <argument key="domain" type="service_closure" id=".errored..service_locator.UeVkhy8.App\Entity\Domain"/>
       </argument>
     </service>
-    <service id=".service_locator.olQu9Pf" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.7xCumPt" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
         <argument key="factionRepo" type="service_closure" id="App\Repository\FactionRepository"/>
         <argument key="worldRepo" type="service_closure" id="App\Repository\WorldRepository"/>
       </argument>
@@ -8158,13 +8210,6 @@
         <argument key="faction" type="service_closure" id=".errored..service_locator.Iqam8ta.App\Entity\Faction"/>
       </argument>
     </service>
-    <service id=".service_locator.Qisw8u4" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="guildRepo" type="service_closure" id="App\Repository\GuildRepository"/>
-        <argument key="worldRepo" type="service_closure" id="App\Repository\WorldRepository"/>
-      </argument>
-    </service>
     <service id=".service_locator.xDVJ.33" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8187,9 +8232,10 @@
         <argument key="guild" type="service_closure" id=".errored..service_locator.QMKxEMo.App\Entity\Guild"/>
       </argument>
     </service>
-    <service id=".service_locator.X5rvPfN" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.ccxcRTg" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
         <argument key="heroRepository" type="service_closure" id="App\Repository\HeroRepository"/>
         <argument key="worldRepo" type="service_closure" id="App\Repository\WorldRepository"/>
       </argument>
@@ -8224,9 +8270,10 @@
         <argument key="slugger" type="service_closure" id="slugger"/>
       </argument>
     </service>
-    <service id=".service_locator.SekaUHG" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.d12wega" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
         <argument key="raceRepo" type="service_closure" id="App\Repository\RaceRepository"/>
         <argument key="worldRepo" type="service_closure" id="App\Repository\WorldRepository"/>
       </argument>
@@ -8279,52 +8326,69 @@
         <argument key="world" type="service_closure" id=".errored..service_locator.g5Vf6e6.App\Entity\World"/>
       </argument>
     </service>
-    <service id=".service_locator.MMY.xoM" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.1c7lfvc" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="slugger" type="service_closure" id="slugger"/>
+        <argument key="world" type="service_closure" id=".errored..service_locator.1c7lfvc.App\Entity\World"/>
+      </argument>
+    </service>
+    <service id=".service_locator.YFaZTeB" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="world" type="service_closure" id=".errored..service_locator.YFaZTeB.App\Entity\World"/>
+      </argument>
+    </service>
+    <service id=".service_locator.yKjNOE1" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\CapacityController::create" type="service_closure" id=".service_locator.RXaWXSg"/>
         <argument key="App\Controller\CapacityController::delete" type="service_closure" id=".service_locator._H61E_Y"/>
         <argument key="App\Controller\CapacityController::edit" type="service_closure" id=".service_locator.mtg4e7c"/>
-        <argument key="App\Controller\CapacityController::index" type="service_closure" id=".service_locator.Lc6GHvC"/>
+        <argument key="App\Controller\CapacityController::index" type="service_closure" id=".service_locator.pNzY.ib"/>
         <argument key="App\Controller\CapacityController::show" type="service_closure" id=".service_locator.BeTQNY6"/>
         <argument key="App\Controller\CityController::create" type="service_closure" id=".service_locator.RXaWXSg"/>
         <argument key="App\Controller\CityController::delete" type="service_closure" id=".service_locator.E5SdHks"/>
         <argument key="App\Controller\CityController::edit" type="service_closure" id=".service_locator.MNIXpgf"/>
-        <argument key="App\Controller\CityController::index" type="service_closure" id=".service_locator.SLOOwji"/>
+        <argument key="App\Controller\CityController::index" type="service_closure" id=".service_locator.RBku4hl"/>
         <argument key="App\Controller\CityController::show" type="service_closure" id=".service_locator.ycxdVNz"/>
         <argument key="App\Controller\ContinentController::create" type="service_closure" id=".service_locator.RXaWXSg"/>
         <argument key="App\Controller\ContinentController::delete" type="service_closure" id=".service_locator.v7U0tqL"/>
         <argument key="App\Controller\ContinentController::edit" type="service_closure" id=".service_locator.yM18Ls5"/>
-        <argument key="App\Controller\ContinentController::index" type="service_closure" id=".service_locator.cWU5_11"/>
+        <argument key="App\Controller\ContinentController::index" type="service_closure" id=".service_locator.xy9WqE3"/>
         <argument key="App\Controller\ContinentController::show" type="service_closure" id=".service_locator.krEXYhS"/>
         <argument key="App\Controller\DomainController::create" type="service_closure" id=".service_locator.RXaWXSg"/>
         <argument key="App\Controller\DomainController::delete" type="service_closure" id=".service_locator.cG9uawh"/>
         <argument key="App\Controller\DomainController::edit" type="service_closure" id=".service_locator.dYbunHf"/>
-        <argument key="App\Controller\DomainController::index" type="service_closure" id=".service_locator.zfXndwq"/>
+        <argument key="App\Controller\DomainController::index" type="service_closure" id=".service_locator.mPrf6PF"/>
         <argument key="App\Controller\DomainController::show" type="service_closure" id=".service_locator.UeVkhy8"/>
         <argument key="App\Controller\FactionController::create" type="service_closure" id=".service_locator.RXaWXSg"/>
         <argument key="App\Controller\FactionController::delete" type="service_closure" id=".service_locator.AoKS.MD"/>
         <argument key="App\Controller\FactionController::edit" type="service_closure" id=".service_locator.3iFfYLh"/>
-        <argument key="App\Controller\FactionController::index" type="service_closure" id=".service_locator.olQu9Pf"/>
+        <argument key="App\Controller\FactionController::index" type="service_closure" id=".service_locator.7xCumPt"/>
         <argument key="App\Controller\FactionController::show" type="service_closure" id=".service_locator.Iqam8ta"/>
         <argument key="App\Controller\GuildController::create" type="service_closure" id=".service_locator.RXaWXSg"/>
         <argument key="App\Controller\GuildController::delete" type="service_closure" id=".service_locator.mx78Xy7"/>
         <argument key="App\Controller\GuildController::edit" type="service_closure" id=".service_locator.xDVJ.33"/>
-        <argument key="App\Controller\GuildController::index" type="service_closure" id=".service_locator.Qisw8u4"/>
+        <argument key="App\Controller\GuildController::index" type="service_closure" id=".service_locator.RBku4hl"/>
         <argument key="App\Controller\GuildController::show" type="service_closure" id=".service_locator.QMKxEMo"/>
         <argument key="App\Controller\HeroController::create" type="service_closure" id=".service_locator.RXaWXSg"/>
         <argument key="App\Controller\HeroController::delete" type="service_closure" id=".service_locator.3hGYyGR"/>
         <argument key="App\Controller\HeroController::edit" type="service_closure" id=".service_locator.czTcG9S"/>
-        <argument key="App\Controller\HeroController::index" type="service_closure" id=".service_locator.X5rvPfN"/>
+        <argument key="App\Controller\HeroController::index" type="service_closure" id=".service_locator.ccxcRTg"/>
         <argument key="App\Controller\HeroController::show" type="service_closure" id=".service_locator.dZksnop"/>
         <argument key="App\Controller\ProfileController::index" type="service_closure" id=".service_locator.43ExA_j"/>
         <argument key="App\Controller\RaceController::create" type="service_closure" id=".service_locator.RXaWXSg"/>
         <argument key="App\Controller\RaceController::delete" type="service_closure" id=".service_locator.LJWuWkK"/>
         <argument key="App\Controller\RaceController::edit" type="service_closure" id=".service_locator.ejqhTZW"/>
-        <argument key="App\Controller\RaceController::index" type="service_closure" id=".service_locator.SekaUHG"/>
+        <argument key="App\Controller\RaceController::index" type="service_closure" id=".service_locator.d12wega"/>
         <argument key="App\Controller\RaceController::show" type="service_closure" id=".service_locator.9VSH8DO"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.ESgEUJd"/>
         <argument key="App\Controller\SecurityController::login" type="service_closure" id=".service_locator.rSTd.nA"/>
+        <argument key="App\Controller\WorldController::delete" type="service_closure" id=".service_locator.YFaZTeB"/>
+        <argument key="App\Controller\WorldController::edit" type="service_closure" id=".service_locator.1c7lfvc"/>
         <argument key="App\Controller\WorldController::index" type="service_closure" id=".service_locator.P3uOD4s"/>
         <argument key="App\Controller\WorldController::show" type="service_closure" id=".service_locator.g5Vf6e6"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
@@ -8334,46 +8398,48 @@
         <argument key="App\Controller\CapacityController:create" type="service_closure" id=".service_locator.RXaWXSg"/>
         <argument key="App\Controller\CapacityController:delete" type="service_closure" id=".service_locator._H61E_Y"/>
         <argument key="App\Controller\CapacityController:edit" type="service_closure" id=".service_locator.mtg4e7c"/>
-        <argument key="App\Controller\CapacityController:index" type="service_closure" id=".service_locator.Lc6GHvC"/>
+        <argument key="App\Controller\CapacityController:index" type="service_closure" id=".service_locator.pNzY.ib"/>
         <argument key="App\Controller\CapacityController:show" type="service_closure" id=".service_locator.BeTQNY6"/>
         <argument key="App\Controller\CityController:create" type="service_closure" id=".service_locator.RXaWXSg"/>
         <argument key="App\Controller\CityController:delete" type="service_closure" id=".service_locator.E5SdHks"/>
         <argument key="App\Controller\CityController:edit" type="service_closure" id=".service_locator.MNIXpgf"/>
-        <argument key="App\Controller\CityController:index" type="service_closure" id=".service_locator.SLOOwji"/>
+        <argument key="App\Controller\CityController:index" type="service_closure" id=".service_locator.RBku4hl"/>
         <argument key="App\Controller\CityController:show" type="service_closure" id=".service_locator.ycxdVNz"/>
         <argument key="App\Controller\ContinentController:create" type="service_closure" id=".service_locator.RXaWXSg"/>
         <argument key="App\Controller\ContinentController:delete" type="service_closure" id=".service_locator.v7U0tqL"/>
         <argument key="App\Controller\ContinentController:edit" type="service_closure" id=".service_locator.yM18Ls5"/>
-        <argument key="App\Controller\ContinentController:index" type="service_closure" id=".service_locator.cWU5_11"/>
+        <argument key="App\Controller\ContinentController:index" type="service_closure" id=".service_locator.xy9WqE3"/>
         <argument key="App\Controller\ContinentController:show" type="service_closure" id=".service_locator.krEXYhS"/>
         <argument key="App\Controller\DomainController:create" type="service_closure" id=".service_locator.RXaWXSg"/>
         <argument key="App\Controller\DomainController:delete" type="service_closure" id=".service_locator.cG9uawh"/>
         <argument key="App\Controller\DomainController:edit" type="service_closure" id=".service_locator.dYbunHf"/>
-        <argument key="App\Controller\DomainController:index" type="service_closure" id=".service_locator.zfXndwq"/>
+        <argument key="App\Controller\DomainController:index" type="service_closure" id=".service_locator.mPrf6PF"/>
         <argument key="App\Controller\DomainController:show" type="service_closure" id=".service_locator.UeVkhy8"/>
         <argument key="App\Controller\FactionController:create" type="service_closure" id=".service_locator.RXaWXSg"/>
         <argument key="App\Controller\FactionController:delete" type="service_closure" id=".service_locator.AoKS.MD"/>
         <argument key="App\Controller\FactionController:edit" type="service_closure" id=".service_locator.3iFfYLh"/>
-        <argument key="App\Controller\FactionController:index" type="service_closure" id=".service_locator.olQu9Pf"/>
+        <argument key="App\Controller\FactionController:index" type="service_closure" id=".service_locator.7xCumPt"/>
         <argument key="App\Controller\FactionController:show" type="service_closure" id=".service_locator.Iqam8ta"/>
         <argument key="App\Controller\GuildController:create" type="service_closure" id=".service_locator.RXaWXSg"/>
         <argument key="App\Controller\GuildController:delete" type="service_closure" id=".service_locator.mx78Xy7"/>
         <argument key="App\Controller\GuildController:edit" type="service_closure" id=".service_locator.xDVJ.33"/>
-        <argument key="App\Controller\GuildController:index" type="service_closure" id=".service_locator.Qisw8u4"/>
+        <argument key="App\Controller\GuildController:index" type="service_closure" id=".service_locator.RBku4hl"/>
         <argument key="App\Controller\GuildController:show" type="service_closure" id=".service_locator.QMKxEMo"/>
         <argument key="App\Controller\HeroController:create" type="service_closure" id=".service_locator.RXaWXSg"/>
         <argument key="App\Controller\HeroController:delete" type="service_closure" id=".service_locator.3hGYyGR"/>
         <argument key="App\Controller\HeroController:edit" type="service_closure" id=".service_locator.czTcG9S"/>
-        <argument key="App\Controller\HeroController:index" type="service_closure" id=".service_locator.X5rvPfN"/>
+        <argument key="App\Controller\HeroController:index" type="service_closure" id=".service_locator.ccxcRTg"/>
         <argument key="App\Controller\HeroController:show" type="service_closure" id=".service_locator.dZksnop"/>
         <argument key="App\Controller\ProfileController:index" type="service_closure" id=".service_locator.43ExA_j"/>
         <argument key="App\Controller\RaceController:create" type="service_closure" id=".service_locator.RXaWXSg"/>
         <argument key="App\Controller\RaceController:delete" type="service_closure" id=".service_locator.LJWuWkK"/>
         <argument key="App\Controller\RaceController:edit" type="service_closure" id=".service_locator.ejqhTZW"/>
-        <argument key="App\Controller\RaceController:index" type="service_closure" id=".service_locator.SekaUHG"/>
+        <argument key="App\Controller\RaceController:index" type="service_closure" id=".service_locator.d12wega"/>
         <argument key="App\Controller\RaceController:show" type="service_closure" id=".service_locator.9VSH8DO"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.ESgEUJd"/>
         <argument key="App\Controller\SecurityController:login" type="service_closure" id=".service_locator.rSTd.nA"/>
+        <argument key="App\Controller\WorldController:delete" type="service_closure" id=".service_locator.YFaZTeB"/>
+        <argument key="App\Controller\WorldController:edit" type="service_closure" id=".service_locator.1c7lfvc"/>
         <argument key="App\Controller\WorldController:index" type="service_closure" id=".service_locator.P3uOD4s"/>
         <argument key="App\Controller\WorldController:show" type="service_closure" id=".service_locator.g5Vf6e6"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
@@ -8537,17 +8603,25 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.iHkT11o" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.xJqGdjc" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Form\CapacityFilterType" type="service_closure" id="App\Form\CapacityFilterType"/>
         <argument key="App\Form\CapacityType" type="service_closure" id="App\Form\CapacityType"/>
+        <argument key="App\Form\CityFilterType" type="service_closure" id="App\Form\CityFilterType"/>
         <argument key="App\Form\CityType" type="service_closure" id="App\Form\CityType"/>
+        <argument key="App\Form\ContinentFilterType" type="service_closure" id="App\Form\ContinentFilterType"/>
         <argument key="App\Form\ContinentType" type="service_closure" id="App\Form\ContinentType"/>
+        <argument key="App\Form\DomainFilterType" type="service_closure" id="App\Form\DomainFilterType"/>
         <argument key="App\Form\DomainType" type="service_closure" id="App\Form\DomainType"/>
+        <argument key="App\Form\FactionFilterType" type="service_closure" id="App\Form\FactionFilterType"/>
         <argument key="App\Form\FactionType" type="service_closure" id="App\Form\FactionType"/>
+        <argument key="App\Form\GuildFilterType" type="service_closure" id="App\Form\GuildFilterType"/>
         <argument key="App\Form\GuildType" type="service_closure" id="App\Form\GuildType"/>
+        <argument key="App\Form\HeroFilterType" type="service_closure" id="App\Form\HeroFilterType"/>
         <argument key="App\Form\HeroType" type="service_closure" id="App\Form\HeroType"/>
         <argument key="App\Form\ProfileFormType" type="service_closure" id="App\Form\ProfileFormType"/>
+        <argument key="App\Form\RaceFilterType" type="service_closure" id="App\Form\RaceFilterType"/>
         <argument key="App\Form\RaceType" type="service_closure" id="App\Form\RaceType"/>
         <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
         <argument key="App\Form\WorldType" type="service_closure" id="App\Form\WorldType"/>
@@ -9563,6 +9637,12 @@
     </service>
     <service id=".errored..service_locator.g5Vf6e6.App\Entity\World" class="App\Entity\World">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.g5Vf6e6&quot;: it needs an instance of &quot;App\Entity\World&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
+    </service>
+    <service id=".errored..service_locator.1c7lfvc.App\Entity\World" class="App\Entity\World">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.1c7lfvc&quot;: it needs an instance of &quot;App\Entity\World&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
+    </service>
+    <service id=".errored..service_locator.YFaZTeB.App\Entity\World" class="App\Entity\World">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.YFaZTeB&quot;: it needs an instance of &quot;App\Entity\World&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
     <service id=".console.command.about.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>about</argument>
@@ -10759,7 +10839,7 @@
     <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface" alias="webpack_encore.entrypoint_lookup[_default]"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.w7.f4fT" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.MMY.xoM"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.yKjNOE1"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -10784,24 +10864,31 @@
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.XDGmiR3" alias=".1_ServiceLocator~jKxSHAF"/>
     <service id=".service_locator.bJ.4HC5" alias=".service_locator.w7.f4fT"/>
+    <service id=".service_locator.1xjIsSP" alias=".service_locator.pNzY.ib"/>
     <service id=".service_locator.ps4205E" alias=".service_locator.RXaWXSg"/>
     <service id=".service_locator.AD.McnC" alias=".service_locator.mtg4e7c"/>
     <service id=".service_locator.u_XFAPl" alias=".service_locator.MNIXpgf"/>
+    <service id=".service_locator.ME3pHN0" alias=".service_locator.xy9WqE3"/>
     <service id=".service_locator.uvWXYqj" alias=".service_locator.yM18Ls5"/>
+    <service id=".service_locator.eKNW_oG" alias=".service_locator.mPrf6PF"/>
     <service id=".service_locator.j.Ff6Q3" alias=".service_locator.dYbunHf"/>
+    <service id=".service_locator.Yjzh5G3" alias=".service_locator.7xCumPt"/>
     <service id=".service_locator.VGfHdEo" alias=".service_locator.3iFfYLh"/>
     <service id=".service_locator.HSZNwNr" alias=".service_locator.AoKS.MD"/>
     <service id=".service_locator.hLdUHYW" alias=".service_locator.xDVJ.33"/>
     <service id=".service_locator.3oOa3nl" alias=".service_locator.mx78Xy7"/>
+    <service id=".service_locator.cy72wTn" alias=".service_locator.ccxcRTg"/>
     <service id=".service_locator.mC7mWh_" alias=".service_locator.czTcG9S"/>
     <service id=".service_locator.Svf67ke" alias=".service_locator.3hGYyGR"/>
     <service id=".service_locator.6NqWJqU" alias=".service_locator.43ExA_j"/>
     <service id=".service_locator.Z2_tuUw" alias=".service_locator.ejqhTZW"/>
     <service id=".service_locator.FE1lXQE" alias=".service_locator.LJWuWkK"/>
     <service id=".service_locator.qrNhk2c" alias=".service_locator.ESgEUJd"/>
-    <service id=".service_locator.FAkhdZe" alias=".service_locator.MMY.xoM"/>
+    <service id=".service_locator.xk_agOm" alias=".service_locator.1c7lfvc"/>
+    <service id=".service_locator.0z0snUh" alias=".service_locator.YFaZTeB"/>
+    <service id=".service_locator.Nvt7YA9" alias=".service_locator.yKjNOE1"/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.F9PKc.7"/>
-    <service id=".service_locator.10tbmAE" alias=".service_locator.iHkT11o"/>
+    <service id=".service_locator.pDFSPeU" alias=".service_locator.xJqGdjc"/>
     <service id=".service_locator.XtmiKbi" alias=".service_locator.MfxSDRP"/>
     <service id=".service_locator.O24_MAy" alias=".service_locator.yY.p4P7"/>
     <service id=".service_locator.jUv.zyj" alias=".service_locator.O2p6Lk7"/>
@@ -10825,37 +10912,36 @@
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id="security.event_dispatcher.main" alias="debug.security.event_dispatcher.main"/>
     <service id=".service_locator.gFlme_s" alias=".service_locator.y4_Zrx."/>
-    <service id=".service_locator.M1Jd4oT" alias=".service_locator.Lc6GHvC"/>
+    <service id=".service_locator.fnJzxwI" alias=".service_locator.pNzY.ib"/>
     <service id=".service_locator.6A1qbaH" alias=".service_locator.RXaWXSg"/>
     <service id=".service_locator.xmINtnH" alias=".service_locator.mtg4e7c"/>
     <service id=".service_locator.aLsmmKk" alias=".service_locator._H61E_Y"/>
     <service id=".service_locator.4J1RY8O" alias=".service_locator.BeTQNY6"/>
-    <service id=".service_locator.QNCB47Z" alias=".service_locator.SLOOwji"/>
+    <service id=".service_locator.fwWEIh7" alias=".service_locator.RBku4hl"/>
     <service id=".service_locator.OYBJttW" alias=".service_locator.MNIXpgf"/>
     <service id=".service_locator.fz68547" alias=".service_locator.E5SdHks"/>
     <service id=".service_locator.qIVgbKE" alias=".service_locator.ycxdVNz"/>
-    <service id=".service_locator.NQuRAaf" alias=".service_locator.cWU5_11"/>
+    <service id=".service_locator.NX5bJW3" alias=".service_locator.xy9WqE3"/>
     <service id=".service_locator.um7TUm_" alias=".service_locator.krEXYhS"/>
     <service id=".service_locator.nA75av4" alias=".service_locator.yM18Ls5"/>
     <service id=".service_locator.GV2V_Wn" alias=".service_locator.v7U0tqL"/>
-    <service id=".service_locator.oX1IGSm" alias=".service_locator.zfXndwq"/>
+    <service id=".service_locator.TWOAXkf" alias=".service_locator.mPrf6PF"/>
     <service id=".service_locator.w6AG9Mn" alias=".service_locator.dYbunHf"/>
     <service id=".service_locator.Pjkp4B8" alias=".service_locator.cG9uawh"/>
     <service id=".service_locator.dmF2V1_" alias=".service_locator.UeVkhy8"/>
-    <service id=".service_locator.ueYG1aK" alias=".service_locator.olQu9Pf"/>
+    <service id=".service_locator.bwL5IGb" alias=".service_locator.7xCumPt"/>
     <service id=".service_locator.HdTNC2a" alias=".service_locator.3iFfYLh"/>
     <service id=".service_locator.rpoS8.y" alias=".service_locator.AoKS.MD"/>
     <service id=".service_locator.yO0f9e3" alias=".service_locator.Iqam8ta"/>
-    <service id=".service_locator.RylnX7y" alias=".service_locator.Qisw8u4"/>
     <service id=".service_locator.KYhfvWQ" alias=".service_locator.xDVJ.33"/>
     <service id=".service_locator.Q0p7lUc" alias=".service_locator.mx78Xy7"/>
     <service id=".service_locator.sJcsCaR" alias=".service_locator.QMKxEMo"/>
-    <service id=".service_locator.KLTRWG1" alias=".service_locator.X5rvPfN"/>
+    <service id=".service_locator.0OkiFPa" alias=".service_locator.ccxcRTg"/>
     <service id=".service_locator.sBJs_Au" alias=".service_locator.czTcG9S"/>
     <service id=".service_locator.oF6CkBN" alias=".service_locator.3hGYyGR"/>
     <service id=".service_locator.ZquCHTS" alias=".service_locator.dZksnop"/>
     <service id=".service_locator..xqZeBX" alias=".service_locator.43ExA_j"/>
-    <service id=".service_locator.0J_CckW" alias=".service_locator.SekaUHG"/>
+    <service id=".service_locator.RAmCzEs" alias=".service_locator.d12wega"/>
     <service id=".service_locator.ibGbOok" alias=".service_locator.9VSH8DO"/>
     <service id=".service_locator.65Jz7Jc" alias=".service_locator.ejqhTZW"/>
     <service id=".service_locator.TUDQOsn" alias=".service_locator.LJWuWkK"/>
@@ -10863,6 +10949,8 @@
     <service id=".service_locator.7NIAq8D" alias=".service_locator.rSTd.nA"/>
     <service id=".service_locator._frJunc" alias=".service_locator.P3uOD4s"/>
     <service id=".service_locator.AUl09YK" alias=".service_locator.g5Vf6e6"/>
+    <service id=".service_locator.kuq4FPd" alias=".service_locator.1c7lfvc"/>
+    <service id=".service_locator.eZx2SUj" alias=".service_locator.YFaZTeB"/>
     <service id=".service_locator.Q1z.f9O" alias=".service_locator.O2p6Lk7"/>
     <service id=".service_locator.dGUCsbe" alias=".service_locator.oR77BOj"/>
     <service id=".service_locator._kIAbz1" alias=".service_locator.TpoC7U9"/>

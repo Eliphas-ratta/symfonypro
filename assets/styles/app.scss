@@ -22,7 +22,7 @@ header {
 }
 
 footer {
-    background-color: #383838 !important;
+    background-color: #111111 !important;
     color: #ffffff;
     padding: 2rem;
     border-top: 2px solid #6b6b6b;
@@ -72,7 +72,11 @@ nav li:hover {
 }
 
 .bg-gray {
-    background-color: #383838;
+    background-color: #111111;
+}
+
+.bg-dark {
+    background-color: #111111 !important;
 }
 
 .card:hover {
@@ -81,7 +85,7 @@ nav li:hover {
 }
 
 .card {
-    background-color: #383838;
+    background-color: rgb(71, 71, 71);
     color: #ffffff;
     border: 1px solid #6b6b6b;
     padding: 20px;
