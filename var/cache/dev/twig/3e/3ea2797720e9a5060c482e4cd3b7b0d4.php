@@ -119,7 +119,7 @@ class __TwigTemplate_05546bce400291024d7faf8392fc479d extends Template
         }
 
         .entity-card {
-            background-color: #1f1f1f;
+            background-color: #111111 !important;
             border-radius: 12px;
             padding: 1rem;
             width: 140px;
@@ -148,7 +148,7 @@ class __TwigTemplate_05546bce400291024d7faf8392fc479d extends Template
 
         /* Nouvelle disposition pour les capacités */
         .capacity-card {
-            background-color: #1a1a1a;
+            background-color: #111111;
             border-radius: 12px;
             padding: 1rem;
             display: flex;
@@ -307,7 +307,7 @@ class __TwigTemplate_05546bce400291024d7faf8392fc479d extends Template
             $context['_seq'] = CoreExtension::ensureTraversable((isset($context["heroes"]) || array_key_exists("heroes", $context) ? $context["heroes"] : (function () { throw new RuntimeError('Variable "heroes" does not exist.', 131, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["hero"]) {
                 // line 132
-                yield "                <div class=\"entity-card\">
+                yield "                <div class=\"entity-card bg-dark\">
                     ";
                 // line 133
                 if (CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "ImageHero", [], "any", false, false, false, 133)) {
@@ -455,7 +455,7 @@ class __TwigTemplate_05546bce400291024d7faf8392fc479d extends Template
         }
 
         .entity-card {
-            background-color: #1f1f1f;
+            background-color: #111111 !important;
             border-radius: 12px;
             padding: 1rem;
             width: 140px;
@@ -484,7 +484,7 @@ class __TwigTemplate_05546bce400291024d7faf8392fc479d extends Template
 
         /* Nouvelle disposition pour les capacités */
         .capacity-card {
-            background-color: #1a1a1a;
+            background-color: #111111;
             border-radius: 12px;
             padding: 1rem;
             display: flex;
@@ -562,7 +562,7 @@ class __TwigTemplate_05546bce400291024d7faf8392fc479d extends Template
         <div class=\"section-title\">Héros associés</div>
         <div class=\"card-group\">
             {% for hero in heroes %}
-                <div class=\"entity-card\">
+                <div class=\"entity-card bg-dark\">
                     {% if hero.ImageHero %}
                         <img src=\"{{ asset('uploads/heroes/' ~ hero.ImageHero) }}\" alt=\"{{ hero.Name }}\">
                     {% else %}

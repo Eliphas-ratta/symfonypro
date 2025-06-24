@@ -22,7 +22,7 @@
         }
 
         .entity-card {
-            background-color: #1f1f1f;
+            background-color: #111111 !important;
             border-radius: 12px;
             padding: 1rem;
             width: 140px;
@@ -51,7 +51,7 @@
 
         /* Nouvelle disposition pour les capacités */
         .capacity-card {
-            background-color: #1a1a1a;
+            background-color: #111111;
             border-radius: 12px;
             padding: 1rem;
             display: flex;
@@ -129,7 +129,7 @@
         <div class="section-title">Héros associés</div>
         <div class="card-group">
             {% for hero in heroes %}
-                <div class="entity-card">
+                <div class="entity-card bg-dark">
                     {% if hero.ImageHero %}
                         <img src="{{ asset('uploads/heroes/' ~ hero.ImageHero) }}" alt="{{ hero.Name }}">
                     {% else %}

@@ -289,9 +289,8 @@ class __TwigTemplate_fe8d2f5e44ed6d549d5d483250350f68 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
         // line 70
-        yield "        ";
-        // line 71
-        yield "    ";
+        yield "      
+    ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -322,7 +321,7 @@ class __TwigTemplate_fe8d2f5e44ed6d549d5d483250350f68 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  294 => 71,  292 => 70,  279 => 69,  257 => 62,  243 => 11,  230 => 10,  207 => 5,  194 => 72,  192 => 69,  187 => 67,  184 => 66,  182 => 65,  178 => 63,  176 => 62,  167 => 55,  162 => 53,  157 => 52,  152 => 50,  147 => 49,  145 => 48,  140 => 45,  135 => 43,  131 => 42,  127 => 41,  123 => 40,  119 => 39,  115 => 38,  111 => 37,  107 => 36,  102 => 35,  100 => 34,  95 => 32,  91 => 31,  71 => 13,  69 => 10,  64 => 8,  58 => 5,  52 => 1,);
+        return array (  292 => 70,  279 => 69,  257 => 62,  243 => 11,  230 => 10,  207 => 5,  194 => 72,  192 => 69,  187 => 67,  184 => 66,  182 => 65,  178 => 63,  176 => 62,  167 => 55,  162 => 53,  157 => 52,  152 => 50,  147 => 49,  145 => 48,  140 => 45,  135 => 43,  131 => 42,  127 => 41,  123 => 40,  119 => 39,  115 => 38,  111 => 37,  107 => 36,  102 => 35,  100 => 34,  95 => 32,  91 => 31,  71 => 13,  69 => 10,  64 => 8,  58 => 5,  52 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -396,7 +395,7 @@ class __TwigTemplate_fe8d2f5e44ed6d549d5d483250350f68 extends Template
     {{ encore_entry_script_tags('app') }}
 
     {% block javascripts %}
-        {# Tu peux ajouter du JS ici si nécessaire #}
+      
     {% endblock %}
 </body>
 </html>
