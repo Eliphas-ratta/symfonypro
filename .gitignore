@@ -12,6 +12,7 @@
 /.env.test/
 
 ###< symfony/framework-bundle ###
+deploy.sh
 
 ###> phpunit/phpunit ###
 /phpunit.xml
