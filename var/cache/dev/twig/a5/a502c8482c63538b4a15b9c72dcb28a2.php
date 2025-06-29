@@ -100,72 +100,72 @@ class __TwigTemplate_b29f38b20d77ddaca943d7174fcb477f extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
 
         // line 6
-        yield "    ";
         yield from $this->yieldParentBlock("stylesheets", $context, $blocks);
         yield "
-    <style>
-        .continent-card {
-            height: 320px;
-            position: relative;
-            overflow: hidden;
-        }
+<style>
+    .continent-card {
+        height: 320px;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+    }
 
-        .continent-card img {
-            height: 150px;
-            object-fit: cover;
-        }
+    .continent-card img {
+        height: 150px;
+        object-fit: cover;
+    }
 
-        .action-buttons {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            gap: 0.5rem;
-            transition: max-height 0.3s ease, opacity 0.3s ease;
-        }
+    .action-buttons {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        position: absolute;
+        bottom: 50px;
+        left: 0;
+        width: 100%;
+        justify-content: center;
+        z-index: 3;
+        pointer-events: none;
+    }
 
-        .continent-card.show-actions .action-buttons {
-            max-height: 50px;
-            opacity: 1;
-        }
+    .continent-card.show-actions .action-buttons {
+        display: flex;
+        opacity: 1;
+        pointer-events: auto;
+    }
 
-        .toggle-btn {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            z-index: 3;
-            background-color: rgba(0, 0, 0, 0.6);
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            color: white;
-        }
+    .toggle-btn {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        z-index: 4;
+        background-color: rgba(0, 0, 0, 0.6);
+        border: none;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        color: white;
+        cursor: pointer;
+    }
 
-        .card-body, .action-buttons {
-            z-index: 2;
-            position: relative;
-        }
+    .card-body,
+    .action-buttons {
+        z-index: 2;
+        position: relative;
+    }
 
-        .overlay-link {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-        }
+    .form-filter select,
+    .form-filter input {
+        background-color: #2a2a2a;
+        border: 1px solid #555;
+        color: #fff;
+    }
 
-        .form-filter input {
-            background-color: #2a2a2a;
-            border: 1px solid #555;
-            color: #fff;
-        }
-
-        .form-filter input::placeholder {
-            color: #fff;
-            opacity: 1;
-        }
-    </style>
+    .form-filter input::placeholder {
+        color: #fff;
+        opacity: 1;
+    }
+</style>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -176,7 +176,7 @@ class __TwigTemplate_b29f38b20d77ddaca943d7174fcb477f extends Template
         yield from [];
     }
 
-    // line 72
+    // line 73
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -189,23 +189,22 @@ class __TwigTemplate_b29f38b20d77ddaca943d7174fcb477f extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 73
+        // line 74
         yield "<div class=\"container text-white py-4\">
     <h1 class=\"mb-4\">Continents of ";
-        // line 74
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["world"]) || array_key_exists("world", $context) ? $context["world"] : (function () { throw new RuntimeError('Variable "world" does not exist.', 74, $this->source); })()), "Name", [], "any", false, false, false, 74), "html", null, true);
+        // line 75
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["world"]) || array_key_exists("world", $context) ? $context["world"] : (function () { throw new RuntimeError('Variable "world" does not exist.', 75, $this->source); })()), "Name", [], "any", false, false, false, 75), "html", null, true);
         yield "</h1>
 
     <a href=\"";
-        // line 76
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_continent_create", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["world"]) || array_key_exists("world", $context) ? $context["world"] : (function () { throw new RuntimeError('Variable "world" does not exist.', 76, $this->source); })()), "id", [], "any", false, false, false, 76)]), "html", null, true);
+        // line 77
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_continent_create", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["world"]) || array_key_exists("world", $context) ? $context["world"] : (function () { throw new RuntimeError('Variable "world" does not exist.', 77, $this->source); })()), "id", [], "any", false, false, false, 77)]), "html", null, true);
         yield "\" class=\"btn btn-success mb-4\">
         + Create a New Continent
     </a>
 
     ";
         // line 81
-        yield "    ";
         yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 81, $this->source); })()), 'form_start', ["method" => "GET", "attr" => ["class" => "form-filter mb-4"]]);
         yield "
     <div class=\"d-flex justify-content-center\">
@@ -234,71 +233,80 @@ class __TwigTemplate_b29f38b20d77ddaca943d7174fcb477f extends Template
         foreach ($context['_seq'] as $context["_key"] => $context["continent"]) {
             // line 99
             yield "            <div class=\"col\">
-                <div class=\"card bg-dark text-white border-0 shadow rounded-4 continent-card position-relative\" id=\"card-";
-            // line 100
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "id", [], "any", false, false, false, 100), "html", null, true);
-            yield "\">
-                    ";
+                <div class=\"card bg-dark text-white border-0 shadow rounded-4 continent-card\"
+                     id=\"card-";
             // line 101
-            if (CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "ImageContinent", [], "any", false, false, false, 101)) {
-                // line 102
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "id", [], "any", false, false, false, 101), "html", null, true);
+            yield "\"
+                     data-url=\"";
+            // line 102
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_continent_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "id", [], "any", false, false, false, 102)]), "html", null, true);
+            yield "\"
+                     onclick=\"handleCardClick(event, this)\">
+                    
+                    ";
+            // line 105
+            if (CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "ImageContinent", [], "any", false, false, false, 105)) {
+                // line 106
                 yield "                        <img src=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/continents/" . CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "ImageContinent", [], "any", false, false, false, 102))), "html", null, true);
-                yield "\" class=\"card-img-top rounded-top-4\" alt=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "Name", [], "any", false, false, false, 102), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/continents/" . CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "ImageContinent", [], "any", false, false, false, 106))), "html", null, true);
+                yield "\"
+                             class=\"card-img-top rounded-top-4\"
+                             alt=\"";
+                // line 108
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "Name", [], "any", false, false, false, 108), "html", null, true);
                 yield "\">
                     ";
             }
-            // line 104
+            // line 110
             yield "
                     <div class=\"card-body p-2\">
                         <h6 class=\"card-title mb-1 fw-bold\">";
-            // line 106
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "Name", [], "any", false, false, false, 106), "html", null, true);
+            // line 112
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "Name", [], "any", false, false, false, 112), "html", null, true);
             yield "</h6>
                         <p class=\"card-text text-white small mb-0\">
                             ";
-            // line 108
-            yield (((Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "Description", [], "any", false, false, false, 108)) > 0)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((Twig\Extension\CoreExtension::slice($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "Description", [], "any", false, false, false, 108), 0, 40) . "..."), "html", null, true)) : ("No description"));
+            // line 114
+            yield (((Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "Description", [], "any", false, false, false, 114)) > 0)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((Twig\Extension\CoreExtension::slice($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "Description", [], "any", false, false, false, 114), 0, 40) . "..."), "html", null, true)) : ("No description"));
             yield "
                         </p>
                     </div>
 
-                    <div class=\"action-buttons justify-content-around gap-1 px-3 pb-2\">
+                    <div class=\"action-buttons gap-1 px-3 pb-2\">
                         <a href=\"";
-            // line 113
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_continent_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "id", [], "any", false, false, false, 113)]), "html", null, true);
-            yield "\" class=\"btn btn-sm btn-outline-warning\">Edit</a>
-                        <a href=\"";
-            // line 114
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_continent_delete", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "id", [], "any", false, false, false, 114)]), "html", null, true);
+            // line 119
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_continent_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "id", [], "any", false, false, false, 119)]), "html", null, true);
             yield "\"
-                           onclick=\"return confirm('Are you sure you want to delete this continent?');\"
-                           class=\"btn btn-sm btn-outline-danger\">Delete</a>
+                           class=\"btn btn-sm btn-outline-warning\"
+                           onclick=\"event.stopPropagation();\">Edit</a>
+
+                        <a href=\"";
+            // line 123
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_continent_delete", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "id", [], "any", false, false, false, 123)]), "html", null, true);
+            yield "\"
+                           class=\"btn btn-sm btn-outline-danger\"
+                           onclick=\"event.stopPropagation(); return confirm('Are you sure?');\">Delete</a>
                     </div>
 
-                    <button class=\"toggle-btn\" onclick=\"toggleActions(event, ";
-            // line 119
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "id", [], "any", false, false, false, 119), "html", null, true);
+                    <button class=\"toggle-btn\"
+                            onclick=\"toggleActions(event, ";
+            // line 129
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "id", [], "any", false, false, false, 129), "html", null, true);
             yield ");\">
                         <span id=\"toggle-icon-";
-            // line 120
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "id", [], "any", false, false, false, 120), "html", null, true);
+            // line 130
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "id", [], "any", false, false, false, 130), "html", null, true);
             yield "\">+</span>
                     </button>
-
-                    <a href=\"";
-            // line 123
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_continent_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["continent"], "id", [], "any", false, false, false, 123)]), "html", null, true);
-            yield "\" class=\"overlay-link\"></a>
                 </div>
             </div>
         ";
             $context['_iterated'] = true;
         }
-        // line 126
+        // line 134
         if (!$context['_iterated']) {
-            // line 127
+            // line 135
             yield "            <div class=\"col-12\">
                 <p class=\"text-muted\">No continents found in this world.</p>
             </div>
@@ -307,7 +315,7 @@ class __TwigTemplate_b29f38b20d77ddaca943d7174fcb477f extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['continent'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 131
+        // line 139
         yield "    </div>
 </div>
 ";
@@ -320,7 +328,7 @@ class __TwigTemplate_b29f38b20d77ddaca943d7174fcb477f extends Template
         yield from [];
     }
 
-    // line 135
+    // line 143
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -333,18 +341,34 @@ class __TwigTemplate_b29f38b20d77ddaca943d7174fcb477f extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 136
-        yield "    ";
+        // line 144
         yield from $this->yieldParentBlock("javascripts", $context, $blocks);
         yield "
-    <script>
-        function toggleActions(event, id) {
-            event.stopPropagation();
-            event.preventDefault();
-            const card = document.getElementById(`card-\${id}`);
-            card.classList.toggle('show-actions');
+<script>
+    // Définir le comportement au clic sur une carte continent
+    function handleCardClick(event, element) {
+        if (!element.classList.contains('show-actions')) {
+            const url = element.getAttribute('data-url');
+            if (url) {
+                window.location.href = url;
+            }
         }
-    </script>
+    }
+
+    // Toggle des actions (edit/delete)
+    function toggleActions(event, id) {
+        event.stopPropagation();
+        event.preventDefault();
+        const card = document.getElementById(`card-\${id}`);
+        const icon = document.getElementById(`toggle-icon-\${id}`);
+        const isOpen = card.classList.toggle('show-actions');
+        icon.textContent = isOpen ? '−' : '+';
+    }
+
+    // Rendre accessibles dans le HTML inline
+    window.handleCardClick = handleCardClick;
+    window.toggleActions = toggleActions;
+</script>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -376,7 +400,7 @@ class __TwigTemplate_b29f38b20d77ddaca943d7174fcb477f extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  337 => 136,  324 => 135,  311 => 131,  302 => 127,  300 => 126,  292 => 123,  286 => 120,  282 => 119,  274 => 114,  270 => 113,  262 => 108,  257 => 106,  253 => 104,  245 => 102,  243 => 101,  239 => 100,  236 => 99,  231 => 98,  225 => 95,  217 => 89,  215 => 84,  208 => 81,  201 => 76,  196 => 74,  193 => 73,  180 => 72,  103 => 6,  90 => 5,  66 => 3,  43 => 1,);
+        return array (  345 => 144,  332 => 143,  319 => 139,  310 => 135,  308 => 134,  299 => 130,  295 => 129,  286 => 123,  279 => 119,  271 => 114,  266 => 112,  262 => 110,  257 => 108,  251 => 106,  249 => 105,  243 => 102,  239 => 101,  235 => 99,  230 => 98,  224 => 95,  216 => 89,  214 => 84,  208 => 81,  201 => 77,  196 => 75,  193 => 74,  180 => 73,  103 => 6,  90 => 5,  66 => 3,  43 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -386,70 +410,71 @@ class __TwigTemplate_b29f38b20d77ddaca943d7174fcb477f extends Template
 {% block title %}Continents of {{ world.Name }}{% endblock %}
 
 {% block stylesheets %}
-    {{ parent() }}
-    <style>
-        .continent-card {
-            height: 320px;
-            position: relative;
-            overflow: hidden;
-        }
+{{ parent() }}
+<style>
+    .continent-card {
+        height: 320px;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+    }
 
-        .continent-card img {
-            height: 150px;
-            object-fit: cover;
-        }
+    .continent-card img {
+        height: 150px;
+        object-fit: cover;
+    }
 
-        .action-buttons {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            gap: 0.5rem;
-            transition: max-height 0.3s ease, opacity 0.3s ease;
-        }
+    .action-buttons {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        position: absolute;
+        bottom: 50px;
+        left: 0;
+        width: 100%;
+        justify-content: center;
+        z-index: 3;
+        pointer-events: none;
+    }
 
-        .continent-card.show-actions .action-buttons {
-            max-height: 50px;
-            opacity: 1;
-        }
+    .continent-card.show-actions .action-buttons {
+        display: flex;
+        opacity: 1;
+        pointer-events: auto;
+    }
 
-        .toggle-btn {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            z-index: 3;
-            background-color: rgba(0, 0, 0, 0.6);
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            color: white;
-        }
+    .toggle-btn {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        z-index: 4;
+        background-color: rgba(0, 0, 0, 0.6);
+        border: none;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        color: white;
+        cursor: pointer;
+    }
 
-        .card-body, .action-buttons {
-            z-index: 2;
-            position: relative;
-        }
+    .card-body,
+    .action-buttons {
+        z-index: 2;
+        position: relative;
+    }
 
-        .overlay-link {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-        }
+    .form-filter select,
+    .form-filter input {
+        background-color: #2a2a2a;
+        border: 1px solid #555;
+        color: #fff;
+    }
 
-        .form-filter input {
-            background-color: #2a2a2a;
-            border: 1px solid #555;
-            color: #fff;
-        }
-
-        .form-filter input::placeholder {
-            color: #fff;
-            opacity: 1;
-        }
-    </style>
+    .form-filter input::placeholder {
+        color: #fff;
+        opacity: 1;
+    }
+</style>
 {% endblock %}
 
 {% block body %}
@@ -460,7 +485,6 @@ class __TwigTemplate_b29f38b20d77ddaca943d7174fcb477f extends Template
         + Create a New Continent
     </a>
 
-    {# === BARRE DE RECHERCHE === #}
     {{ form_start(form, { method: 'GET', attr: { class: 'form-filter mb-4' } }) }}
     <div class=\"d-flex justify-content-center\">
         <div class=\"input-group\" style=\"width: 250px;\">
@@ -480,9 +504,15 @@ class __TwigTemplate_b29f38b20d77ddaca943d7174fcb477f extends Template
     <div class=\"row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3\">
         {% for continent in continents %}
             <div class=\"col\">
-                <div class=\"card bg-dark text-white border-0 shadow rounded-4 continent-card position-relative\" id=\"card-{{ continent.id }}\">
+                <div class=\"card bg-dark text-white border-0 shadow rounded-4 continent-card\"
+                     id=\"card-{{ continent.id }}\"
+                     data-url=\"{{ path('app_continent_show', { id: continent.id }) }}\"
+                     onclick=\"handleCardClick(event, this)\">
+                    
                     {% if continent.ImageContinent %}
-                        <img src=\"{{ asset('uploads/continents/' ~ continent.ImageContinent) }}\" class=\"card-img-top rounded-top-4\" alt=\"{{ continent.Name }}\">
+                        <img src=\"{{ asset('uploads/continents/' ~ continent.ImageContinent) }}\"
+                             class=\"card-img-top rounded-top-4\"
+                             alt=\"{{ continent.Name }}\">
                     {% endif %}
 
                     <div class=\"card-body p-2\">
@@ -492,18 +522,20 @@ class __TwigTemplate_b29f38b20d77ddaca943d7174fcb477f extends Template
                         </p>
                     </div>
 
-                    <div class=\"action-buttons justify-content-around gap-1 px-3 pb-2\">
-                        <a href=\"{{ path('app_continent_edit', { id: continent.id }) }}\" class=\"btn btn-sm btn-outline-warning\">Edit</a>
+                    <div class=\"action-buttons gap-1 px-3 pb-2\">
+                        <a href=\"{{ path('app_continent_edit', { id: continent.id }) }}\"
+                           class=\"btn btn-sm btn-outline-warning\"
+                           onclick=\"event.stopPropagation();\">Edit</a>
+
                         <a href=\"{{ path('app_continent_delete', { id: continent.id }) }}\"
-                           onclick=\"return confirm('Are you sure you want to delete this continent?');\"
-                           class=\"btn btn-sm btn-outline-danger\">Delete</a>
+                           class=\"btn btn-sm btn-outline-danger\"
+                           onclick=\"event.stopPropagation(); return confirm('Are you sure?');\">Delete</a>
                     </div>
 
-                    <button class=\"toggle-btn\" onclick=\"toggleActions(event, {{ continent.id }});\">
+                    <button class=\"toggle-btn\"
+                            onclick=\"toggleActions(event, {{ continent.id }});\">
                         <span id=\"toggle-icon-{{ continent.id }}\">+</span>
                     </button>
-
-                    <a href=\"{{ path('app_continent_show', { id: continent.id }) }}\" class=\"overlay-link\"></a>
                 </div>
             </div>
         {% else %}
@@ -516,16 +548,35 @@ class __TwigTemplate_b29f38b20d77ddaca943d7174fcb477f extends Template
 {% endblock %}
 
 {% block javascripts %}
-    {{ parent() }}
-    <script>
-        function toggleActions(event, id) {
-            event.stopPropagation();
-            event.preventDefault();
-            const card = document.getElementById(`card-\${id}`);
-            card.classList.toggle('show-actions');
+{{ parent() }}
+<script>
+    // Définir le comportement au clic sur une carte continent
+    function handleCardClick(event, element) {
+        if (!element.classList.contains('show-actions')) {
+            const url = element.getAttribute('data-url');
+            if (url) {
+                window.location.href = url;
+            }
         }
-    </script>
+    }
+
+    // Toggle des actions (edit/delete)
+    function toggleActions(event, id) {
+        event.stopPropagation();
+        event.preventDefault();
+        const card = document.getElementById(`card-\${id}`);
+        const icon = document.getElementById(`toggle-icon-\${id}`);
+        const isOpen = card.classList.toggle('show-actions');
+        icon.textContent = isOpen ? '−' : '+';
+    }
+
+    // Rendre accessibles dans le HTML inline
+    window.handleCardClick = handleCardClick;
+    window.toggleActions = toggleActions;
+</script>
 {% endblock %}
+
+
 ", "continent/index.html.twig", "C:\\wamp64\\www\\Site_Fantasia\\Project_fantasia\\templates\\continent\\index.html.twig");
     }
 }

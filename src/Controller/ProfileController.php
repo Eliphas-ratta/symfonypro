@@ -46,7 +46,7 @@ final class ProfileController extends AbstractController
                 }
             }
 
-            // Gérer le mot de passe
+            
             $plainPassword = $form->get('plainPassword')->getData();
             if ($plainPassword) {
                 $hashedPassword = $hasher->hashPassword($user, $plainPassword);

@@ -82,16 +82,19 @@
 {% endblock %}
 
 {% block body %}
-<div class="container text-white my-5">
+<div class="container text-white my-5" role="main">
     <div class="row g-4 align-items-start hero-flex">
         <div class="col-md-4 text-center">
             {% if hero.imageHero %}
-                <img src="{{ asset('uploads/heroes/' ~ hero.imageHero) }}" alt="{{ hero.name }}" class="hero-image">
+                <img src="{{ asset('uploads/heroes/' ~ hero.imageHero) }}"
+                     alt="Portrait of {{ hero.name }}"
+                     class="hero-image"
+                     role="img">
             {% endif %}
         </div>
 
         <div class="col-md-8">
-            <h2 class="text-info fw-bold">{{ hero.name }}</h2>
+            <h1 class="text-info fw-bold" id="hero-name">{{ hero.name }}</h1>
             <p><strong>Age :</strong> {{ hero.age ? hero.age : 'Inconnu' }}</p>
             <p><strong>Taille :</strong> {{ hero.size ?: 'N/A' }}</p>
             <p><strong>Fonction :</strong> {{ hero.fonction ?: 'Inconnue' }}</p>
@@ -123,18 +126,22 @@
         'Domains': hero.heroDomain
     } %}
         {% if collection is defined and collection|length > 0 %}
-            <div class="section-title">{{ section }}</div>
-            <div class="card-group">
+            <h2 class="section-title" id="{{ section|lower }}">{{ section }}</h2>
+            <div class="card-group" role="region" aria-labelledby="{{ section|lower }}">
                 {% for item in collection %}
                     {% set method = methodMap[section] %}
                     {% set imageAttr = attribute(item, method) %}
                     {% set imagePath = imagePaths[section] %}
 
-                    <div class="entity-card">
+                    <div class="entity-card" role="article" aria-label="{{ item.name }}">
                         {% if imageAttr %}
-                            <img src="{{ asset(imagePath ~ imageAttr) }}" alt="{{ item.name }}">
+                            <img src="{{ asset(imagePath ~ imageAttr) }}"
+                                 alt="{{ item.name }}"
+                                 role="img">
                         {% else %}
-                            <img src="{{ asset('img/placeholder.png') }}" alt="No image">
+                            <img src="{{ asset('img/placeholder.png') }}"
+                                 alt="Placeholder image"
+                                 role="img">
                         {% endif %}
                         <div class="name">{{ item.name }}</div>
                         {% if item.type is defined %}

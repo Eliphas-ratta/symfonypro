@@ -16,10 +16,10 @@ parameters:
         cities_images_directory: '%kernel.project_dir%/public/uploads/cities'
 
 services:
-    # default configuration for services in *this* file
+    # Configuration du rognageur d'images
     _defaults:
-        autowire: true      # Automatically injects dependencies in your services.
-        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        autowire: true     
+        autoconfigure: true 
     App\Service\ImageResizerService:
         arguments:
             $targetSize: 1024

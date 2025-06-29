@@ -119,7 +119,7 @@ class __TwigTemplate_9cc5af67b3d8e8a83c16282b2c530414 extends Template
         }
 
         .entity-card {
-            background-color: #1f1f1f;
+            background-color: #111111;
             border-radius: 12px;
             padding: 1rem;
             width: 140px;
@@ -388,7 +388,7 @@ class __TwigTemplate_9cc5af67b3d8e8a83c16282b2c530414 extends Template
         }
 
         .entity-card {
-            background-color: #1f1f1f;
+            background-color: #111111;
             border-radius: 12px;
             padding: 1rem;
             width: 140px;

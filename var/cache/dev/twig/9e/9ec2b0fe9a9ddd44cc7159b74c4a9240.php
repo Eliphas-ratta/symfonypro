@@ -100,74 +100,71 @@ class __TwigTemplate_1a8222adb37107944b06b180362ca837 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
 
         // line 6
-        yield "    ";
         yield from $this->yieldParentBlock("stylesheets", $context, $blocks);
         yield "
-    <style>
-        .hero-card {
-            height: 320px;
-            position: relative;
-            overflow: hidden;
-        }
+<style>
+    .hero-card {
+        height: 320px;
+        position: relative;
+        overflow: hidden;
+    }
 
-        .hero-card img {
-            height: 150px;
-            object-fit: cover;
-        }
+    .hero-card img {
+        height: 150px;
+        object-fit: cover;
+    }
 
-        .action-buttons {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+    .action-buttons {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
 
-        .hero-card.show-actions .action-buttons {
-            display: flex;
-            opacity: 1;
-        }
+    .hero-card.show-actions .action-buttons {
+        display: flex;
+        opacity: 1;
+    }
 
-        .toggle-btn {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            z-index: 3;
-            background-color: rgba(0, 0, 0, 0.6);
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            color: white;
-        }
+    .toggle-btn {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        z-index: 3;
+        background-color: rgba(0, 0, 0, 0.6);
+        border: none;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        color: white;
+    }
 
-        .card-body, .action-buttons {
-            z-index: 2;
-            position: relative;
-        }
+    .card-body, .action-buttons {
+        z-index: 2;
+        position: relative;
+    }
 
-        .overlay-link {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-        }
+    .overlay-link {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+    }
 
-        .form-filter label {
-            font-weight: bold;
-        }
+    .form-filter label {
+        font-weight: bold;
+    }
 
-        .form-filter select,
-        .form-filter input {
-            background-color: #2a2a2a;
-            border: 1px solid #555;
-            color: #fff;
-        }
-        .form-filter input::placeholder {
-            color: #fff; 
-            opacity: 1;
-        }
-        
- 
+    .form-filter select,
+    .form-filter input {
+        background-color: #2a2a2a;
+        border: 1px solid #555;
+        color: #fff;
+    }
 
-    </style>
+    .form-filter input::placeholder {
+        color: #fff;
+        opacity: 1;
+    }
+</style>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -178,7 +175,7 @@ class __TwigTemplate_1a8222adb37107944b06b180362ca837 extends Template
         yield from [];
     }
 
-    // line 74
+    // line 72
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -191,156 +188,157 @@ class __TwigTemplate_1a8222adb37107944b06b180362ca837 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 75
+        // line 73
         yield "<div class=\"container text-white py-4\">
-    <h1 class=\"mb-4\">Heroes of ";
-        // line 76
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["world"]) || array_key_exists("world", $context) ? $context["world"] : (function () { throw new RuntimeError('Variable "world" does not exist.', 76, $this->source); })()), "Name", [], "any", false, false, false, 76), "html", null, true);
+    <h1 class=\"mb-4\" role=\"heading\" aria-level=\"1\">Heroes of ";
+        // line 74
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["world"]) || array_key_exists("world", $context) ? $context["world"] : (function () { throw new RuntimeError('Variable "world" does not exist.', 74, $this->source); })()), "Name", [], "any", false, false, false, 74), "html", null, true);
         yield "</h1>
 
     <a href=\"";
-        // line 78
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_hero_create", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["world"]) || array_key_exists("world", $context) ? $context["world"] : (function () { throw new RuntimeError('Variable "world" does not exist.', 78, $this->source); })()), "id", [], "any", false, false, false, 78)]), "html", null, true);
-        yield "\" class=\"btn btn-success mb-4\">
+        // line 76
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_hero_create", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["world"]) || array_key_exists("world", $context) ? $context["world"] : (function () { throw new RuntimeError('Variable "world" does not exist.', 76, $this->source); })()), "id", [], "any", false, false, false, 76)]), "html", null, true);
+        yield "\" class=\"btn btn-success mb-4\" role=\"button\" aria-label=\"Create a new hero\">
         + Create a New Hero
     </a>
 
- ";
-        // line 82
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 82, $this->source); })()), 'form_start', ["attr" => ["class" => "form-filter mb-4"], "method" => "GET"]);
-        yield "
-<div class=\"d-flex justify-content-center\">
-    <div class=\"d-flex flex-wrap gap-2 justify-content-center align-items-end\" style=\"max-width: 1000px; width: 100%;\">
-
-        ";
-        // line 87
-        yield "        <div class=\"input-group\" style=\"width: 250px;\">
-            ";
-        // line 88
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 88, $this->source); })()), "name", [], "any", false, false, false, 88), 'widget', ["attr" => ["class" => "form-control", "placeholder" => "Recherche..."]]);
-        // line 93
-        yield "
-            <button class=\"btn btn-danger\" type=\"submit\" style=\"min-width: 45px;\">
-                <i class=\"fas fa-search\"></i>
-            </button>
-        </div>
-
-        ";
-        // line 100
-        yield "        <div style=\"width: 200px;\">
-            ";
-        // line 101
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 101, $this->source); })()), "factions", [], "any", false, false, false, 101), 'widget', ["attr" => ["class" => "form-select", "onchange" => "this.form.submit()"]]);
-        // line 106
-        yield "
-        </div>
-        <div style=\"width: 200px;\">
-            ";
-        // line 109
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 109, $this->source); })()), "guilds", [], "any", false, false, false, 109), 'widget', ["attr" => ["class" => "form-select", "onchange" => "this.form.submit()"]]);
-        // line 114
-        yield "
-        </div>
-        <div style=\"width: 200px;\">
-            ";
-        // line 117
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 117, $this->source); })()), "races", [], "any", false, false, false, 117), 'widget', ["attr" => ["class" => "form-select", "onchange" => "this.form.submit()"]]);
-        // line 122
-        yield "
-        </div>
-
-        ";
-        // line 126
-        yield "        <div>
-            <a href=\"";
-        // line 127
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_hero", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["world"]) || array_key_exists("world", $context) ? $context["world"] : (function () { throw new RuntimeError('Variable "world" does not exist.', 127, $this->source); })()), "id", [], "any", false, false, false, 127)]), "html", null, true);
-        yield "\" class=\"btn btn-secondary\" style=\"min-width: 120px;\">
-                Réinitialiser
-            </a>
-        </div>
-
-    </div>
-</div>
-";
-        // line 134
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 134, $this->source); })()), 'form_end');
-        yield "
-
-
-
-
     ";
-        // line 140
-        yield "    <div class=\"row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3\">
+        // line 80
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 80, $this->source); })()), 'form_start', ["attr" => ["class" => "form-filter mb-4", "role" => "search"], "method" => "GET"]);
+        yield "
+    <div class=\"d-flex justify-content-center\">
+        <div class=\"d-flex flex-wrap gap-2 justify-content-center align-items-end\" style=\"max-width: 1000px; width: 100%;\">
+            <div class=\"input-group\" style=\"width: 250px;\">
+                ";
+        // line 84
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 84, $this->source); })()), "name", [], "any", false, false, false, 84), 'widget', ["attr" => ["class" => "form-control", "placeholder" => "Search hero by name", "aria-label" => "Search hero by name"]]);
+        // line 90
+        yield "
+                <button class=\"btn btn-danger\" type=\"submit\" style=\"min-width: 45px;\" aria-label=\"Submit search\">
+                    <i class=\"fas fa-search\" aria-hidden=\"true\"></i>
+                </button>
+            </div>
+
+            <div style=\"width: 200px;\">
+                ";
+        // line 97
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 97, $this->source); })()), "factions", [], "any", false, false, false, 97), 'widget', ["attr" => ["class" => "form-select", "onchange" => "this.form.submit()", "aria-label" => "Filter by faction"]]);
+        // line 103
+        yield "
+            </div>
+            <div style=\"width: 200px;\">
+                ";
+        // line 106
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 106, $this->source); })()), "guilds", [], "any", false, false, false, 106), 'widget', ["attr" => ["class" => "form-select", "onchange" => "this.form.submit()", "aria-label" => "Filter by guild"]]);
+        // line 112
+        yield "
+            </div>
+            <div style=\"width: 200px;\">
+                ";
+        // line 115
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 115, $this->source); })()), "races", [], "any", false, false, false, 115), 'widget', ["attr" => ["class" => "form-select", "onchange" => "this.form.submit()", "aria-label" => "Filter by race"]]);
+        // line 121
+        yield "
+            </div>
+
+            <div>
+                <a href=\"";
+        // line 125
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_hero", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["world"]) || array_key_exists("world", $context) ? $context["world"] : (function () { throw new RuntimeError('Variable "world" does not exist.', 125, $this->source); })()), "id", [], "any", false, false, false, 125)]), "html", null, true);
+        yield "\" class=\"btn btn-secondary\" style=\"min-width: 120px;\" role=\"button\" aria-label=\"Reset filters\">
+                    Réinitialiser
+                </a>
+            </div>
+        </div>
+    </div>
+    ";
+        // line 131
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 131, $this->source); })()), 'form_end');
+        yield "
+
+    <div class=\"row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3\">
         ";
-        // line 141
+        // line 134
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["heroes"]) || array_key_exists("heroes", $context) ? $context["heroes"] : (function () { throw new RuntimeError('Variable "heroes" does not exist.', 141, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["heroes"]) || array_key_exists("heroes", $context) ? $context["heroes"] : (function () { throw new RuntimeError('Variable "heroes" does not exist.', 134, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["hero"]) {
-            // line 142
+            // line 135
             yield "            <div class=\"col\">
                 <div class=\"card bg-dark text-white border-0 shadow rounded-4 hero-card position-relative\" id=\"card-";
-            // line 143
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "id", [], "any", false, false, false, 143), "html", null, true);
-            yield "\">
+            // line 136
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "id", [], "any", false, false, false, 136), "html", null, true);
+            yield "\" role=\"region\" aria-labelledby=\"hero-";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "id", [], "any", false, false, false, 136), "html", null, true);
+            yield "-name\">
                     ";
-            // line 144
-            if (CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "ImageHero", [], "any", false, false, false, 144)) {
-                // line 145
+            // line 137
+            if (CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "ImageHero", [], "any", false, false, false, 137)) {
+                // line 138
                 yield "                        <img src=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/heroes/" . CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "ImageHero", [], "any", false, false, false, 145))), "html", null, true);
-                yield "\" class=\"card-img-top rounded-top-4\" alt=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "Name", [], "any", false, false, false, 145), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/heroes/" . CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "ImageHero", [], "any", false, false, false, 138))), "html", null, true);
+                yield "\" class=\"card-img-top rounded-top-4\" alt=\"Image of ";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "Name", [], "any", false, false, false, 138), "html", null, true);
                 yield "\">
                     ";
             }
-            // line 147
+            // line 140
             yield "
                     <div class=\"card-body p-2\">
-                        <h6 class=\"card-title mb-1 fw-bold\">";
-            // line 149
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "Name", [], "any", false, false, false, 149), "html", null, true);
+                        <h6 id=\"hero-";
+            // line 142
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "id", [], "any", false, false, false, 142), "html", null, true);
+            yield "-name\" class=\"card-title mb-1 fw-bold\">";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "Name", [], "any", false, false, false, 142), "html", null, true);
             yield "</h6>
-                        <p class=\"card-text small mb-0 text-white \">";
-            // line 150
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "Fonction", [], "any", false, false, false, 150), "html", null, true);
+                        <p class=\"card-text small mb-0 text-white\">";
+            // line 143
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "Fonction", [], "any", false, false, false, 143), "html", null, true);
             yield "</p>
                     </div>
 
                     <div class=\"action-buttons justify-content-around gap-1 px-3 pb-2\">
                         <a href=\"";
-            // line 154
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_hero_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "id", [], "any", false, false, false, 154)]), "html", null, true);
-            yield "\" class=\"btn btn-sm btn-outline-warning\">Edit</a>
+            // line 147
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_hero_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "id", [], "any", false, false, false, 147)]), "html", null, true);
+            yield "\" class=\"btn btn-sm btn-outline-warning\" aria-label=\"Edit ";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "Name", [], "any", false, false, false, 147), "html", null, true);
+            yield "\">Edit</a>
                         <a href=\"";
-            // line 155
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_hero_delete", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "id", [], "any", false, false, false, 155)]), "html", null, true);
+            // line 148
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_hero_delete", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "id", [], "any", false, false, false, 148)]), "html", null, true);
             yield "\"
                            class=\"btn btn-sm btn-outline-danger\"
-                           onclick=\"return confirm('Are you sure you want to delete this hero?');\">Delete</a>
+                           onclick=\"return confirm('Are you sure you want to delete this hero?');\"
+                           aria-label=\"Delete ";
+            // line 151
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "Name", [], "any", false, false, false, 151), "html", null, true);
+            yield "\">Delete</a>
                     </div>
 
                     <button class=\"toggle-btn\" onclick=\"toggleActions(event, ";
-            // line 160
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "id", [], "any", false, false, false, 160), "html", null, true);
-            yield ");\">
+            // line 154
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "id", [], "any", false, false, false, 154), "html", null, true);
+            yield ");\" aria-label=\"Toggle action buttons for ";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "Name", [], "any", false, false, false, 154), "html", null, true);
+            yield "\">
                         +
                     </button>
 
                     <a href=\"";
-            // line 164
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_hero_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "id", [], "any", false, false, false, 164)]), "html", null, true);
-            yield "\" class=\"overlay-link\"></a>
+            // line 158
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_hero_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "id", [], "any", false, false, false, 158)]), "html", null, true);
+            yield "\" class=\"overlay-link\" aria-label=\"View details of ";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "Name", [], "any", false, false, false, 158), "html", null, true);
+            yield "\"></a>
                 </div>
             </div>
         ";
             $context['_iterated'] = true;
         }
-        // line 167
+        // line 161
         if (!$context['_iterated']) {
-            // line 168
+            // line 162
             yield "            <div class=\"col-12\">
                 <p class=\"text-muted\">No heroes found in this world.</p>
             </div>
@@ -349,7 +347,7 @@ class __TwigTemplate_1a8222adb37107944b06b180362ca837 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['hero'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 172
+        // line 166
         yield "    </div>
 </div>
 ";
@@ -362,7 +360,7 @@ class __TwigTemplate_1a8222adb37107944b06b180362ca837 extends Template
         yield from [];
     }
 
-    // line 176
+    // line 170
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -375,18 +373,17 @@ class __TwigTemplate_1a8222adb37107944b06b180362ca837 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 177
-        yield "    ";
+        // line 171
         yield from $this->yieldParentBlock("javascripts", $context, $blocks);
         yield "
-    <script>
-        function toggleActions(event, id) {
-            event.stopPropagation();
-            event.preventDefault();
-            const card = document.getElementById(`card-\${id}`);
-            card.classList.toggle('show-actions');
-        }
-    </script>
+<script>
+    function toggleActions(event, id) {
+        event.stopPropagation();
+        event.preventDefault();
+        const card = document.getElementById(`card-\${id}`);
+        card.classList.toggle('show-actions');
+    }
+</script>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -418,7 +415,7 @@ class __TwigTemplate_1a8222adb37107944b06b180362ca837 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  379 => 177,  366 => 176,  353 => 172,  344 => 168,  342 => 167,  334 => 164,  327 => 160,  319 => 155,  315 => 154,  308 => 150,  304 => 149,  300 => 147,  292 => 145,  290 => 144,  286 => 143,  283 => 142,  278 => 141,  275 => 140,  267 => 134,  257 => 127,  254 => 126,  249 => 122,  247 => 117,  242 => 114,  240 => 109,  235 => 106,  233 => 101,  230 => 100,  222 => 93,  220 => 88,  217 => 87,  210 => 82,  203 => 78,  198 => 76,  195 => 75,  182 => 74,  103 => 6,  90 => 5,  66 => 3,  43 => 1,);
+        return array (  377 => 171,  364 => 170,  351 => 166,  342 => 162,  340 => 161,  330 => 158,  321 => 154,  315 => 151,  309 => 148,  303 => 147,  296 => 143,  290 => 142,  286 => 140,  278 => 138,  276 => 137,  270 => 136,  267 => 135,  262 => 134,  256 => 131,  247 => 125,  241 => 121,  239 => 115,  234 => 112,  232 => 106,  227 => 103,  225 => 97,  216 => 90,  214 => 84,  207 => 80,  200 => 76,  195 => 74,  192 => 73,  179 => 72,  103 => 6,  90 => 5,  66 => 3,  43 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -428,165 +425,159 @@ class __TwigTemplate_1a8222adb37107944b06b180362ca837 extends Template
 {% block title %}Heroes of {{ world.Name }}{% endblock %}
 
 {% block stylesheets %}
-    {{ parent() }}
-    <style>
-        .hero-card {
-            height: 320px;
-            position: relative;
-            overflow: hidden;
-        }
+{{ parent() }}
+<style>
+    .hero-card {
+        height: 320px;
+        position: relative;
+        overflow: hidden;
+    }
 
-        .hero-card img {
-            height: 150px;
-            object-fit: cover;
-        }
+    .hero-card img {
+        height: 150px;
+        object-fit: cover;
+    }
 
-        .action-buttons {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+    .action-buttons {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
 
-        .hero-card.show-actions .action-buttons {
-            display: flex;
-            opacity: 1;
-        }
+    .hero-card.show-actions .action-buttons {
+        display: flex;
+        opacity: 1;
+    }
 
-        .toggle-btn {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            z-index: 3;
-            background-color: rgba(0, 0, 0, 0.6);
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            color: white;
-        }
+    .toggle-btn {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        z-index: 3;
+        background-color: rgba(0, 0, 0, 0.6);
+        border: none;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        color: white;
+    }
 
-        .card-body, .action-buttons {
-            z-index: 2;
-            position: relative;
-        }
+    .card-body, .action-buttons {
+        z-index: 2;
+        position: relative;
+    }
 
-        .overlay-link {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-        }
+    .overlay-link {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+    }
 
-        .form-filter label {
-            font-weight: bold;
-        }
+    .form-filter label {
+        font-weight: bold;
+    }
 
-        .form-filter select,
-        .form-filter input {
-            background-color: #2a2a2a;
-            border: 1px solid #555;
-            color: #fff;
-        }
-        .form-filter input::placeholder {
-            color: #fff; 
-            opacity: 1;
-        }
-        
- 
+    .form-filter select,
+    .form-filter input {
+        background-color: #2a2a2a;
+        border: 1px solid #555;
+        color: #fff;
+    }
 
-    </style>
+    .form-filter input::placeholder {
+        color: #fff;
+        opacity: 1;
+    }
+</style>
 {% endblock %}
 
 {% block body %}
 <div class=\"container text-white py-4\">
-    <h1 class=\"mb-4\">Heroes of {{ world.Name }}</h1>
+    <h1 class=\"mb-4\" role=\"heading\" aria-level=\"1\">Heroes of {{ world.Name }}</h1>
 
-    <a href=\"{{ path('app_hero_create', { worldId: world.id }) }}\" class=\"btn btn-success mb-4\">
+    <a href=\"{{ path('app_hero_create', { worldId: world.id }) }}\" class=\"btn btn-success mb-4\" role=\"button\" aria-label=\"Create a new hero\">
         + Create a New Hero
     </a>
 
- {{ form_start(form, { attr: { class: 'form-filter mb-4' }, method: 'GET' }) }}
-<div class=\"d-flex justify-content-center\">
-    <div class=\"d-flex flex-wrap gap-2 justify-content-center align-items-end\" style=\"max-width: 1000px; width: 100%;\">
+    {{ form_start(form, { attr: { class: 'form-filter mb-4', role: 'search' }, method: 'GET' }) }}
+    <div class=\"d-flex justify-content-center\">
+        <div class=\"d-flex flex-wrap gap-2 justify-content-center align-items-end\" style=\"max-width: 1000px; width: 100%;\">
+            <div class=\"input-group\" style=\"width: 250px;\">
+                {{ form_widget(form.name, {
+                    attr: {
+                        class: 'form-control',
+                        placeholder: 'Search hero by name',
+                        'aria-label': 'Search hero by name'
+                    }
+                }) }}
+                <button class=\"btn btn-danger\" type=\"submit\" style=\"min-width: 45px;\" aria-label=\"Submit search\">
+                    <i class=\"fas fa-search\" aria-hidden=\"true\"></i>
+                </button>
+            </div>
 
-        {# Recherche + bouton #}
-        <div class=\"input-group\" style=\"width: 250px;\">
-            {{ form_widget(form.name, {
-                attr: {
-                    class: 'form-control',
-                    placeholder: 'Recherche...'
-                }
-            }) }}
-            <button class=\"btn btn-danger\" type=\"submit\" style=\"min-width: 45px;\">
-                <i class=\"fas fa-search\"></i>
-            </button>
-        </div>
+            <div style=\"width: 200px;\">
+                {{ form_widget(form.factions, {
+                    attr: {
+                        class: 'form-select',
+                        onchange: 'this.form.submit()',
+                        'aria-label': 'Filter by faction'
+                    }
+                }) }}
+            </div>
+            <div style=\"width: 200px;\">
+                {{ form_widget(form.guilds, {
+                    attr: {
+                        class: 'form-select',
+                        onchange: 'this.form.submit()',
+                        'aria-label': 'Filter by guild'
+                    }
+                }) }}
+            </div>
+            <div style=\"width: 200px;\">
+                {{ form_widget(form.races, {
+                    attr: {
+                        class: 'form-select',
+                        onchange: 'this.form.submit()',
+                        'aria-label': 'Filter by race'
+                    }
+                }) }}
+            </div>
 
-        {# Dropdowns alignés (factions, guilds, races) #}
-        <div style=\"width: 200px;\">
-            {{ form_widget(form.factions, {
-                attr: {
-                    class: 'form-select',
-                    onchange: 'this.form.submit()'
-                }
-            }) }}
+            <div>
+                <a href=\"{{ path('app_hero', { worldId: world.id }) }}\" class=\"btn btn-secondary\" style=\"min-width: 120px;\" role=\"button\" aria-label=\"Reset filters\">
+                    Réinitialiser
+                </a>
+            </div>
         </div>
-        <div style=\"width: 200px;\">
-            {{ form_widget(form.guilds, {
-                attr: {
-                    class: 'form-select',
-                    onchange: 'this.form.submit()'
-                }
-            }) }}
-        </div>
-        <div style=\"width: 200px;\">
-            {{ form_widget(form.races, {
-                attr: {
-                    class: 'form-select',
-                    onchange: 'this.form.submit()'
-                }
-            }) }}
-        </div>
-
-        {# Reset #}
-        <div>
-            <a href=\"{{ path('app_hero', { worldId: world.id }) }}\" class=\"btn btn-secondary\" style=\"min-width: 120px;\">
-                Réinitialiser
-            </a>
-        </div>
-
     </div>
-</div>
-{{ form_end(form) }}
+    {{ form_end(form) }}
 
-
-
-
-    {# === LISTE DES HEROS === #}
     <div class=\"row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3\">
         {% for hero in heroes %}
             <div class=\"col\">
-                <div class=\"card bg-dark text-white border-0 shadow rounded-4 hero-card position-relative\" id=\"card-{{ hero.id }}\">
+                <div class=\"card bg-dark text-white border-0 shadow rounded-4 hero-card position-relative\" id=\"card-{{ hero.id }}\" role=\"region\" aria-labelledby=\"hero-{{ hero.id }}-name\">
                     {% if hero.ImageHero %}
-                        <img src=\"{{ asset('uploads/heroes/' ~ hero.ImageHero) }}\" class=\"card-img-top rounded-top-4\" alt=\"{{ hero.Name }}\">
+                        <img src=\"{{ asset('uploads/heroes/' ~ hero.ImageHero) }}\" class=\"card-img-top rounded-top-4\" alt=\"Image of {{ hero.Name }}\">
                     {% endif %}
 
                     <div class=\"card-body p-2\">
-                        <h6 class=\"card-title mb-1 fw-bold\">{{ hero.Name }}</h6>
-                        <p class=\"card-text small mb-0 text-white \">{{ hero.Fonction }}</p>
+                        <h6 id=\"hero-{{ hero.id }}-name\" class=\"card-title mb-1 fw-bold\">{{ hero.Name }}</h6>
+                        <p class=\"card-text small mb-0 text-white\">{{ hero.Fonction }}</p>
                     </div>
 
                     <div class=\"action-buttons justify-content-around gap-1 px-3 pb-2\">
-                        <a href=\"{{ path('app_hero_edit', { id: hero.id }) }}\" class=\"btn btn-sm btn-outline-warning\">Edit</a>
+                        <a href=\"{{ path('app_hero_edit', { id: hero.id }) }}\" class=\"btn btn-sm btn-outline-warning\" aria-label=\"Edit {{ hero.Name }}\">Edit</a>
                         <a href=\"{{ path('app_hero_delete', { id: hero.id }) }}\"
                            class=\"btn btn-sm btn-outline-danger\"
-                           onclick=\"return confirm('Are you sure you want to delete this hero?');\">Delete</a>
+                           onclick=\"return confirm('Are you sure you want to delete this hero?');\"
+                           aria-label=\"Delete {{ hero.Name }}\">Delete</a>
                     </div>
 
-                    <button class=\"toggle-btn\" onclick=\"toggleActions(event, {{ hero.id }});\">
+                    <button class=\"toggle-btn\" onclick=\"toggleActions(event, {{ hero.id }});\" aria-label=\"Toggle action buttons for {{ hero.Name }}\">
                         +
                     </button>
 
-                    <a href=\"{{ path('app_hero_show', { id: hero.id }) }}\" class=\"overlay-link\"></a>
+                    <a href=\"{{ path('app_hero_show', { id: hero.id }) }}\" class=\"overlay-link\" aria-label=\"View details of {{ hero.Name }}\"></a>
                 </div>
             </div>
         {% else %}
@@ -599,15 +590,15 @@ class __TwigTemplate_1a8222adb37107944b06b180362ca837 extends Template
 {% endblock %}
 
 {% block javascripts %}
-    {{ parent() }}
-    <script>
-        function toggleActions(event, id) {
-            event.stopPropagation();
-            event.preventDefault();
-            const card = document.getElementById(`card-\${id}`);
-            card.classList.toggle('show-actions');
-        }
-    </script>
+{{ parent() }}
+<script>
+    function toggleActions(event, id) {
+        event.stopPropagation();
+        event.preventDefault();
+        const card = document.getElementById(`card-\${id}`);
+        card.classList.toggle('show-actions');
+    }
+</script>
 {% endblock %}
 ", "hero/index.html.twig", "C:\\wamp64\\www\\Site_Fantasia\\Project_fantasia\\templates\\hero\\index.html.twig");
     }

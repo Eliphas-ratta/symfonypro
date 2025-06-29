@@ -27,7 +27,7 @@ class DomainFilterType extends AbstractType
                 'class' => Race::class,
                 'choices' => $races,
                 'required' => false,
-                'multiple' => false, // ✅ Mono sélection
+                'multiple' => false, 
                 'expanded' => false,
                 'label' => 'Filter by Race',
                 'choice_label' => 'Name',

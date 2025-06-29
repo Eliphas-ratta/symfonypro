@@ -19,6 +19,8 @@ return [
         '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
+        '/legal-notice' => [[['_route' => 'app_legal', '_controller' => 'App\\Controller\\StaticPageController::legal'], null, null, null, false, false, null]],
+        '/privacy-policy' => [[['_route' => 'app_privacy', '_controller' => 'App\\Controller\\StaticPageController::privacy'], null, null, null, false, false, null]],
         '/world' => [[['_route' => 'app_world', '_controller' => 'App\\Controller\\WorldController::index'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
