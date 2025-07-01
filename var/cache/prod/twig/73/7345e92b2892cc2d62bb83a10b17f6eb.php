@@ -197,6 +197,6 @@ class __TwigTemplate_5c843edd5c39629edc6510235aadbf6f extends Template
 
     public function getSourceContext(): Source
     {
-        return new Source("", "foundation_6_layout.html.twig", "C:\\wamp64\\www\\Site_Fantasia\\Project_fantasia\\vendor\\symfony\\twig-bridge\\Resources\\views\\Form\\foundation_6_layout.html.twig");
+        return new Source("", "foundation_6_layout.html.twig", "C:\\wamp64\\www\\symfony\\symfonypro\\vendor\\symfony\\twig-bridge\\Resources\\views\\Form\\foundation_6_layout.html.twig");
     }
 }

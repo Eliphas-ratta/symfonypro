@@ -88,7 +88,7 @@ class __TwigTemplate_b4a8541a11b2c6a43cf70cbc2fc4a976 extends Template
     }
 
     .entity-card {
-        background-color: #1f1f1f;
+        background-color: #111111;
         border-radius: 12px;
         padding: 1rem;
         width: 140px;
@@ -157,7 +157,7 @@ class __TwigTemplate_b4a8541a11b2c6a43cf70cbc2fc4a976 extends Template
     {
         $macros = $this->macros;
         // line 85
-        yield "<div class=\"container text-white my-5\">
+        yield "<div class=\"container text-white my-5\" role=\"main\">
     <div class=\"row g-4 align-items-start hero-flex\">
         <div class=\"col-md-4 text-center\">
             ";
@@ -166,131 +166,148 @@ class __TwigTemplate_b4a8541a11b2c6a43cf70cbc2fc4a976 extends Template
             // line 89
             yield "                <img src=\"";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/heroes/" . CoreExtension::getAttribute($this->env, $this->source, ($context["hero"] ?? null), "imageHero", [], "any", false, false, false, 89))), "html", null, true);
-            yield "\" alt=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hero"] ?? null), "name", [], "any", false, false, false, 89), "html", null, true);
-            yield "\" class=\"hero-image\">
+            yield "\"
+                     alt=\"Portrait of ";
+            // line 90
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hero"] ?? null), "name", [], "any", false, false, false, 90), "html", null, true);
+            yield "\"
+                     class=\"hero-image\"
+                     role=\"img\">
             ";
         }
-        // line 91
+        // line 94
         yield "        </div>
 
         <div class=\"col-md-8\">
-            <h2 class=\"text-info fw-bold\">";
-        // line 94
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hero"] ?? null), "name", [], "any", false, false, false, 94), "html", null, true);
-        yield "</h2>
+            <h1 class=\"text-info fw-bold\" id=\"hero-name\">";
+        // line 97
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hero"] ?? null), "name", [], "any", false, false, false, 97), "html", null, true);
+        yield "</h1>
             <p><strong>Age :</strong> ";
-        // line 95
-        yield ((CoreExtension::getAttribute($this->env, $this->source, ($context["hero"] ?? null), "age", [], "any", false, false, false, 95)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hero"] ?? null), "age", [], "any", false, false, false, 95), "html", null, true)) : ("Inconnu"));
+        // line 98
+        yield ((CoreExtension::getAttribute($this->env, $this->source, ($context["hero"] ?? null), "age", [], "any", false, false, false, 98)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hero"] ?? null), "age", [], "any", false, false, false, 98), "html", null, true)) : ("Inconnu"));
         yield "</p>
             <p><strong>Taille :</strong> ";
-        // line 96
-        yield ((CoreExtension::getAttribute($this->env, $this->source, ($context["hero"] ?? null), "size", [], "any", false, false, false, 96)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hero"] ?? null), "size", [], "any", false, false, false, 96), "html", null, true)) : ("N/A"));
+        // line 99
+        yield ((CoreExtension::getAttribute($this->env, $this->source, ($context["hero"] ?? null), "size", [], "any", false, false, false, 99)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hero"] ?? null), "size", [], "any", false, false, false, 99), "html", null, true)) : ("N/A"));
         yield "</p>
             <p><strong>Fonction :</strong> ";
-        // line 97
-        yield ((CoreExtension::getAttribute($this->env, $this->source, ($context["hero"] ?? null), "fonction", [], "any", false, false, false, 97)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hero"] ?? null), "fonction", [], "any", false, false, false, 97), "html", null, true)) : ("Inconnue"));
+        // line 100
+        yield ((CoreExtension::getAttribute($this->env, $this->source, ($context["hero"] ?? null), "fonction", [], "any", false, false, false, 100)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hero"] ?? null), "fonction", [], "any", false, false, false, 100), "html", null, true)) : ("Inconnue"));
         yield "</p>
             <p class=\"hero-description\"><strong>Description :</strong><br>";
-        // line 98
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hero"] ?? null), "description", [], "any", false, false, false, 98), "html", null, true);
+        // line 101
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hero"] ?? null), "description", [], "any", false, false, false, 101), "html", null, true);
         yield "</p>
         </div>
     </div>
 
     ";
-        // line 102
+        // line 105
         $context["imagePaths"] = ["Factions" => "uploads/factions/", "Guilds" => "uploads/guilds/", "Races" => "uploads/races/", "Cities" => "uploads/cities/", "Domains" => "uploads/domains/"];
-        // line 109
+        // line 112
         yield "
     ";
-        // line 110
+        // line 113
         $context["methodMap"] = ["Factions" => "getImageFaction", "Guilds" => "getImageGuild", "Races" => "getImageRace", "Cities" => "getImageCity", "Domains" => "getImageDomain"];
-        // line 117
+        // line 120
         yield "
     ";
-        // line 118
+        // line 121
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(["Factions" => CoreExtension::getAttribute($this->env, $this->source,         // line 119
-($context["hero"] ?? null), "heroFaction", [], "any", false, false, false, 119), "Guilds" => CoreExtension::getAttribute($this->env, $this->source,         // line 120
-($context["hero"] ?? null), "guilds", [], "any", false, false, false, 120), "Races" => CoreExtension::getAttribute($this->env, $this->source,         // line 121
-($context["hero"] ?? null), "heroRace", [], "any", false, false, false, 121), "Cities" => CoreExtension::getAttribute($this->env, $this->source,         // line 122
-($context["hero"] ?? null), "heroCity", [], "any", false, false, false, 122), "Domains" => CoreExtension::getAttribute($this->env, $this->source,         // line 123
-($context["hero"] ?? null), "heroDomain", [], "any", false, false, false, 123)]);
+        $context['_seq'] = CoreExtension::ensureTraversable(["Factions" => CoreExtension::getAttribute($this->env, $this->source,         // line 122
+($context["hero"] ?? null), "heroFaction", [], "any", false, false, false, 122), "Guilds" => CoreExtension::getAttribute($this->env, $this->source,         // line 123
+($context["hero"] ?? null), "guilds", [], "any", false, false, false, 123), "Races" => CoreExtension::getAttribute($this->env, $this->source,         // line 124
+($context["hero"] ?? null), "heroRace", [], "any", false, false, false, 124), "Cities" => CoreExtension::getAttribute($this->env, $this->source,         // line 125
+($context["hero"] ?? null), "heroCity", [], "any", false, false, false, 125), "Domains" => CoreExtension::getAttribute($this->env, $this->source,         // line 126
+($context["hero"] ?? null), "heroDomain", [], "any", false, false, false, 126)]);
         foreach ($context['_seq'] as $context["section"] => $context["collection"]) {
-            // line 125
+            // line 128
             yield "        ";
             if ((true && (Twig\Extension\CoreExtension::length($this->env->getCharset(), $context["collection"]) > 0))) {
-                // line 126
-                yield "            <div class=\"section-title\">";
+                // line 129
+                yield "            <h2 class=\"section-title\" id=\"";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::lower($this->env->getCharset(), $context["section"]), "html", null, true);
+                yield "\">";
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["section"], "html", null, true);
-                yield "</div>
-            <div class=\"card-group\">
+                yield "</h2>
+            <div class=\"card-group\" role=\"region\" aria-labelledby=\"";
+                // line 130
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::lower($this->env->getCharset(), $context["section"]), "html", null, true);
+                yield "\">
                 ";
-                // line 128
+                // line 131
                 $context['_parent'] = $context;
                 $context['_seq'] = CoreExtension::ensureTraversable($context["collection"]);
                 foreach ($context['_seq'] as $context["_key"] => $context["item"]) {
-                    // line 129
+                    // line 132
                     yield "                    ";
                     $context["method"] = (($_v0 = ($context["methodMap"] ?? null)) && is_array($_v0) || $_v0 instanceof ArrayAccess ? ($_v0[$context["section"]] ?? null) : null);
-                    // line 130
+                    // line 133
                     yield "                    ";
-                    $context["imageAttr"] = CoreExtension::getAttribute($this->env, $this->source, $context["item"], ($context["method"] ?? null), [], "any", false, false, false, 130);
-                    // line 131
+                    $context["imageAttr"] = CoreExtension::getAttribute($this->env, $this->source, $context["item"], ($context["method"] ?? null), [], "any", false, false, false, 133);
+                    // line 134
                     yield "                    ";
                     $context["imagePath"] = (($_v1 = ($context["imagePaths"] ?? null)) && is_array($_v1) || $_v1 instanceof ArrayAccess ? ($_v1[$context["section"]] ?? null) : null);
-                    // line 132
+                    // line 135
                     yield "
-                    <div class=\"entity-card\">
+                    <div class=\"entity-card\" role=\"article\" aria-label=\"";
+                    // line 136
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["item"], "name", [], "any", false, false, false, 136), "html", null, true);
+                    yield "\">
                         ";
-                    // line 134
+                    // line 137
                     if (($context["imageAttr"] ?? null)) {
-                        // line 135
+                        // line 138
                         yield "                            <img src=\"";
                         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl((($context["imagePath"] ?? null) . ($context["imageAttr"] ?? null))), "html", null, true);
-                        yield "\" alt=\"";
-                        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["item"], "name", [], "any", false, false, false, 135), "html", null, true);
-                        yield "\">
+                        yield "\"
+                                 alt=\"";
+                        // line 139
+                        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["item"], "name", [], "any", false, false, false, 139), "html", null, true);
+                        yield "\"
+                                 role=\"img\">
                         ";
                     } else {
-                        // line 137
+                        // line 142
                         yield "                            <img src=\"";
                         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("img/placeholder.png"), "html", null, true);
-                        yield "\" alt=\"No image\">
+                        yield "\"
+                                 alt=\"Placeholder image\"
+                                 role=\"img\">
                         ";
                     }
-                    // line 139
+                    // line 146
                     yield "                        <div class=\"name\">";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["item"], "name", [], "any", false, false, false, 139), "html", null, true);
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["item"], "name", [], "any", false, false, false, 146), "html", null, true);
                     yield "</div>
                         ";
-                    // line 140
-                    if (CoreExtension::getAttribute($this->env, $this->source, $context["item"], "type", [], "any", true, true, false, 140)) {
-                        // line 141
+                    // line 147
+                    if (CoreExtension::getAttribute($this->env, $this->source, $context["item"], "type", [], "any", true, true, false, 147)) {
+                        // line 148
                         yield "                            <div class=\"type\">";
-                        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["item"], "type", [], "any", false, false, false, 141), "html", null, true);
+                        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["item"], "type", [], "any", false, false, false, 148), "html", null, true);
                         yield "</div>
                         ";
                     }
-                    // line 143
+                    // line 150
                     yield "                    </div>
                 ";
                 }
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_key'], $context['item'], $context['_parent']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 145
+                // line 152
                 yield "            </div>
         ";
             }
-            // line 147
+            // line 154
             yield "    ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['section'], $context['collection'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 148
+        // line 155
         yield "</div>
 ";
         yield from [];
@@ -317,11 +334,11 @@ class __TwigTemplate_b4a8541a11b2c6a43cf70cbc2fc4a976 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  294 => 148,  288 => 147,  284 => 145,  277 => 143,  271 => 141,  269 => 140,  264 => 139,  258 => 137,  250 => 135,  248 => 134,  244 => 132,  241 => 131,  238 => 130,  235 => 129,  231 => 128,  225 => 126,  222 => 125,  219 => 123,  218 => 122,  217 => 121,  216 => 120,  215 => 119,  213 => 118,  210 => 117,  208 => 110,  205 => 109,  203 => 102,  196 => 98,  192 => 97,  188 => 96,  184 => 95,  180 => 94,  175 => 91,  167 => 89,  165 => 88,  160 => 85,  153 => 84,  71 => 6,  64 => 5,  53 => 3,  42 => 1,);
+        return array (  311 => 155,  305 => 154,  301 => 152,  294 => 150,  288 => 148,  286 => 147,  281 => 146,  273 => 142,  267 => 139,  262 => 138,  260 => 137,  256 => 136,  253 => 135,  250 => 134,  247 => 133,  244 => 132,  240 => 131,  236 => 130,  229 => 129,  226 => 128,  223 => 126,  222 => 125,  221 => 124,  220 => 123,  219 => 122,  217 => 121,  214 => 120,  212 => 113,  209 => 112,  207 => 105,  200 => 101,  196 => 100,  192 => 99,  188 => 98,  184 => 97,  179 => 94,  172 => 90,  167 => 89,  165 => 88,  160 => 85,  153 => 84,  71 => 6,  64 => 5,  53 => 3,  42 => 1,);
     }
 
     public function getSourceContext(): Source
     {
-        return new Source("", "hero/show.html.twig", "C:\\wamp64\\www\\Site_Fantasia\\Project_fantasia\\templates\\hero\\show.html.twig");
+        return new Source("", "hero/show.html.twig", "C:\\wamp64\\www\\symfony\\symfonypro\\templates\\hero\\show.html.twig");
     }
 }

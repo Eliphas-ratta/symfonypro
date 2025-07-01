@@ -51,133 +51,141 @@ class __TwigTemplate_b8c98b669dafcec48aaefc9df78c4896 extends Template
         // line 5
         yield from $this->unwrap()->yieldBlock('title', $context, $blocks);
         yield "</title>
-    <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫</text></svg>\">
+    <link rel=\"icon\" type=\"image/png\" href=\"";
+        // line 6
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/favicon.png"), "html", null, true);
+        yield "\">
+
     
     ";
-        // line 8
+        // line 9
         yield $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackLinkTags("app");
         yield "
     
     ";
-        // line 10
+        // line 11
         yield from $this->unwrap()->yieldBlock('stylesheets', $context, $blocks);
-        // line 13
-        yield "</head>
+        // line 14
+        yield "    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css\">
+    <link href=\"https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap\" rel=\"stylesheet\">
 
-<body>
-<header class=\"navbar navbar-expand-lg navbar-dark bg-gray px-3 py-3\">
-    <div class=\"container-fluid\">
-        <!-- Logo -->
-        <a class=\"navbar-brand\" href=\"#\"><h1>Project Fantasia</h1></a>
+</head>
 
-        <!-- Bouton burger -->
-        <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#mainNavbar\"
-                aria-controls=\"mainNavbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
-            <span class=\"navbar-toggler-icon\"></span>
-        </button>
+<body class=\"d-flex flex-column min-vh-100 bg-custom-dark\">
+    <header class=\"navbar navbar-expand-lg navbar-dark bg-gray px-3 py-3\">
+        <div class=\"container-fluid\">
+            <a class=\"navbar-brand fantasy-title\" href=\"#\"><h1>Project Fantasia</h1></a>
 
-        <!-- Menu -->
-        <div class=\"collapse navbar-collapse\" id=\"mainNavbar\">
-            <div class=\"d-flex justify-content-between align-items-center w-100\">
+            <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#mainNavbar\"
+                    aria-controls=\"mainNavbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+                <span class=\"navbar-toggler-icon\"></span>
+            </button>
 
-                <!-- Menu centré -->
-                <ul class=\"navbar-nav mx-auto mb-2 mb-lg-0\">
-                    <li class=\"nav-item\"><a href=\"";
-        // line 33
+            <div class=\"collapse navbar-collapse\" id=\"mainNavbar\">
+                <div class=\"d-flex justify-content-between align-items-center w-100\">
+                    <ul class=\"navbar-nav mx-auto mb-2 mb-lg-0\">
+                        <li class=\"nav-item\"><a href=\"";
+        // line 32
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_home");
         yield "\" class=\"nav-link\">Home</a></li>
-                    <li class=\"nav-item\"><a href=\"";
-        // line 34
+                        <li class=\"nav-item\"><a href=\"";
+        // line 33
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_world");
         yield "\" class=\"nav-link\">Worlds</a></li>
 
-                    ";
-        // line 36
+                        ";
+        // line 35
         if ($this->extensions['App\Twig\AppExtension']->getCurrentWorld()) {
-            // line 37
-            yield "                        <li class=\"nav-item\"><span class=\"nav-link text-info small\">World: <strong>";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $this->extensions['App\Twig\AppExtension']->getCurrentWorld(), "Name", [], "any", false, false, false, 37), "html", null, true);
+            // line 36
+            yield "                            <li class=\"nav-item\"><span class=\"nav-link text-info small\">World: <strong>";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $this->extensions['App\Twig\AppExtension']->getCurrentWorld(), "Name", [], "any", false, false, false, 36), "html", null, true);
             yield "</strong></span></li>
-                        <li class=\"nav-item\"><a href=\"";
-            // line 38
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_hero", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, $this->extensions['App\Twig\AppExtension']->getCurrentWorld(), "id", [], "any", false, false, false, 38)]), "html", null, true);
+                            <li class=\"nav-item\"><a href=\"";
+            // line 37
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_hero", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, $this->extensions['App\Twig\AppExtension']->getCurrentWorld(), "id", [], "any", false, false, false, 37)]), "html", null, true);
             yield "\" class=\"nav-link\">Heroes</a></li>
-                        <li class=\"nav-item\"><a href=\"";
-            // line 39
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_factions", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, $this->extensions['App\Twig\AppExtension']->getCurrentWorld(), "id", [], "any", false, false, false, 39)]), "html", null, true);
+                            <li class=\"nav-item\"><a href=\"";
+            // line 38
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_factions", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, $this->extensions['App\Twig\AppExtension']->getCurrentWorld(), "id", [], "any", false, false, false, 38)]), "html", null, true);
             yield "\" class=\"nav-link\">Factions</a></li>
-                        <li class=\"nav-item\"><a href=\"";
-            // line 40
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_races", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, $this->extensions['App\Twig\AppExtension']->getCurrentWorld(), "id", [], "any", false, false, false, 40)]), "html", null, true);
+                            <li class=\"nav-item\"><a href=\"";
+            // line 39
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_races", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, $this->extensions['App\Twig\AppExtension']->getCurrentWorld(), "id", [], "any", false, false, false, 39)]), "html", null, true);
             yield "\" class=\"nav-link\">Races</a></li>
-                        <li class=\"nav-item\"><a href=\"";
-            // line 41
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_continents", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, $this->extensions['App\Twig\AppExtension']->getCurrentWorld(), "id", [], "any", false, false, false, 41)]), "html", null, true);
+                            <li class=\"nav-item\"><a href=\"";
+            // line 40
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_continents", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, $this->extensions['App\Twig\AppExtension']->getCurrentWorld(), "id", [], "any", false, false, false, 40)]), "html", null, true);
             yield "\" class=\"nav-link\">Continents</a></li>
-                        <li class=\"nav-item\"><a href=\"";
-            // line 42
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_domains", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, $this->extensions['App\Twig\AppExtension']->getCurrentWorld(), "id", [], "any", false, false, false, 42)]), "html", null, true);
+                            <li class=\"nav-item\"><a href=\"";
+            // line 41
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_domains", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, $this->extensions['App\Twig\AppExtension']->getCurrentWorld(), "id", [], "any", false, false, false, 41)]), "html", null, true);
             yield "\" class=\"nav-link\">Domains</a></li>
-                        <li class=\"nav-item\"><a href=\"";
-            // line 43
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_capacities", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, $this->extensions['App\Twig\AppExtension']->getCurrentWorld(), "id", [], "any", false, false, false, 43)]), "html", null, true);
+                            <li class=\"nav-item\"><a href=\"";
+            // line 42
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_capacities", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, $this->extensions['App\Twig\AppExtension']->getCurrentWorld(), "id", [], "any", false, false, false, 42)]), "html", null, true);
             yield "\" class=\"nav-link\">Capacities</a></li>
-                        <li class=\"nav-item\"><a href=\"";
-            // line 44
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_guilds", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, $this->extensions['App\Twig\AppExtension']->getCurrentWorld(), "id", [], "any", false, false, false, 44)]), "html", null, true);
+                            <li class=\"nav-item\"><a href=\"";
+            // line 43
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_guilds", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, $this->extensions['App\Twig\AppExtension']->getCurrentWorld(), "id", [], "any", false, false, false, 43)]), "html", null, true);
             yield "\" class=\"nav-link\">Guilds</a></li>
-                        <li class=\"nav-item\"><a href=\"";
-            // line 45
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_city", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, $this->extensions['App\Twig\AppExtension']->getCurrentWorld(), "id", [], "any", false, false, false, 45)]), "html", null, true);
+                            <li class=\"nav-item\"><a href=\"";
+            // line 44
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_city", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, $this->extensions['App\Twig\AppExtension']->getCurrentWorld(), "id", [], "any", false, false, false, 44)]), "html", null, true);
             yield "\" class=\"nav-link\">Cities</a></li>
-
-                    ";
+                        ";
         }
-        // line 48
-        yield "                </ul>
+        // line 46
+        yield "                    </ul>
 
-                <!-- Connexion à droite -->
-                <ul class=\"navbar-nav mb-2 mb-lg-0\">
-                    ";
-        // line 52
-        if (CoreExtension::getAttribute($this->env, $this->source, ($context["app"] ?? null), "user", [], "any", false, false, false, 52)) {
-            // line 53
-            yield "                        <li class=\"nav-item\"><a href=\"";
+                    <ul class=\"navbar-nav mb-2 mb-lg-0\">
+                        ";
+        // line 49
+        if (CoreExtension::getAttribute($this->env, $this->source, ($context["app"] ?? null), "user", [], "any", false, false, false, 49)) {
+            // line 50
+            yield "                            <li class=\"nav-item\"><a href=\"";
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile");
             yield "\" class=\"nav-link\">Profile</a></li>
-                        <li class=\"nav-item\"><a href=\"";
-            // line 54
+                            <li class=\"nav-item\"><a href=\"";
+            // line 51
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             yield "\" class=\"nav-link text-danger\">Logout</a></li>
-                    ";
+                        ";
         } else {
-            // line 56
-            yield "                        <li class=\"nav-item\"><a href=\"";
+            // line 53
+            yield "                            <li class=\"nav-item\"><a href=\"";
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
             yield "\" class=\"nav-link\">Login</a></li>
-                        <li class=\"nav-item\"><a href=\"";
-            // line 57
+                            <li class=\"nav-item\"><a href=\"";
+            // line 54
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_register");
             yield "\" class=\"nav-link\">Register</a></li>
-                    ";
+                        ";
         }
-        // line 59
-        yield "                </ul>
-
+        // line 56
+        yield "                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</header>
+    </header>
 
-
-";
-        // line 67
+    <main class=\"flex-grow-1 w-100\">
+        ";
+        // line 63
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
+        // line 64
+        yield "    </main>
+
+    ";
+        // line 66
+        yield from $this->loadTemplate("includes/footer.html.twig", "base.html.twig", 66)->unwrap()->yield($context);
+        // line 67
+        yield "
+    ";
         // line 68
         yield $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackScriptTags("app");
         yield "
 
-";
+    ";
         // line 70
         yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
         // line 73
@@ -198,14 +206,14 @@ class __TwigTemplate_b8c98b669dafcec48aaefc9df78c4896 extends Template
         yield from [];
     }
 
-    // line 10
+    // line 11
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_stylesheets(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 11
+        // line 12
         yield "        ";
         yield $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackLinkTags("app");
         yield "
@@ -213,7 +221,7 @@ class __TwigTemplate_b8c98b669dafcec48aaefc9df78c4896 extends Template
         yield from [];
     }
 
-    // line 67
+    // line 63
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -231,7 +239,8 @@ class __TwigTemplate_b8c98b669dafcec48aaefc9df78c4896 extends Template
     {
         $macros = $this->macros;
         // line 71
-        yield "    ";
+        yield "      
+    ";
         yield from [];
     }
 
@@ -256,11 +265,11 @@ class __TwigTemplate_b8c98b669dafcec48aaefc9df78c4896 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  234 => 71,  227 => 70,  217 => 67,  209 => 11,  202 => 10,  191 => 5,  184 => 73,  182 => 70,  177 => 68,  175 => 67,  165 => 59,  160 => 57,  155 => 56,  150 => 54,  145 => 53,  143 => 52,  137 => 48,  131 => 45,  127 => 44,  123 => 43,  119 => 42,  115 => 41,  111 => 40,  107 => 39,  103 => 38,  98 => 37,  96 => 36,  91 => 34,  87 => 33,  65 => 13,  63 => 10,  58 => 8,  52 => 5,  46 => 1,);
+        return array (  242 => 71,  235 => 70,  225 => 63,  217 => 12,  210 => 11,  199 => 5,  192 => 73,  190 => 70,  185 => 68,  182 => 67,  180 => 66,  176 => 64,  174 => 63,  165 => 56,  160 => 54,  155 => 53,  150 => 51,  145 => 50,  143 => 49,  138 => 46,  133 => 44,  129 => 43,  125 => 42,  121 => 41,  117 => 40,  113 => 39,  109 => 38,  105 => 37,  100 => 36,  98 => 35,  93 => 33,  89 => 32,  69 => 14,  67 => 11,  62 => 9,  56 => 6,  52 => 5,  46 => 1,);
     }
 
     public function getSourceContext(): Source
     {
-        return new Source("", "base.html.twig", "C:\\wamp64\\www\\Site_Fantasia\\Project_fantasia\\templates\\base.html.twig");
+        return new Source("", "base.html.twig", "C:\\wamp64\\www\\symfony\\symfonypro\\templates\\base.html.twig");
     }
 }

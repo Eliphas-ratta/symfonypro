@@ -7,7 +7,7 @@ namespace Proxies\__CG__\App\Entity;
  */
 class Faction extends \App\Entity\Faction implements \Doctrine\ORM\Proxy\InternalProxy
 {
-    use \Symfony\Component\VarExporter\LazyGhostTrait {
+     use \Symfony\Component\VarExporter\LazyGhostTrait {
         initializeLazyObject as private;
         setLazyObjectAsInitialized as public __setInitialized;
         isLazyObjectInitialized as private;
@@ -56,7 +56,7 @@ class Faction extends \App\Entity\Faction implements \Doctrine\ORM\Proxy\Interna
         'Regime' => [parent::class, 'Regime', null],
         'Type' => [parent::class, 'Type', null],
         'id' => [parent::class, 'id', null],
-    ];
+    ];
 
     public function __isInitialized(): bool
     {

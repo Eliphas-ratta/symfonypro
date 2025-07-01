@@ -104,7 +104,7 @@ class __TwigTemplate_4816f0d0158a1b868f188bb09916dc67 extends Template
         }
 
         .entity-card {
-            background-color: #1f1f1f;
+            background-color: #111111;
             border-radius: 12px;
             padding: 1rem;
             width: 140px;
@@ -484,6 +484,6 @@ class __TwigTemplate_4816f0d0158a1b868f188bb09916dc67 extends Template
 
     public function getSourceContext(): Source
     {
-        return new Source("", "continent/show.html.twig", "C:\\wamp64\\www\\Site_Fantasia\\Project_fantasia\\templates\\continent\\show.html.twig");
+        return new Source("", "continent/show.html.twig", "C:\\wamp64\\www\\symfony\\symfonypro\\templates\\continent\\show.html.twig");
     }
 }

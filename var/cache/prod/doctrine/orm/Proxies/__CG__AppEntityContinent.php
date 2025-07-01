@@ -7,7 +7,7 @@ namespace Proxies\__CG__\App\Entity;
  */
 class Continent extends \App\Entity\Continent implements \Doctrine\ORM\Proxy\InternalProxy
 {
-    use \Symfony\Component\VarExporter\LazyGhostTrait {
+     use \Symfony\Component\VarExporter\LazyGhostTrait {
         initializeLazyObject as private;
         setLazyObjectAsInitialized as public __setInitialized;
         isLazyObjectInitialized as private;
@@ -38,7 +38,7 @@ class Continent extends \App\Entity\Continent implements \Doctrine\ORM\Proxy\Int
         'Image_Continent' => [parent::class, 'Image_Continent', null],
         'Name' => [parent::class, 'Name', null],
         'id' => [parent::class, 'id', null],
-    ];
+    ];
 
     public function __isInitialized(): bool
     {

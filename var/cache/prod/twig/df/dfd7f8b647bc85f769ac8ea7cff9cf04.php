@@ -146,6 +146,6 @@ class __TwigTemplate_dd7b06425c611e64d8442bcdb4597d51 extends Template
 
     public function getSourceContext(): Source
     {
-        return new Source("", "@Doctrine/Collector/explain.html.twig", "C:\\wamp64\\www\\Site_Fantasia\\Project_fantasia\\vendor\\doctrine\\doctrine-bundle\\templates\\Collector\\explain.html.twig");
+        return new Source("", "@Doctrine/Collector/explain.html.twig", "C:\\wamp64\\www\\symfony\\symfonypro\\vendor\\doctrine\\doctrine-bundle\\templates\\Collector\\explain.html.twig");
     }
 }

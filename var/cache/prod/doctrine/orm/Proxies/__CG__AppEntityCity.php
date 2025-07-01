@@ -7,7 +7,7 @@ namespace Proxies\__CG__\App\Entity;
  */
 class City extends \App\Entity\City implements \Doctrine\ORM\Proxy\InternalProxy
 {
-    use \Symfony\Component\VarExporter\LazyGhostTrait {
+     use \Symfony\Component\VarExporter\LazyGhostTrait {
         initializeLazyObject as private;
         setLazyObjectAsInitialized as public __setInitialized;
         isLazyObjectInitialized as private;
@@ -36,7 +36,7 @@ class City extends \App\Entity\City implements \Doctrine\ORM\Proxy\InternalProxy
         'Image_City' => [parent::class, 'Image_City', null],
         'Name' => [parent::class, 'Name', null],
         'id' => [parent::class, 'id', null],
-    ];
+    ];
 
     public function __isInitialized(): bool
     {

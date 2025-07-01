@@ -89,7 +89,7 @@ class __TwigTemplate_73301e2374a01dd9a511d90169353627 extends Template
         }
 
         .entity-card {
-            background-color: #1f1f1f;
+            background-color: #111111;
             border-radius: 12px;
             padding: 1rem;
             width: 140px;
@@ -325,7 +325,52 @@ class __TwigTemplate_73301e2374a01dd9a511d90169353627 extends Template
     ";
         }
         // line 150
-        yield "</div>
+        yield "
+    ";
+        // line 151
+        if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, ($context["faction"] ?? null), "FactionHero", [], "any", false, false, false, 151)) > 0)) {
+            // line 152
+            yield "    <div class=\"section-title\">Heroes</div>
+    <div class=\"card-group\">
+        ";
+            // line 154
+            $context['_parent'] = $context;
+            $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, ($context["faction"] ?? null), "FactionHero", [], "any", false, false, false, 154));
+            foreach ($context['_seq'] as $context["_key"] => $context["hero"]) {
+                // line 155
+                yield "            <div class=\"entity-card\">
+                ";
+                // line 156
+                if (CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "ImageHero", [], "any", false, false, false, 156)) {
+                    // line 157
+                    yield "                    <img src=\"";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/heroes/" . CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "ImageHero", [], "any", false, false, false, 157))), "html", null, true);
+                    yield "\" alt=\"";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "Name", [], "any", false, false, false, 157), "html", null, true);
+                    yield "\">
+                ";
+                }
+                // line 159
+                yield "                <div class=\"name\">";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "Name", [], "any", false, false, false, 159), "html", null, true);
+                yield "</div>
+                <div class=\"type\">";
+                // line 160
+                yield ((CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "Fonction", [], "any", false, false, false, 160)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "Fonction", [], "any", false, false, false, 160), "html", null, true)) : ("Fonction inconnue"));
+                yield "</div>
+            </div>
+        ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_key'], $context['hero'], $context['_parent']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 163
+            yield "    </div>
+";
+        }
+        // line 165
+        yield "
+</div>
 ";
         yield from [];
     }
@@ -351,11 +396,11 @@ class __TwigTemplate_73301e2374a01dd9a511d90169353627 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  328 => 150,  324 => 148,  314 => 145,  306 => 143,  304 => 142,  301 => 141,  297 => 140,  293 => 138,  291 => 137,  288 => 136,  284 => 134,  274 => 131,  266 => 129,  264 => 128,  261 => 127,  257 => 126,  253 => 124,  251 => 123,  248 => 122,  244 => 120,  234 => 117,  226 => 115,  224 => 114,  221 => 113,  217 => 112,  213 => 110,  211 => 109,  203 => 104,  197 => 101,  193 => 100,  189 => 99,  185 => 98,  180 => 95,  172 => 93,  170 => 92,  165 => 89,  158 => 88,  71 => 6,  64 => 5,  53 => 3,  42 => 1,);
+        return array (  372 => 165,  368 => 163,  359 => 160,  354 => 159,  346 => 157,  344 => 156,  341 => 155,  337 => 154,  333 => 152,  331 => 151,  328 => 150,  324 => 148,  314 => 145,  306 => 143,  304 => 142,  301 => 141,  297 => 140,  293 => 138,  291 => 137,  288 => 136,  284 => 134,  274 => 131,  266 => 129,  264 => 128,  261 => 127,  257 => 126,  253 => 124,  251 => 123,  248 => 122,  244 => 120,  234 => 117,  226 => 115,  224 => 114,  221 => 113,  217 => 112,  213 => 110,  211 => 109,  203 => 104,  197 => 101,  193 => 100,  189 => 99,  185 => 98,  180 => 95,  172 => 93,  170 => 92,  165 => 89,  158 => 88,  71 => 6,  64 => 5,  53 => 3,  42 => 1,);
     }
 
     public function getSourceContext(): Source
     {
-        return new Source("", "faction/show.html.twig", "C:\\wamp64\\www\\Site_Fantasia\\Project_fantasia\\templates\\faction\\show.html.twig");
+        return new Source("", "faction/show.html.twig", "C:\\wamp64\\www\\symfony\\symfonypro\\templates\\faction\\show.html.twig");
     }
 }

@@ -293,6 +293,6 @@ class __TwigTemplate_c8cb111c63f75d8aff7c5ee44ac464d4 extends Template
 
     public function getSourceContext(): Source
     {
-        return new Source("", "tailwind_2_layout.html.twig", "C:\\wamp64\\www\\Site_Fantasia\\Project_fantasia\\vendor\\symfony\\twig-bridge\\Resources\\views\\Form\\tailwind_2_layout.html.twig");
+        return new Source("", "tailwind_2_layout.html.twig", "C:\\wamp64\\www\\symfony\\symfonypro\\vendor\\symfony\\twig-bridge\\Resources\\views\\Form\\tailwind_2_layout.html.twig");
     }
 }

@@ -89,7 +89,7 @@ class __TwigTemplate_0aec362800cde98b4847a020f9a097eb extends Template
         }
 
         .entity-card {
-            background-color: #1f1f1f;
+            background-color: #111111 !important;
             border-radius: 12px;
             padding: 1rem;
             width: 140px;
@@ -118,7 +118,7 @@ class __TwigTemplate_0aec362800cde98b4847a020f9a097eb extends Template
 
         /* Nouvelle disposition pour les capacités */
         .capacity-card {
-            background-color: #1a1a1a;
+            background-color: #111111;
             border-radius: 12px;
             padding: 1rem;
             display: flex;
@@ -265,7 +265,7 @@ class __TwigTemplate_0aec362800cde98b4847a020f9a097eb extends Template
             $context['_seq'] = CoreExtension::ensureTraversable(($context["heroes"] ?? null));
             foreach ($context['_seq'] as $context["_key"] => $context["hero"]) {
                 // line 132
-                yield "                <div class=\"entity-card\">
+                yield "                <div class=\"entity-card bg-dark\">
                     ";
                 // line 133
                 if (CoreExtension::getAttribute($this->env, $this->source, $context["hero"], "ImageHero", [], "any", false, false, false, 133)) {
@@ -383,6 +383,6 @@ class __TwigTemplate_0aec362800cde98b4847a020f9a097eb extends Template
 
     public function getSourceContext(): Source
     {
-        return new Source("", "domain/show.html.twig", "C:\\wamp64\\www\\Site_Fantasia\\Project_fantasia\\templates\\domain\\show.html.twig");
+        return new Source("", "domain/show.html.twig", "C:\\wamp64\\www\\symfony\\symfonypro\\templates\\domain\\show.html.twig");
     }
 }

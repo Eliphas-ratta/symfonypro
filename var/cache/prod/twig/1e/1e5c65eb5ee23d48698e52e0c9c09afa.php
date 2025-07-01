@@ -31,6 +31,7 @@ class __TwigTemplate_ee9ac60aab359aa1709f15331e42f1d5 extends Template
 
         $this->blocks = [
             'title' => [$this, 'block_title'],
+            'stylesheets' => [$this, 'block_stylesheets'],
             'body' => [$this, 'block_body'],
         ];
     }
@@ -63,96 +64,231 @@ class __TwigTemplate_ee9ac60aab359aa1709f15331e42f1d5 extends Template
     /**
      * @return iterable<null|scalar|\Stringable>
      */
-    public function block_body(array $context, array $blocks = []): iterable
+    public function block_stylesheets(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
         // line 6
-        yield "<div class=\"container my-5 \">
-    <div class=\"\"> 
-    <h2 class=\"mb-4\">Create a New World</h2>
+        yield from $this->yieldParentBlock("stylesheets", $context, $blocks);
+        yield "
+<style>
+    .form-container {
+        max-width: 900px;
+        margin: 2rem auto;
+        background-color: #111111;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+        color: white;
+    }
 
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #03A9F4;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem 2rem;
+    }
+
+    @media (max-width: 768px) {
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .form-grid .full-width {
+        grid-column: span 2;
+    }
+
+    .form-container input,
+    .form-container textarea,
+    .form-container select {
+        background-color: #2a2a2a;
+        color: white;
+        border: 1px solid #444;
+        border-radius: 6px;
+        padding: 0.5rem;
+        width: 100%;
+    }
+
+    .form-container button[type=\"submit\"] {
+        background-color: #28a745;
+        border: none;
+        padding: 0.5rem 1.5rem;
+        font-weight: bold;
+        color: white;
+        border-radius: 6px;
+        margin-top: 1.5rem;
+        display: block;
+        margin-left: auto;
+    }
+
+    .form-container button[type=\"submit\"]:hover {
+        background-color: #218838;
+    }
+
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+        border-top-left-radius: 0.375rem;
+        border-top-right-radius: 0.375rem;
+    }
+
+    .card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .card-body {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .card-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    .card-buttons form {
+        display: inline;
+    }
+
+</style>
 ";
-        // line 10
+        yield from [];
+    }
+
+    // line 101
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_body(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        // line 102
+        yield "<div class=\"form-container\">
+    <h2>Create a New World</h2>
+
+    ";
+        // line 105
         yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? null), 'form_start', ["attr" => ["enctype" => "multipart/form-data"]]);
         yield "
+    <div class=\"form-grid\">
+        <div>
+            ";
+        // line 108
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, ($context["form"] ?? null), "Name", [], "any", false, false, false, 108), 'label');
+        yield "
+            ";
+        // line 109
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, ($context["form"] ?? null), "Name", [], "any", false, false, false, 109), 'widget');
+        yield "
+        </div>
 
-    <div class=\"mb-3\">
-        ";
-        // line 13
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, ($context["form"] ?? null), "Name", [], "any", false, false, false, 13), 'label');
+        <div>
+            ";
+        // line 113
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, ($context["form"] ?? null), "Worldimage", [], "any", false, false, false, 113), 'label');
         yield "
-        ";
-        // line 14
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, ($context["form"] ?? null), "Name", [], "any", false, false, false, 14), 'widget');
+            ";
+        // line 114
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, ($context["form"] ?? null), "Worldimage", [], "any", false, false, false, 114), 'widget');
         yield "
+        </div>
+
+        <div class=\"full-width\">
+            ";
+        // line 118
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, ($context["form"] ?? null), "Description", [], "any", false, false, false, 118), 'label');
+        yield "
+            ";
+        // line 119
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, ($context["form"] ?? null), "Description", [], "any", false, false, false, 119), 'widget');
+        yield "
+        </div>
     </div>
-    <div class=\"mb-3\">
-        ";
-        // line 17
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, ($context["form"] ?? null), "Description", [], "any", false, false, false, 17), 'label');
+
+    ";
+        // line 123
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(($context["form"] ?? null), 'rest');
         yield "
-        ";
-        // line 18
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, ($context["form"] ?? null), "Description", [], "any", false, false, false, 18), 'widget');
-        yield "
+
+    <div style=\"text-align: right; margin-top: 1rem;\">
+        <button type=\"submit\" class=\"btn btn-success\">Create World</button>
     </div>
-    <div class=\"mb-3\">
-        ";
-        // line 21
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, ($context["form"] ?? null), "Worldimage", [], "any", false, false, false, 21), 'label');
-        yield "
-        ";
-        // line 22
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, ($context["form"] ?? null), "Worldimage", [], "any", false, false, false, 22), 'widget');
-        yield "
-    </div>
-    <button type=\"submit\" class=\"btn btn-danger\">Create World</button>
-";
-        // line 25
+    ";
+        // line 128
         yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? null), 'form_end');
         yield "
 </div>
 
 <hr class=\"my-5\">
 
-<h2>Your Worlds</h2>
+<h2 class=\"text-center mb-4\">Your Worlds</h2>
 
 ";
-        // line 32
+        // line 135
         if ( !Twig\Extension\CoreExtension::testEmpty(($context["userWorlds"] ?? null))) {
-            // line 33
-            yield "    <div class=\"row\">
+            // line 136
+            yield "<div class=\"container my-4\">
+    <div class=\"row row-cols-2 row-cols-lg-3 g-4\">
         ";
-            // line 34
+            // line 138
             $context['_parent'] = $context;
             $context['_seq'] = CoreExtension::ensureTraversable(($context["userWorlds"] ?? null));
             foreach ($context['_seq'] as $context["_key"] => $context["world"]) {
-                // line 35
-                yield "            <div class=\"col-md-4 mb-3\">
+                // line 139
+                yield "            <div class=\"col\">
                 <div class=\"card bg-dark text-white\">
                     ";
-                // line 37
-                if (CoreExtension::getAttribute($this->env, $this->source, $context["world"], "worldimage", [], "any", false, false, false, 37)) {
-                    // line 38
+                // line 141
+                if (CoreExtension::getAttribute($this->env, $this->source, $context["world"], "worldimage", [], "any", false, false, false, 141)) {
+                    // line 142
                     yield "                        <img src=\"";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/world_images/" . CoreExtension::getAttribute($this->env, $this->source, $context["world"], "worldimage", [], "any", false, false, false, 38))), "html", null, true);
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/world_images/" . CoreExtension::getAttribute($this->env, $this->source, $context["world"], "worldimage", [], "any", false, false, false, 142))), "html", null, true);
                     yield "\" class=\"card-img-top\" alt=\"...\">
                     ";
                 }
-                // line 40
-                yield "                    <div class=\"card-body\">
-                        <h5 class=\"card-title\">";
-                // line 41
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["world"], "name", [], "any", false, false, false, 41), "html", null, true);
+                // line 144
+                yield "                    <div class=\"card-body d-flex flex-column\">
+                        <div>
+                            <h5 class=\"card-title\">";
+                // line 146
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["world"], "name", [], "any", false, false, false, 146), "html", null, true);
                 yield "</h5>
-                        <p class=\"card-text\">";
-                // line 42
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((Twig\Extension\CoreExtension::slice($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["world"], "description", [], "any", false, false, false, 42), 0, 100) . "..."), "html", null, true);
+                            <p class=\"card-text\">";
+                // line 147
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((Twig\Extension\CoreExtension::slice($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["world"], "description", [], "any", false, false, false, 147), 0, 100) . "..."), "html", null, true);
                 yield "</p>
-                        <a href=\"";
-                // line 43
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_world_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["world"], "id", [], "any", false, false, false, 43)]), "html", null, true);
+                        </div>
+                        <div class=\"card-buttons\">
+                            <a href=\"";
+                // line 150
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_world_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["world"], "id", [], "any", false, false, false, 150)]), "html", null, true);
                 yield "\" class=\"btn btn-outline-light\">Open</a>
+                            <a href=\"";
+                // line 151
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_world_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["world"], "id", [], "any", false, false, false, 151)]), "html", null, true);
+                yield "\" class=\"btn btn-outline-warning\">Edit</a>
+                            <form method=\"post\" action=\"";
+                // line 152
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_world_delete", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["world"], "id", [], "any", false, false, false, 152)]), "html", null, true);
+                yield "\" onsubmit=\"return confirm('Are you sure you want to delete this world?');\">
+                                <input type=\"hidden\" name=\"_token\" value=\"";
+                // line 153
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . CoreExtension::getAttribute($this->env, $this->source, $context["world"], "id", [], "any", false, false, false, 153))), "html", null, true);
+                yield "\">
+                                <button class=\"btn btn-outline-danger\">Delete</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -161,16 +297,17 @@ class __TwigTemplate_ee9ac60aab359aa1709f15331e42f1d5 extends Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['world'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 48
+            // line 161
             yield "    </div>
+</div>
 ";
         } else {
-            // line 50
-            yield "    <p class=\"text-muted\">You haven't created any worlds yet.</p>
+            // line 164
+            yield "    <p class=\"text-muted text-center\">You haven't created any worlds yet.</p>
 ";
         }
-        // line 52
-        yield "</div>
+        // line 166
+        yield "
 ";
         yield from [];
     }
@@ -196,11 +333,11 @@ class __TwigTemplate_ee9ac60aab359aa1709f15331e42f1d5 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  173 => 52,  169 => 50,  165 => 48,  154 => 43,  150 => 42,  146 => 41,  143 => 40,  137 => 38,  135 => 37,  131 => 35,  127 => 34,  124 => 33,  122 => 32,  112 => 25,  106 => 22,  102 => 21,  96 => 18,  92 => 17,  86 => 14,  82 => 13,  76 => 10,  70 => 6,  63 => 5,  52 => 3,  41 => 1,);
+        return array (  310 => 166,  306 => 164,  301 => 161,  287 => 153,  283 => 152,  279 => 151,  275 => 150,  269 => 147,  265 => 146,  261 => 144,  255 => 142,  253 => 141,  249 => 139,  245 => 138,  241 => 136,  239 => 135,  229 => 128,  221 => 123,  214 => 119,  210 => 118,  203 => 114,  199 => 113,  192 => 109,  188 => 108,  182 => 105,  177 => 102,  170 => 101,  71 => 6,  64 => 5,  53 => 3,  42 => 1,);
     }
 
     public function getSourceContext(): Source
     {
-        return new Source("", "world/index.html.twig", "C:\\wamp64\\www\\Site_Fantasia\\Project_fantasia\\templates\\world\\index.html.twig");
+        return new Source("", "world/index.html.twig", "C:\\wamp64\\www\\symfony\\symfonypro\\templates\\world\\index.html.twig");
     }
 }

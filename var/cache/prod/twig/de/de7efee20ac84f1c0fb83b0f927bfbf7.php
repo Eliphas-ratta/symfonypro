@@ -119,103 +119,169 @@ class __TwigTemplate_3d13e8cfc15d6f55f0f11fe6b823dccd extends Template
             inset: 0;
             z-index: 1;
         }
+
+        .form-filter label {
+            font-weight: bold;
+        }
+
+        .form-filter select,
+        .form-filter input {
+            background-color: #2a2a2a;
+            border: 1px solid #555;
+            color: #fff;
+        }
+
+        .form-filter input::placeholder {
+            color: #fff;
+            opacity: 1;
+        }
     </style>
 ";
         yield from [];
     }
 
-    // line 56
+    // line 72
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_body(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 57
+        // line 73
         yield "<div class=\"container text-white py-4\">
     <h1 class=\"mb-4\">Cities of ";
-        // line 58
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["world"] ?? null), "Name", [], "any", false, false, false, 58), "html", null, true);
+        // line 74
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["world"] ?? null), "Name", [], "any", false, false, false, 74), "html", null, true);
         yield "</h1>
 
     <a href=\"";
-        // line 60
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_city_create", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, ($context["world"] ?? null), "id", [], "any", false, false, false, 60)]), "html", null, true);
+        // line 76
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_city_create", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, ($context["world"] ?? null), "id", [], "any", false, false, false, 76)]), "html", null, true);
         yield "\" class=\"btn btn-success mb-4\">
         + Create a New City
     </a>
 
-    <div class=\"row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3\">
+    ";
+        // line 81
+        yield "    ";
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? null), 'form_start', ["attr" => ["class" => "form-filter mb-4"], "method" => "GET"]);
+        yield "
+    <div class=\"d-flex justify-content-center\">
+        <div class=\"d-flex flex-wrap gap-2 justify-content-center align-items-end\" style=\"max-width: 800px; width: 100%;\">
+
+            ";
+        // line 86
+        yield "            <div class=\"input-group\" style=\"width: 250px;\">
+                ";
+        // line 87
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, ($context["form"] ?? null), "name", [], "any", false, false, false, 87), 'widget', ["attr" => ["class" => "form-control", "placeholder" => "Recherche..."]]);
+        // line 92
+        yield "
+                <button class=\"btn btn-danger\" type=\"submit\" style=\"min-width: 45px;\">
+                    <i class=\"fas fa-search\"></i>
+                </button>
+            </div>
+
+            ";
+        // line 99
+        yield "            <div style=\"width: 200px;\">
+                ";
+        // line 100
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, ($context["form"] ?? null), "factions", [], "any", false, false, false, 100), 'widget', ["attr" => ["class" => "form-select", "onchange" => "this.form.submit()"]]);
+        // line 105
+        yield "
+            </div>
+
+            ";
+        // line 109
+        yield "            <div>
+                <a href=\"";
+        // line 110
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_city", ["worldId" => CoreExtension::getAttribute($this->env, $this->source, ($context["world"] ?? null), "id", [], "any", false, false, false, 110)]), "html", null, true);
+        yield "\" class=\"btn btn-secondary\" style=\"min-width: 120px;\">
+                    Réinitialiser
+                </a>
+            </div>
+        </div>
+    </div>
+    ";
+        // line 116
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? null), 'form_end');
+        yield "
+
+    ";
+        // line 119
+        yield "    <div class=\"row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3\">
         ";
-        // line 65
+        // line 120
         $context['_parent'] = $context;
         $context['_seq'] = CoreExtension::ensureTraversable(($context["cities"] ?? null));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["city"]) {
-            // line 66
+            // line 121
             yield "            <div class=\"col\">
                 <div class=\"card bg-dark text-white border-0 shadow rounded-4 city-card position-relative\" id=\"card-";
-            // line 67
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["city"], "id", [], "any", false, false, false, 67), "html", null, true);
+            // line 122
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["city"], "id", [], "any", false, false, false, 122), "html", null, true);
             yield "\">
                     ";
-            // line 68
-            if (CoreExtension::getAttribute($this->env, $this->source, $context["city"], "ImageCity", [], "any", false, false, false, 68)) {
-                // line 69
+            // line 123
+            if (CoreExtension::getAttribute($this->env, $this->source, $context["city"], "ImageCity", [], "any", false, false, false, 123)) {
+                // line 124
                 yield "                        <img src=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/cities/" . CoreExtension::getAttribute($this->env, $this->source, $context["city"], "ImageCity", [], "any", false, false, false, 69))), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/cities/" . CoreExtension::getAttribute($this->env, $this->source, $context["city"], "ImageCity", [], "any", false, false, false, 124))), "html", null, true);
                 yield "\" class=\"card-img-top rounded-top-4\" alt=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["city"], "Name", [], "any", false, false, false, 69), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["city"], "Name", [], "any", false, false, false, 124), "html", null, true);
                 yield "\">
                     ";
             }
-            // line 71
+            // line 126
             yield "
                     <div class=\"card-body p-2\">
                         <h6 class=\"card-title mb-1 fw-bold\">";
-            // line 73
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["city"], "Name", [], "any", false, false, false, 73), "html", null, true);
+            // line 128
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["city"], "Name", [], "any", false, false, false, 128), "html", null, true);
             yield "</h6>
-                        <p class=\"card-text text-muted small mb-0\">
+                        <p class=\"card-text text-white small mb-0\">
                             ";
-            // line 75
-            yield (((Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["city"], "Description", [], "any", false, false, false, 75)) > 50)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((Twig\Extension\CoreExtension::slice($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["city"], "Description", [], "any", false, false, false, 75), 0, 50) . "..."), "html", null, true)) : ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["city"], "Description", [], "any", false, false, false, 75), "html", null, true)));
+            // line 130
+            yield (((Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["city"], "Description", [], "any", false, false, false, 130)) > 50)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((Twig\Extension\CoreExtension::slice($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["city"], "Description", [], "any", false, false, false, 130), 0, 50) . "..."), "html", null, true)) : ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["city"], "Description", [], "any", false, false, false, 130), "html", null, true)));
             yield "
                         </p>
                     </div>
 
                     <div class=\"action-buttons justify-content-around gap-1 px-3 pb-2\">
                         <a href=\"";
-            // line 80
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_city_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["city"], "id", [], "any", false, false, false, 80)]), "html", null, true);
+            // line 135
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_city_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["city"], "id", [], "any", false, false, false, 135)]), "html", null, true);
             yield "\" class=\"btn btn-sm btn-outline-warning\">Edit</a>
                         <a href=\"";
-            // line 81
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_city_delete", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["city"], "id", [], "any", false, false, false, 81)]), "html", null, true);
+            // line 136
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_city_delete", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["city"], "id", [], "any", false, false, false, 136)]), "html", null, true);
             yield "\"
                            class=\"btn btn-sm btn-outline-danger\"
                            onclick=\"return confirm('Are you sure you want to delete this city?');\">Delete</a>
                     </div>
 
                     <button class=\"toggle-btn\" onclick=\"toggleActions(event, ";
-            // line 86
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["city"], "id", [], "any", false, false, false, 86), "html", null, true);
+            // line 141
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["city"], "id", [], "any", false, false, false, 141), "html", null, true);
             yield ");\">
                         +
                     </button>
 
                     <a href=\"";
-            // line 90
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_city_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["city"], "id", [], "any", false, false, false, 90)]), "html", null, true);
+            // line 145
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_city_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["city"], "id", [], "any", false, false, false, 145)]), "html", null, true);
             yield "\" class=\"overlay-link\"></a>
                 </div>
             </div>
         ";
             $context['_iterated'] = true;
         }
-        // line 93
+        // line 148
         if (!$context['_iterated']) {
-            // line 94
+            // line 149
             yield "            <div class=\"col-12\">
                 <p class=\"text-muted\">No cities found in this world.</p>
             </div>
@@ -224,21 +290,21 @@ class __TwigTemplate_3d13e8cfc15d6f55f0f11fe6b823dccd extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['city'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 98
+        // line 153
         yield "    </div>
 </div>
 ";
         yield from [];
     }
 
-    // line 102
+    // line 157
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_javascripts(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 103
+        // line 158
         yield "    ";
         yield from $this->yieldParentBlock("javascripts", $context, $blocks);
         yield "
@@ -275,11 +341,11 @@ class __TwigTemplate_3d13e8cfc15d6f55f0f11fe6b823dccd extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  242 => 103,  235 => 102,  228 => 98,  219 => 94,  217 => 93,  209 => 90,  202 => 86,  194 => 81,  190 => 80,  182 => 75,  177 => 73,  173 => 71,  165 => 69,  163 => 68,  159 => 67,  156 => 66,  151 => 65,  143 => 60,  138 => 58,  135 => 57,  128 => 56,  73 => 6,  66 => 5,  54 => 3,  43 => 1,);
+        return array (  308 => 158,  301 => 157,  294 => 153,  285 => 149,  283 => 148,  275 => 145,  268 => 141,  260 => 136,  256 => 135,  248 => 130,  243 => 128,  239 => 126,  231 => 124,  229 => 123,  225 => 122,  222 => 121,  217 => 120,  214 => 119,  209 => 116,  200 => 110,  197 => 109,  192 => 105,  190 => 100,  187 => 99,  179 => 92,  177 => 87,  174 => 86,  166 => 81,  159 => 76,  154 => 74,  151 => 73,  144 => 72,  73 => 6,  66 => 5,  54 => 3,  43 => 1,);
     }
 
     public function getSourceContext(): Source
     {
-        return new Source("", "city/index.html.twig", "C:\\wamp64\\www\\Site_Fantasia\\Project_fantasia\\templates\\city\\index.html.twig");
+        return new Source("", "city/index.html.twig", "C:\\wamp64\\www\\symfony\\symfonypro\\templates\\city\\index.html.twig");
     }
 }

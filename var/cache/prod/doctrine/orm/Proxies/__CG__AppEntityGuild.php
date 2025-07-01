@@ -7,7 +7,7 @@ namespace Proxies\__CG__\App\Entity;
  */
 class Guild extends \App\Entity\Guild implements \Doctrine\ORM\Proxy\InternalProxy
 {
-    use \Symfony\Component\VarExporter\LazyGhostTrait {
+     use \Symfony\Component\VarExporter\LazyGhostTrait {
         initializeLazyObject as private;
         setLazyObjectAsInitialized as public __setInitialized;
         isLazyObjectInitialized as private;
@@ -42,7 +42,7 @@ class Guild extends \App\Entity\Guild implements \Doctrine\ORM\Proxy\InternalPro
         'Visibility_id' => [parent::class, 'Visibility_id', null],
         'heroes' => [parent::class, 'heroes', null],
         'id' => [parent::class, 'id', null],
-    ];
+    ];
 
     public function __isInitialized(): bool
     {

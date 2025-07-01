@@ -7,7 +7,7 @@ namespace Proxies\__CG__\App\Entity;
  */
 class Visibility extends \App\Entity\Visibility implements \Doctrine\ORM\Proxy\InternalProxy
 {
-    use \Symfony\Component\VarExporter\LazyGhostTrait {
+     use \Symfony\Component\VarExporter\LazyGhostTrait {
         initializeLazyObject as private;
         setLazyObjectAsInitialized as public __setInitialized;
         isLazyObjectInitialized as private;
@@ -26,7 +26,7 @@ class Visibility extends \App\Entity\Visibility implements \Doctrine\ORM\Proxy\I
         "\0".parent::class."\0".'id' => [parent::class, 'id', null],
         'Visibility' => [parent::class, 'Visibility', null],
         'id' => [parent::class, 'id', null],
-    ];
+    ];
 
     public function __isInitialized(): bool
     {

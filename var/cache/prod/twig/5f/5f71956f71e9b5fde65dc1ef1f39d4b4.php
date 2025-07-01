@@ -212,6 +212,6 @@ class __TwigTemplate_3b61ea5ce5d9c3b19e3eb6aa25d1281d extends Template
 
     public function getSourceContext(): Source
     {
-        return new Source("", "profile/index.html.twig", "C:\\wamp64\\www\\Site_Fantasia\\Project_fantasia\\templates\\profile\\index.html.twig");
+        return new Source("", "profile/index.html.twig", "C:\\wamp64\\www\\symfony\\symfonypro\\templates\\profile\\index.html.twig");
     }
 }

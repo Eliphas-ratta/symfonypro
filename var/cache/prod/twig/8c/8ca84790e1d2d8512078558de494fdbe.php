@@ -653,6 +653,6 @@ class __TwigTemplate_df085382f67737d16e8c406b65089dd4 extends Template
 
     public function getSourceContext(): Source
     {
-        return new Source("", "@DoctrineMigrations/Collector/migrations.html.twig", "C:\\wamp64\\www\\Site_Fantasia\\Project_fantasia\\vendor\\doctrine\\doctrine-migrations-bundle\\templates\\Collector\\migrations.html.twig");
+        return new Source("", "@DoctrineMigrations/Collector/migrations.html.twig", "C:\\wamp64\\www\\symfony\\symfonypro\\vendor\\doctrine\\doctrine-migrations-bundle\\templates\\Collector\\migrations.html.twig");
     }
 }
