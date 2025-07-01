@@ -7,7 +7,7 @@ namespace Proxies\__CG__\App\Entity;
  */
 class Guild extends \App\Entity\Guild implements \Doctrine\ORM\Proxy\InternalProxy
 {
-     use \Symfony\Component\VarExporter\LazyGhostTrait {
+    use \Symfony\Component\VarExporter\LazyGhostTrait {
         initializeLazyObject as private;
         setLazyObjectAsInitialized as public __setInitialized;
         isLazyObjectInitialized as private;
@@ -22,27 +22,27 @@ class Guild extends \App\Entity\Guild implements \Doctrine\ORM\Proxy\InternalPro
     
 
     private const LAZY_OBJECT_PROPERTY_SCOPES = [
-        "\0".parent::class."\0".'Description' => [parent::class, 'Description', null],
-        "\0".parent::class."\0".'Guild_Continent' => [parent::class, 'Guild_Continent', null],
-        "\0".parent::class."\0".'Guild_Faction' => [parent::class, 'Guild_Faction', null],
-        "\0".parent::class."\0".'Guild_World' => [parent::class, 'Guild_World', null],
-        "\0".parent::class."\0".'Image_Guild' => [parent::class, 'Image_Guild', null],
-        "\0".parent::class."\0".'Name' => [parent::class, 'Name', null],
-        "\0".parent::class."\0".'Type' => [parent::class, 'Type', null],
-        "\0".parent::class."\0".'Visibility_id' => [parent::class, 'Visibility_id', null],
-        "\0".parent::class."\0".'heroes' => [parent::class, 'heroes', null],
-        "\0".parent::class."\0".'id' => [parent::class, 'id', null],
-        'Description' => [parent::class, 'Description', null],
-        'Guild_Continent' => [parent::class, 'Guild_Continent', null],
-        'Guild_Faction' => [parent::class, 'Guild_Faction', null],
-        'Guild_World' => [parent::class, 'Guild_World', null],
-        'Image_Guild' => [parent::class, 'Image_Guild', null],
-        'Name' => [parent::class, 'Name', null],
-        'Type' => [parent::class, 'Type', null],
-        'Visibility_id' => [parent::class, 'Visibility_id', null],
-        'heroes' => [parent::class, 'heroes', null],
-        'id' => [parent::class, 'id', null],
-    ];
+        "\0".parent::class."\0".'Description' => [parent::class, 'Description', null, 16],
+        "\0".parent::class."\0".'Guild_Continent' => [parent::class, 'Guild_Continent', null, 16],
+        "\0".parent::class."\0".'Guild_Faction' => [parent::class, 'Guild_Faction', null, 16],
+        "\0".parent::class."\0".'Guild_World' => [parent::class, 'Guild_World', null, 16],
+        "\0".parent::class."\0".'Image_Guild' => [parent::class, 'Image_Guild', null, 16],
+        "\0".parent::class."\0".'Name' => [parent::class, 'Name', null, 16],
+        "\0".parent::class."\0".'Type' => [parent::class, 'Type', null, 16],
+        "\0".parent::class."\0".'Visibility_id' => [parent::class, 'Visibility_id', null, 16],
+        "\0".parent::class."\0".'heroes' => [parent::class, 'heroes', null, 16],
+        "\0".parent::class."\0".'id' => [parent::class, 'id', null, 16],
+        'Description' => [parent::class, 'Description', null, 16],
+        'Guild_Continent' => [parent::class, 'Guild_Continent', null, 16],
+        'Guild_Faction' => [parent::class, 'Guild_Faction', null, 16],
+        'Guild_World' => [parent::class, 'Guild_World', null, 16],
+        'Image_Guild' => [parent::class, 'Image_Guild', null, 16],
+        'Name' => [parent::class, 'Name', null, 16],
+        'Type' => [parent::class, 'Type', null, 16],
+        'Visibility_id' => [parent::class, 'Visibility_id', null, 16],
+        'heroes' => [parent::class, 'heroes', null, 16],
+        'id' => [parent::class, 'id', null, 16],
+    ];
 
     public function __isInitialized(): bool
     {

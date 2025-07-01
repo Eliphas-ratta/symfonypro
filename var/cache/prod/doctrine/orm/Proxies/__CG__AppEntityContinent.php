@@ -7,7 +7,7 @@ namespace Proxies\__CG__\App\Entity;
  */
 class Continent extends \App\Entity\Continent implements \Doctrine\ORM\Proxy\InternalProxy
 {
-     use \Symfony\Component\VarExporter\LazyGhostTrait {
+    use \Symfony\Component\VarExporter\LazyGhostTrait {
         initializeLazyObject as private;
         setLazyObjectAsInitialized as public __setInitialized;
         isLazyObjectInitialized as private;
@@ -22,23 +22,23 @@ class Continent extends \App\Entity\Continent implements \Doctrine\ORM\Proxy\Int
     
 
     private const LAZY_OBJECT_PROPERTY_SCOPES = [
-        "\0".parent::class."\0".'Continent_Faction' => [parent::class, 'Continent_Faction', null],
-        "\0".parent::class."\0".'Continent_Guild' => [parent::class, 'Continent_Guild', null],
-        "\0".parent::class."\0".'Continent_Hero' => [parent::class, 'Continent_Hero', null],
-        "\0".parent::class."\0".'Continent_World' => [parent::class, 'Continent_World', null],
-        "\0".parent::class."\0".'Description' => [parent::class, 'Description', null],
-        "\0".parent::class."\0".'Image_Continent' => [parent::class, 'Image_Continent', null],
-        "\0".parent::class."\0".'Name' => [parent::class, 'Name', null],
-        "\0".parent::class."\0".'id' => [parent::class, 'id', null],
-        'Continent_Faction' => [parent::class, 'Continent_Faction', null],
-        'Continent_Guild' => [parent::class, 'Continent_Guild', null],
-        'Continent_Hero' => [parent::class, 'Continent_Hero', null],
-        'Continent_World' => [parent::class, 'Continent_World', null],
-        'Description' => [parent::class, 'Description', null],
-        'Image_Continent' => [parent::class, 'Image_Continent', null],
-        'Name' => [parent::class, 'Name', null],
-        'id' => [parent::class, 'id', null],
-    ];
+        "\0".parent::class."\0".'Continent_Faction' => [parent::class, 'Continent_Faction', null, 16],
+        "\0".parent::class."\0".'Continent_Guild' => [parent::class, 'Continent_Guild', null, 16],
+        "\0".parent::class."\0".'Continent_Hero' => [parent::class, 'Continent_Hero', null, 16],
+        "\0".parent::class."\0".'Continent_World' => [parent::class, 'Continent_World', null, 16],
+        "\0".parent::class."\0".'Description' => [parent::class, 'Description', null, 16],
+        "\0".parent::class."\0".'Image_Continent' => [parent::class, 'Image_Continent', null, 16],
+        "\0".parent::class."\0".'Name' => [parent::class, 'Name', null, 16],
+        "\0".parent::class."\0".'id' => [parent::class, 'id', null, 16],
+        'Continent_Faction' => [parent::class, 'Continent_Faction', null, 16],
+        'Continent_Guild' => [parent::class, 'Continent_Guild', null, 16],
+        'Continent_Hero' => [parent::class, 'Continent_Hero', null, 16],
+        'Continent_World' => [parent::class, 'Continent_World', null, 16],
+        'Description' => [parent::class, 'Description', null, 16],
+        'Image_Continent' => [parent::class, 'Image_Continent', null, 16],
+        'Name' => [parent::class, 'Name', null, 16],
+        'id' => [parent::class, 'id', null, 16],
+    ];
 
     public function __isInitialized(): bool
     {

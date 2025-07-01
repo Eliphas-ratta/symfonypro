@@ -7,7 +7,7 @@ namespace Proxies\__CG__\App\Entity;
  */
 class Domain extends \App\Entity\Domain implements \Doctrine\ORM\Proxy\InternalProxy
 {
-     use \Symfony\Component\VarExporter\LazyGhostTrait {
+    use \Symfony\Component\VarExporter\LazyGhostTrait {
         initializeLazyObject as private;
         setLazyObjectAsInitialized as public __setInitialized;
         isLazyObjectInitialized as private;
@@ -22,25 +22,25 @@ class Domain extends \App\Entity\Domain implements \Doctrine\ORM\Proxy\InternalP
     
 
     private const LAZY_OBJECT_PROPERTY_SCOPES = [
-        "\0".parent::class."\0".'Description' => [parent::class, 'Description', null],
-        "\0".parent::class."\0".'Domain_Race' => [parent::class, 'Domain_Race', null],
-        "\0".parent::class."\0".'Domain_World' => [parent::class, 'Domain_World', null],
-        "\0".parent::class."\0".'Heroes' => [parent::class, 'Heroes', null],
-        "\0".parent::class."\0".'Image_Domain' => [parent::class, 'Image_Domain', null],
-        "\0".parent::class."\0".'Name' => [parent::class, 'Name', null],
-        "\0".parent::class."\0".'Type' => [parent::class, 'Type', null],
-        "\0".parent::class."\0".'capacities' => [parent::class, 'capacities', null],
-        "\0".parent::class."\0".'id' => [parent::class, 'id', null],
-        'Description' => [parent::class, 'Description', null],
-        'Domain_Race' => [parent::class, 'Domain_Race', null],
-        'Domain_World' => [parent::class, 'Domain_World', null],
-        'Heroes' => [parent::class, 'Heroes', null],
-        'Image_Domain' => [parent::class, 'Image_Domain', null],
-        'Name' => [parent::class, 'Name', null],
-        'Type' => [parent::class, 'Type', null],
-        'capacities' => [parent::class, 'capacities', null],
-        'id' => [parent::class, 'id', null],
-    ];
+        "\0".parent::class."\0".'Description' => [parent::class, 'Description', null, 16],
+        "\0".parent::class."\0".'Domain_Race' => [parent::class, 'Domain_Race', null, 16],
+        "\0".parent::class."\0".'Domain_World' => [parent::class, 'Domain_World', null, 16],
+        "\0".parent::class."\0".'Heroes' => [parent::class, 'Heroes', null, 16],
+        "\0".parent::class."\0".'Image_Domain' => [parent::class, 'Image_Domain', null, 16],
+        "\0".parent::class."\0".'Name' => [parent::class, 'Name', null, 16],
+        "\0".parent::class."\0".'Type' => [parent::class, 'Type', null, 16],
+        "\0".parent::class."\0".'capacities' => [parent::class, 'capacities', null, 16],
+        "\0".parent::class."\0".'id' => [parent::class, 'id', null, 16],
+        'Description' => [parent::class, 'Description', null, 16],
+        'Domain_Race' => [parent::class, 'Domain_Race', null, 16],
+        'Domain_World' => [parent::class, 'Domain_World', null, 16],
+        'Heroes' => [parent::class, 'Heroes', null, 16],
+        'Image_Domain' => [parent::class, 'Image_Domain', null, 16],
+        'Name' => [parent::class, 'Name', null, 16],
+        'Type' => [parent::class, 'Type', null, 16],
+        'capacities' => [parent::class, 'capacities', null, 16],
+        'id' => [parent::class, 'id', null, 16],
+    ];
 
     public function __isInitialized(): bool
     {

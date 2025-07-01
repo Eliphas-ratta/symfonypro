@@ -7,7 +7,7 @@ namespace Proxies\__CG__\App\Entity;
  */
 class Hero extends \App\Entity\Hero implements \Doctrine\ORM\Proxy\InternalProxy
 {
-     use \Symfony\Component\VarExporter\LazyGhostTrait {
+    use \Symfony\Component\VarExporter\LazyGhostTrait {
         initializeLazyObject as private;
         setLazyObjectAsInitialized as public __setInitialized;
         isLazyObjectInitialized as private;
@@ -22,39 +22,39 @@ class Hero extends \App\Entity\Hero implements \Doctrine\ORM\Proxy\InternalProxy
     
 
     private const LAZY_OBJECT_PROPERTY_SCOPES = [
-        "\0".parent::class."\0".'Age' => [parent::class, 'Age', null],
-        "\0".parent::class."\0".'Description' => [parent::class, 'Description', null],
-        "\0".parent::class."\0".'Faction_Dirigeant' => [parent::class, 'Faction_Dirigeant', null],
-        "\0".parent::class."\0".'Faction_Linked' => [parent::class, 'Faction_Linked', null],
-        "\0".parent::class."\0".'Fonction' => [parent::class, 'Fonction', null],
-        "\0".parent::class."\0".'Hero_City' => [parent::class, 'Hero_City', null],
-        "\0".parent::class."\0".'Hero_Continent' => [parent::class, 'Hero_Continent', null],
-        "\0".parent::class."\0".'Hero_Domain' => [parent::class, 'Hero_Domain', null],
-        "\0".parent::class."\0".'Hero_Faction' => [parent::class, 'Hero_Faction', null],
-        "\0".parent::class."\0".'Hero_Race' => [parent::class, 'Hero_Race', null],
-        "\0".parent::class."\0".'Hero_World' => [parent::class, 'Hero_World', null],
-        "\0".parent::class."\0".'Image_Hero' => [parent::class, 'Image_Hero', null],
-        "\0".parent::class."\0".'Name' => [parent::class, 'Name', null],
-        "\0".parent::class."\0".'Size' => [parent::class, 'Size', null],
-        "\0".parent::class."\0".'guilds' => [parent::class, 'guilds', null],
-        "\0".parent::class."\0".'id' => [parent::class, 'id', null],
-        'Age' => [parent::class, 'Age', null],
-        'Description' => [parent::class, 'Description', null],
-        'Faction_Dirigeant' => [parent::class, 'Faction_Dirigeant', null],
-        'Faction_Linked' => [parent::class, 'Faction_Linked', null],
-        'Fonction' => [parent::class, 'Fonction', null],
-        'Hero_City' => [parent::class, 'Hero_City', null],
-        'Hero_Continent' => [parent::class, 'Hero_Continent', null],
-        'Hero_Domain' => [parent::class, 'Hero_Domain', null],
-        'Hero_Faction' => [parent::class, 'Hero_Faction', null],
-        'Hero_Race' => [parent::class, 'Hero_Race', null],
-        'Hero_World' => [parent::class, 'Hero_World', null],
-        'Image_Hero' => [parent::class, 'Image_Hero', null],
-        'Name' => [parent::class, 'Name', null],
-        'Size' => [parent::class, 'Size', null],
-        'guilds' => [parent::class, 'guilds', null],
-        'id' => [parent::class, 'id', null],
-    ];
+        "\0".parent::class."\0".'Age' => [parent::class, 'Age', null, 16],
+        "\0".parent::class."\0".'Description' => [parent::class, 'Description', null, 16],
+        "\0".parent::class."\0".'Faction_Dirigeant' => [parent::class, 'Faction_Dirigeant', null, 16],
+        "\0".parent::class."\0".'Faction_Linked' => [parent::class, 'Faction_Linked', null, 16],
+        "\0".parent::class."\0".'Fonction' => [parent::class, 'Fonction', null, 16],
+        "\0".parent::class."\0".'Hero_City' => [parent::class, 'Hero_City', null, 16],
+        "\0".parent::class."\0".'Hero_Continent' => [parent::class, 'Hero_Continent', null, 16],
+        "\0".parent::class."\0".'Hero_Domain' => [parent::class, 'Hero_Domain', null, 16],
+        "\0".parent::class."\0".'Hero_Faction' => [parent::class, 'Hero_Faction', null, 16],
+        "\0".parent::class."\0".'Hero_Race' => [parent::class, 'Hero_Race', null, 16],
+        "\0".parent::class."\0".'Hero_World' => [parent::class, 'Hero_World', null, 16],
+        "\0".parent::class."\0".'Image_Hero' => [parent::class, 'Image_Hero', null, 16],
+        "\0".parent::class."\0".'Name' => [parent::class, 'Name', null, 16],
+        "\0".parent::class."\0".'Size' => [parent::class, 'Size', null, 16],
+        "\0".parent::class."\0".'guilds' => [parent::class, 'guilds', null, 16],
+        "\0".parent::class."\0".'id' => [parent::class, 'id', null, 16],
+        'Age' => [parent::class, 'Age', null, 16],
+        'Description' => [parent::class, 'Description', null, 16],
+        'Faction_Dirigeant' => [parent::class, 'Faction_Dirigeant', null, 16],
+        'Faction_Linked' => [parent::class, 'Faction_Linked', null, 16],
+        'Fonction' => [parent::class, 'Fonction', null, 16],
+        'Hero_City' => [parent::class, 'Hero_City', null, 16],
+        'Hero_Continent' => [parent::class, 'Hero_Continent', null, 16],
+        'Hero_Domain' => [parent::class, 'Hero_Domain', null, 16],
+        'Hero_Faction' => [parent::class, 'Hero_Faction', null, 16],
+        'Hero_Race' => [parent::class, 'Hero_Race', null, 16],
+        'Hero_World' => [parent::class, 'Hero_World', null, 16],
+        'Image_Hero' => [parent::class, 'Image_Hero', null, 16],
+        'Name' => [parent::class, 'Name', null, 16],
+        'Size' => [parent::class, 'Size', null, 16],
+        'guilds' => [parent::class, 'guilds', null, 16],
+        'id' => [parent::class, 'id', null, 16],
+    ];
 
     public function __isInitialized(): bool
     {

@@ -735,7 +735,7 @@ class FrameworkExtension extends Extension
             $container->getDefinition('config_cache_factory')->setArguments([]);
         }
 
-        if (!$config['disallow_search_engine_index'] ?? false) {
+        if (!$config['disallow_search_engine_index']) {
             $container->removeDefinition('disallow_search_engine_index_response_listener');
         }
 
@@ -2004,23 +2004,21 @@ class FrameworkExtension extends Extension
             $container->setParameter('serializer.default_context', $defaultContext);
         }
 
-        if (!$container->hasDefinition('serializer.normalizer.object')) {
-            return;
+        if ($container->hasDefinition('serializer.normalizer.object')) {
+            $arguments = $container->getDefinition('serializer.normalizer.object')->getArguments();
+            $context = $arguments[6] ?? $defaultContext;
+
+            if (isset($config['circular_reference_handler']) && $config['circular_reference_handler']) {
+                $context += ['circular_reference_handler' => new Reference($config['circular_reference_handler'])];
+                $container->getDefinition('serializer.normalizer.object')->setArgument(5, null);
+            }
+
+            if ($config['max_depth_handler'] ?? false) {
+                $context += ['max_depth_handler' => new Reference($config['max_depth_handler'])];
+            }
+
+            $container->getDefinition('serializer.normalizer.object')->setArgument(6, $context);
         }
-
-        $arguments = $container->getDefinition('serializer.normalizer.object')->getArguments();
-        $context = $arguments[6] ?? $defaultContext;
-
-        if (isset($config['circular_reference_handler']) && $config['circular_reference_handler']) {
-            $context += ['circular_reference_handler' => new Reference($config['circular_reference_handler'])];
-            $container->getDefinition('serializer.normalizer.object')->setArgument(5, null);
-        }
-
-        if ($config['max_depth_handler'] ?? false) {
-            $context += ['max_depth_handler' => new Reference($config['max_depth_handler'])];
-        }
-
-        $container->getDefinition('serializer.normalizer.object')->setArgument(6, $context);
 
         $container->getDefinition('serializer.normalizer.property')->setArgument(5, $defaultContext);
     }
@@ -2216,15 +2214,17 @@ class FrameworkExtension extends Extension
                 $defaultMiddleware['after'][0]['arguments'] = [$bus['default_middleware']['allow_no_senders']];
                 $defaultMiddleware['after'][1]['arguments'] = [$bus['default_middleware']['allow_no_handlers']];
 
-                // argument to add_bus_name_stamp_middleware
-                $defaultMiddleware['before'][0]['arguments'] = [$busId];
-
                 $middleware = array_merge($defaultMiddleware['before'], $middleware, $defaultMiddleware['after']);
             }
 
-            foreach ($middleware as $middlewareItem) {
+            foreach ($middleware as $key => $middlewareItem) {
                 if (!$validationEnabled && \in_array($middlewareItem['id'], ['validation', 'messenger.middleware.validation'], true)) {
                     throw new LogicException('The Validation middleware is only available when the Validator component is installed and enabled. Try running "composer require symfony/validator".');
+                }
+
+                // argument to add_bus_name_stamp_middleware
+                if ('add_bus_name_stamp_middleware' === $middlewareItem['id']) {
+                    $middleware[$key]['arguments'] = [$busId];
                 }
             }
 

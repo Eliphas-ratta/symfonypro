@@ -7,7 +7,7 @@ namespace Proxies\__CG__\App\Entity;
  */
 class Race extends \App\Entity\Race implements \Doctrine\ORM\Proxy\InternalProxy
 {
-     use \Symfony\Component\VarExporter\LazyGhostTrait {
+    use \Symfony\Component\VarExporter\LazyGhostTrait {
         initializeLazyObject as private;
         setLazyObjectAsInitialized as public __setInitialized;
         isLazyObjectInitialized as private;
@@ -22,21 +22,21 @@ class Race extends \App\Entity\Race implements \Doctrine\ORM\Proxy\InternalProxy
     
 
     private const LAZY_OBJECT_PROPERTY_SCOPES = [
-        "\0".parent::class."\0".'Description' => [parent::class, 'Description', null],
-        "\0".parent::class."\0".'Image_Race' => [parent::class, 'Image_Race', null],
-        "\0".parent::class."\0".'Name' => [parent::class, 'Name', null],
-        "\0".parent::class."\0".'Race_Domain' => [parent::class, 'Race_Domain', null],
-        "\0".parent::class."\0".'Race_Hero' => [parent::class, 'Race_Hero', null],
-        "\0".parent::class."\0".'Race_World' => [parent::class, 'Race_World', null],
-        "\0".parent::class."\0".'id' => [parent::class, 'id', null],
-        'Description' => [parent::class, 'Description', null],
-        'Image_Race' => [parent::class, 'Image_Race', null],
-        'Name' => [parent::class, 'Name', null],
-        'Race_Domain' => [parent::class, 'Race_Domain', null],
-        'Race_Hero' => [parent::class, 'Race_Hero', null],
-        'Race_World' => [parent::class, 'Race_World', null],
-        'id' => [parent::class, 'id', null],
-    ];
+        "\0".parent::class."\0".'Description' => [parent::class, 'Description', null, 16],
+        "\0".parent::class."\0".'Image_Race' => [parent::class, 'Image_Race', null, 16],
+        "\0".parent::class."\0".'Name' => [parent::class, 'Name', null, 16],
+        "\0".parent::class."\0".'Race_Domain' => [parent::class, 'Race_Domain', null, 16],
+        "\0".parent::class."\0".'Race_Hero' => [parent::class, 'Race_Hero', null, 16],
+        "\0".parent::class."\0".'Race_World' => [parent::class, 'Race_World', null, 16],
+        "\0".parent::class."\0".'id' => [parent::class, 'id', null, 16],
+        'Description' => [parent::class, 'Description', null, 16],
+        'Image_Race' => [parent::class, 'Image_Race', null, 16],
+        'Name' => [parent::class, 'Name', null, 16],
+        'Race_Domain' => [parent::class, 'Race_Domain', null, 16],
+        'Race_Hero' => [parent::class, 'Race_Hero', null, 16],
+        'Race_World' => [parent::class, 'Race_World', null, 16],
+        'id' => [parent::class, 'id', null, 16],
+    ];
 
     public function __isInitialized(): bool
     {

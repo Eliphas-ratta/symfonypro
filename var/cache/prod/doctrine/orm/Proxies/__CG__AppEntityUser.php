@@ -7,7 +7,7 @@ namespace Proxies\__CG__\App\Entity;
  */
 class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\InternalProxy
 {
-     use \Symfony\Component\VarExporter\LazyGhostTrait {
+    use \Symfony\Component\VarExporter\LazyGhostTrait {
         initializeLazyObject as private;
         setLazyObjectAsInitialized as public __setInitialized;
         isLazyObjectInitialized as private;
@@ -22,21 +22,21 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\InternalProxy
     
 
     private const LAZY_OBJECT_PROPERTY_SCOPES = [
-        "\0".parent::class."\0".'email' => [parent::class, 'email', null],
-        "\0".parent::class."\0".'id' => [parent::class, 'id', null],
-        "\0".parent::class."\0".'password' => [parent::class, 'password', null],
-        "\0".parent::class."\0".'profileImage' => [parent::class, 'profileImage', null],
-        "\0".parent::class."\0".'roles' => [parent::class, 'roles', null],
-        "\0".parent::class."\0".'username' => [parent::class, 'username', null],
-        "\0".parent::class."\0".'worlds' => [parent::class, 'worlds', null],
-        'email' => [parent::class, 'email', null],
-        'id' => [parent::class, 'id', null],
-        'password' => [parent::class, 'password', null],
-        'profileImage' => [parent::class, 'profileImage', null],
-        'roles' => [parent::class, 'roles', null],
-        'username' => [parent::class, 'username', null],
-        'worlds' => [parent::class, 'worlds', null],
-    ];
+        "\0".parent::class."\0".'email' => [parent::class, 'email', null, 16],
+        "\0".parent::class."\0".'id' => [parent::class, 'id', null, 16],
+        "\0".parent::class."\0".'password' => [parent::class, 'password', null, 16],
+        "\0".parent::class."\0".'profileImage' => [parent::class, 'profileImage', null, 16],
+        "\0".parent::class."\0".'roles' => [parent::class, 'roles', null, 16],
+        "\0".parent::class."\0".'username' => [parent::class, 'username', null, 16],
+        "\0".parent::class."\0".'worlds' => [parent::class, 'worlds', null, 16],
+        'email' => [parent::class, 'email', null, 16],
+        'id' => [parent::class, 'id', null, 16],
+        'password' => [parent::class, 'password', null, 16],
+        'profileImage' => [parent::class, 'profileImage', null, 16],
+        'roles' => [parent::class, 'roles', null, 16],
+        'username' => [parent::class, 'username', null, 16],
+        'worlds' => [parent::class, 'worlds', null, 16],
+    ];
 
     public function __isInitialized(): bool
     {

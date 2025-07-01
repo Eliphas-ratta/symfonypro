@@ -7,7 +7,7 @@ namespace Proxies\__CG__\App\Entity;
  */
 class City extends \App\Entity\City implements \Doctrine\ORM\Proxy\InternalProxy
 {
-     use \Symfony\Component\VarExporter\LazyGhostTrait {
+    use \Symfony\Component\VarExporter\LazyGhostTrait {
         initializeLazyObject as private;
         setLazyObjectAsInitialized as public __setInitialized;
         isLazyObjectInitialized as private;
@@ -22,21 +22,21 @@ class City extends \App\Entity\City implements \Doctrine\ORM\Proxy\InternalProxy
     
 
     private const LAZY_OBJECT_PROPERTY_SCOPES = [
-        "\0".parent::class."\0".'City_Faction' => [parent::class, 'City_Faction', null],
-        "\0".parent::class."\0".'City_Hero' => [parent::class, 'City_Hero', null],
-        "\0".parent::class."\0".'City_World' => [parent::class, 'City_World', null],
-        "\0".parent::class."\0".'Description' => [parent::class, 'Description', null],
-        "\0".parent::class."\0".'Image_City' => [parent::class, 'Image_City', null],
-        "\0".parent::class."\0".'Name' => [parent::class, 'Name', null],
-        "\0".parent::class."\0".'id' => [parent::class, 'id', null],
-        'City_Faction' => [parent::class, 'City_Faction', null],
-        'City_Hero' => [parent::class, 'City_Hero', null],
-        'City_World' => [parent::class, 'City_World', null],
-        'Description' => [parent::class, 'Description', null],
-        'Image_City' => [parent::class, 'Image_City', null],
-        'Name' => [parent::class, 'Name', null],
-        'id' => [parent::class, 'id', null],
-    ];
+        "\0".parent::class."\0".'City_Faction' => [parent::class, 'City_Faction', null, 16],
+        "\0".parent::class."\0".'City_Hero' => [parent::class, 'City_Hero', null, 16],
+        "\0".parent::class."\0".'City_World' => [parent::class, 'City_World', null, 16],
+        "\0".parent::class."\0".'Description' => [parent::class, 'Description', null, 16],
+        "\0".parent::class."\0".'Image_City' => [parent::class, 'Image_City', null, 16],
+        "\0".parent::class."\0".'Name' => [parent::class, 'Name', null, 16],
+        "\0".parent::class."\0".'id' => [parent::class, 'id', null, 16],
+        'City_Faction' => [parent::class, 'City_Faction', null, 16],
+        'City_Hero' => [parent::class, 'City_Hero', null, 16],
+        'City_World' => [parent::class, 'City_World', null, 16],
+        'Description' => [parent::class, 'Description', null, 16],
+        'Image_City' => [parent::class, 'Image_City', null, 16],
+        'Name' => [parent::class, 'Name', null, 16],
+        'id' => [parent::class, 'id', null, 16],
+    ];
 
     public function __isInitialized(): bool
     {

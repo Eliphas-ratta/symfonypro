@@ -64,6 +64,12 @@ EOT)
                 'Format the generated SQL.',
             )
             ->addOption(
+                'nowdoc',
+                null,
+                InputOption::VALUE_NEGATABLE,
+                'Output the generated SQL as a nowdoc string (always active for formatted queries).',
+            )
+            ->addOption(
                 'line-length',
                 null,
                 InputOption::VALUE_REQUIRED,
@@ -102,6 +108,7 @@ EOT)
         }
 
         $formatted       = filter_var($input->getOption('formatted'), FILTER_VALIDATE_BOOLEAN);
+        $nowdocOutput    = filter_var($input->getOption('nowdoc'), FILTER_VALIDATE_BOOLEAN);
         $lineLength      = (int) $input->getOption('line-length');
         $allowEmptyDiff  = $input->getOption('allow-empty-diff');
         $checkDbPlatform = filter_var($input->getOption('check-database-platform'), FILTER_VALIDATE_BOOLEAN);
@@ -127,8 +134,7 @@ EOT)
             return 3;
         }
 
-        $fqcn = $this->getDependencyFactory()->getClassNameGenerator()->generateClassName($namespace);
-
+        $fqcn          = $this->getDependencyFactory()->getClassNameGenerator()->generateClassName($namespace);
         $diffGenerator = $this->getDependencyFactory()->getDiffGenerator();
 
         try {
@@ -136,6 +142,7 @@ EOT)
                 $fqcn,
                 $filterExpression,
                 $formatted,
+                $nowdocOutput,
                 $lineLength,
                 $checkDbPlatform,
                 $fromEmptySchema,
@@ -154,12 +161,12 @@ EOT)
             sprintf('Generated new migration class to "<info>%s</info>"', $path),
             '',
             sprintf(
-                'To run just this migration for testing purposes, you can use <info>migrations:execute --up \'%s\'</info>',
+                'To run just this migration for testing purposes, you can use <info>migrations:execute --up "%s"</info>',
                 addslashes($fqcn),
             ),
             '',
             sprintf(
-                'To revert the migration you can use <info>migrations:execute --down \'%s\'</info>',
+                'To revert the migration you can use <info>migrations:execute --down "%s"</info>',
                 addslashes($fqcn),
             ),
             '',

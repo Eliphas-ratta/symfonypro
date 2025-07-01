@@ -7,7 +7,7 @@ namespace Proxies\__CG__\App\Entity;
  */
 class Capacity extends \App\Entity\Capacity implements \Doctrine\ORM\Proxy\InternalProxy
 {
-     use \Symfony\Component\VarExporter\LazyGhostTrait {
+    use \Symfony\Component\VarExporter\LazyGhostTrait {
         initializeLazyObject as private;
         setLazyObjectAsInitialized as public __setInitialized;
         isLazyObjectInitialized as private;
@@ -22,21 +22,21 @@ class Capacity extends \App\Entity\Capacity implements \Doctrine\ORM\Proxy\Inter
     
 
     private const LAZY_OBJECT_PROPERTY_SCOPES = [
-        "\0".parent::class."\0".'Capacity_world' => [parent::class, 'Capacity_world', null],
-        "\0".parent::class."\0".'Description' => [parent::class, 'Description', null],
-        "\0".parent::class."\0".'Domain' => [parent::class, 'Domain', null],
-        "\0".parent::class."\0".'Image_Capacity' => [parent::class, 'Image_Capacity', null],
-        "\0".parent::class."\0".'Name' => [parent::class, 'Name', null],
-        "\0".parent::class."\0".'Type' => [parent::class, 'Type', null],
-        "\0".parent::class."\0".'id' => [parent::class, 'id', null],
-        'Capacity_world' => [parent::class, 'Capacity_world', null],
-        'Description' => [parent::class, 'Description', null],
-        'Domain' => [parent::class, 'Domain', null],
-        'Image_Capacity' => [parent::class, 'Image_Capacity', null],
-        'Name' => [parent::class, 'Name', null],
-        'Type' => [parent::class, 'Type', null],
-        'id' => [parent::class, 'id', null],
-    ];
+        "\0".parent::class."\0".'Capacity_world' => [parent::class, 'Capacity_world', null, 16],
+        "\0".parent::class."\0".'Description' => [parent::class, 'Description', null, 16],
+        "\0".parent::class."\0".'Domain' => [parent::class, 'Domain', null, 16],
+        "\0".parent::class."\0".'Image_Capacity' => [parent::class, 'Image_Capacity', null, 16],
+        "\0".parent::class."\0".'Name' => [parent::class, 'Name', null, 16],
+        "\0".parent::class."\0".'Type' => [parent::class, 'Type', null, 16],
+        "\0".parent::class."\0".'id' => [parent::class, 'id', null, 16],
+        'Capacity_world' => [parent::class, 'Capacity_world', null, 16],
+        'Description' => [parent::class, 'Description', null, 16],
+        'Domain' => [parent::class, 'Domain', null, 16],
+        'Image_Capacity' => [parent::class, 'Image_Capacity', null, 16],
+        'Name' => [parent::class, 'Name', null, 16],
+        'Type' => [parent::class, 'Type', null, 16],
+        'id' => [parent::class, 'id', null, 16],
+    ];
 
     public function __isInitialized(): bool
     {

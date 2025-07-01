@@ -7,7 +7,7 @@ namespace Proxies\__CG__\App\Entity;
  */
 class Faction extends \App\Entity\Faction implements \Doctrine\ORM\Proxy\InternalProxy
 {
-     use \Symfony\Component\VarExporter\LazyGhostTrait {
+    use \Symfony\Component\VarExporter\LazyGhostTrait {
         initializeLazyObject as private;
         setLazyObjectAsInitialized as public __setInitialized;
         isLazyObjectInitialized as private;
@@ -22,41 +22,41 @@ class Faction extends \App\Entity\Faction implements \Doctrine\ORM\Proxy\Interna
     
 
     private const LAZY_OBJECT_PROPERTY_SCOPES = [
-        "\0".parent::class."\0".'Capital' => [parent::class, 'Capital', null],
-        "\0".parent::class."\0".'Couleur' => [parent::class, 'Couleur', null],
-        "\0".parent::class."\0".'Created_at' => [parent::class, 'Created_at', null],
-        "\0".parent::class."\0".'Description' => [parent::class, 'Description', null],
-        "\0".parent::class."\0".'Dirigeant_hero' => [parent::class, 'Dirigeant_hero', null],
-        "\0".parent::class."\0".'Emblem_Image' => [parent::class, 'Emblem_Image', null],
-        "\0".parent::class."\0".'Faction_City' => [parent::class, 'Faction_City', null],
-        "\0".parent::class."\0".'Faction_Continent' => [parent::class, 'Faction_Continent', null],
-        "\0".parent::class."\0".'Faction_Guild' => [parent::class, 'Faction_Guild', null],
-        "\0".parent::class."\0".'Faction_Hero' => [parent::class, 'Faction_Hero', null],
-        "\0".parent::class."\0".'Faction_World' => [parent::class, 'Faction_World', null],
-        "\0".parent::class."\0".'Hero_Linked' => [parent::class, 'Hero_Linked', null],
-        "\0".parent::class."\0".'Image_Faction' => [parent::class, 'Image_Faction', null],
-        "\0".parent::class."\0".'Name' => [parent::class, 'Name', null],
-        "\0".parent::class."\0".'Regime' => [parent::class, 'Regime', null],
-        "\0".parent::class."\0".'Type' => [parent::class, 'Type', null],
-        "\0".parent::class."\0".'id' => [parent::class, 'id', null],
-        'Capital' => [parent::class, 'Capital', null],
-        'Couleur' => [parent::class, 'Couleur', null],
-        'Created_at' => [parent::class, 'Created_at', null],
-        'Description' => [parent::class, 'Description', null],
-        'Dirigeant_hero' => [parent::class, 'Dirigeant_hero', null],
-        'Emblem_Image' => [parent::class, 'Emblem_Image', null],
-        'Faction_City' => [parent::class, 'Faction_City', null],
-        'Faction_Continent' => [parent::class, 'Faction_Continent', null],
-        'Faction_Guild' => [parent::class, 'Faction_Guild', null],
-        'Faction_Hero' => [parent::class, 'Faction_Hero', null],
-        'Faction_World' => [parent::class, 'Faction_World', null],
-        'Hero_Linked' => [parent::class, 'Hero_Linked', null],
-        'Image_Faction' => [parent::class, 'Image_Faction', null],
-        'Name' => [parent::class, 'Name', null],
-        'Regime' => [parent::class, 'Regime', null],
-        'Type' => [parent::class, 'Type', null],
-        'id' => [parent::class, 'id', null],
-    ];
+        "\0".parent::class."\0".'Capital' => [parent::class, 'Capital', null, 16],
+        "\0".parent::class."\0".'Couleur' => [parent::class, 'Couleur', null, 16],
+        "\0".parent::class."\0".'Created_at' => [parent::class, 'Created_at', null, 16],
+        "\0".parent::class."\0".'Description' => [parent::class, 'Description', null, 16],
+        "\0".parent::class."\0".'Dirigeant_hero' => [parent::class, 'Dirigeant_hero', null, 16],
+        "\0".parent::class."\0".'Emblem_Image' => [parent::class, 'Emblem_Image', null, 16],
+        "\0".parent::class."\0".'Faction_City' => [parent::class, 'Faction_City', null, 16],
+        "\0".parent::class."\0".'Faction_Continent' => [parent::class, 'Faction_Continent', null, 16],
+        "\0".parent::class."\0".'Faction_Guild' => [parent::class, 'Faction_Guild', null, 16],
+        "\0".parent::class."\0".'Faction_Hero' => [parent::class, 'Faction_Hero', null, 16],
+        "\0".parent::class."\0".'Faction_World' => [parent::class, 'Faction_World', null, 16],
+        "\0".parent::class."\0".'Hero_Linked' => [parent::class, 'Hero_Linked', null, 16],
+        "\0".parent::class."\0".'Image_Faction' => [parent::class, 'Image_Faction', null, 16],
+        "\0".parent::class."\0".'Name' => [parent::class, 'Name', null, 16],
+        "\0".parent::class."\0".'Regime' => [parent::class, 'Regime', null, 16],
+        "\0".parent::class."\0".'Type' => [parent::class, 'Type', null, 16],
+        "\0".parent::class."\0".'id' => [parent::class, 'id', null, 16],
+        'Capital' => [parent::class, 'Capital', null, 16],
+        'Couleur' => [parent::class, 'Couleur', null, 16],
+        'Created_at' => [parent::class, 'Created_at', null, 16],
+        'Description' => [parent::class, 'Description', null, 16],
+        'Dirigeant_hero' => [parent::class, 'Dirigeant_hero', null, 16],
+        'Emblem_Image' => [parent::class, 'Emblem_Image', null, 16],
+        'Faction_City' => [parent::class, 'Faction_City', null, 16],
+        'Faction_Continent' => [parent::class, 'Faction_Continent', null, 16],
+        'Faction_Guild' => [parent::class, 'Faction_Guild', null, 16],
+        'Faction_Hero' => [parent::class, 'Faction_Hero', null, 16],
+        'Faction_World' => [parent::class, 'Faction_World', null, 16],
+        'Hero_Linked' => [parent::class, 'Hero_Linked', null, 16],
+        'Image_Faction' => [parent::class, 'Image_Faction', null, 16],
+        'Name' => [parent::class, 'Name', null, 16],
+        'Regime' => [parent::class, 'Regime', null, 16],
+        'Type' => [parent::class, 'Type', null, 16],
+        'id' => [parent::class, 'id', null, 16],
+    ];
 
     public function __isInitialized(): bool
     {
