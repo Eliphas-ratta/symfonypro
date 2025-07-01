@@ -13,8 +13,8 @@ return [[
 'App__Entity__Hero__CLASSMETADATA__' => 6,
 'App__Entity__Race__CLASSMETADATA__' => 7,
 'App__Entity__World__CLASSMETADATA__' => 8,
-'App__Entity__User__CLASSMETADATA__' => 9,
-'App__Entity__Visibility__CLASSMETADATA__' => 10,
+'App__Entity__Visibility__CLASSMETADATA__' => 9,
+'App__Entity__User__CLASSMETADATA__' => 10,
 
 ], [
 
@@ -208,6 +208,9 @@ return [[
                     10 => [
                         'capacity_world_id' => 'capacity_world_id',
                     ],
+                ],
+                'deferrable' => [
+                    11 => false,
                 ],
                 'unique' => [
                     11 => false,
@@ -417,6 +420,9 @@ return [[
                         'city_world_id' => 'city_world_id',
                     ],
                 ],
+                'deferrable' => [
+                    11 => false,
+                ],
                 'unique' => [
                     11 => false,
                 ],
@@ -586,6 +592,9 @@ return [[
                     8 => [
                         'continent_world_id' => 'continent_world_id',
                     ],
+                ],
+                'deferrable' => [
+                    9 => false,
                 ],
                 'unique' => [
                     9 => false,
@@ -770,6 +779,9 @@ return [[
                     9 => [
                         'domain_world_id' => 'domain_world_id',
                     ],
+                ],
+                'deferrable' => [
+                    10 => false,
                 ],
                 'unique' => [
                     10 => false,
@@ -1170,6 +1182,9 @@ return [[
                     32 => [
                         'faction_world_id' => 'faction_world_id',
                     ],
+                ],
+                'deferrable' => [
+                    33 => false,
                 ],
                 'unique' => [
                     33 => false,
@@ -1814,6 +1829,9 @@ return [[
                         'hero_world_id' => 'hero_world_id',
                     ],
                 ],
+                'deferrable' => [
+                    35 => false,
+                ],
                 'unique' => [
                     35 => false,
                 ],
@@ -2035,6 +2053,9 @@ return [[
                     10 => [
                         'race_world_id' => 'race_world_id',
                     ],
+                ],
+                'deferrable' => [
+                    11 => false,
                 ],
                 'unique' => [
                     11 => false,
@@ -2346,6 +2367,90 @@ return [[
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
             clone ($p['Doctrine\\ORM\\Mapping\\FieldMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\FieldMapping')),
             clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\Visibility',
+                ],
+                'customRepositoryClassName' => [
+                    'App\\Repository\\VisibilityRepository',
+                ],
+                'identifier' => [
+                    [
+                        'id',
+                    ],
+                ],
+                'generatorType' => [
+                    4,
+                ],
+                'fieldMappings' => [
+                    [
+                        'id' => $o[1],
+                        'Visibility' => $o[2],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id' => 'id',
+                        'visibility' => 'Visibility',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'id' => 'id',
+                        'Visibility' => 'visibility',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'visibility',
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[3],
+                ],
+                'name' => [
+                    'App\\Entity\\Visibility',
+                ],
+                'id' => [
+                    1 => true,
+                ],
+                'type' => [
+                    1 => 'integer',
+                    'string',
+                ],
+                'fieldName' => [
+                    1 => 'id',
+                    'Visibility',
+                ],
+                'columnName' => [
+                    1 => 'id',
+                    'visibility',
+                ],
+                'length' => [
+                    2 => 255,
+                ],
+                'nullable' => [
+                    2 => true,
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+},
+10 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+            clone ($p['Doctrine\\ORM\\Mapping\\FieldMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\FieldMapping')),
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
             clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
             clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
             clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
@@ -2475,90 +2580,6 @@ return [[
                 ],
                 'targetEntity' => [
                     7 => 'App\\Entity\\World',
-                ],
-            ],
-        ],
-        $o[0],
-        []
-    );
-},
-10 => static function () {
-    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
-        $o = [
-            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
-            clone ($p['Doctrine\\ORM\\Mapping\\FieldMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\FieldMapping')),
-            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
-            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
-        ],
-        null,
-        [
-            'stdClass' => [
-                'namespace' => [
-                    'App\\Entity',
-                ],
-                'rootEntityName' => [
-                    'App\\Entity\\Visibility',
-                ],
-                'customRepositoryClassName' => [
-                    'App\\Repository\\VisibilityRepository',
-                ],
-                'identifier' => [
-                    [
-                        'id',
-                    ],
-                ],
-                'generatorType' => [
-                    4,
-                ],
-                'fieldMappings' => [
-                    [
-                        'id' => $o[1],
-                        'Visibility' => $o[2],
-                    ],
-                ],
-                'fieldNames' => [
-                    [
-                        'id' => 'id',
-                        'visibility' => 'Visibility',
-                    ],
-                ],
-                'columnNames' => [
-                    [
-                        'id' => 'id',
-                        'Visibility' => 'visibility',
-                    ],
-                ],
-                'table' => [
-                    [
-                        'name' => 'visibility',
-                    ],
-                ],
-                'idGenerator' => [
-                    $o[3],
-                ],
-                'name' => [
-                    'App\\Entity\\Visibility',
-                ],
-                'id' => [
-                    1 => true,
-                ],
-                'type' => [
-                    1 => 'integer',
-                    'string',
-                ],
-                'fieldName' => [
-                    1 => 'id',
-                    'Visibility',
-                ],
-                'columnName' => [
-                    1 => 'id',
-                    'visibility',
-                ],
-                'length' => [
-                    2 => 255,
-                ],
-                'nullable' => [
-                    2 => true,
                 ],
             ],
         ],

@@ -746,6 +746,15 @@ require_once __DIR__.'/doctrine/orm/Proxies/__CG__AppEntityVisibility.php';
 require_once __DIR__.'/doctrine/orm/Proxies/__CG__AppEntityWorld.php';
 
 $classes = [];
+$classes[] = 'Doctrine\\ORM\\Mapping\\ClassMetadata';
+$classes[] = 'Doctrine\\ORM\\Mapping\\FieldMapping';
+$classes[] = 'Doctrine\\ORM\\Mapping\\ManyToManyOwningSideMapping';
+$classes[] = 'Doctrine\\ORM\\Mapping\\JoinTableMapping';
+$classes[] = 'Doctrine\\ORM\\Mapping\\JoinColumnMapping';
+$classes[] = 'Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping';
+$classes[] = 'Doctrine\\ORM\\Id\\IdentityGenerator';
+$classes[] = 'Doctrine\\ORM\\Mapping\\ManyToManyInverseSideMapping';
+$classes[] = 'Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping';
 $preloaded = Preloader::preload($classes, $preloaded);
 
 $classes = [];
