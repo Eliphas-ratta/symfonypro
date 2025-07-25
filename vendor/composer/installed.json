@@ -4021,6 +4021,7 @@
             },
             "time": "2017-12-12T01:46:35+00:00",
             "type": "symfony-pack",
+            "installation-source": "dist",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"

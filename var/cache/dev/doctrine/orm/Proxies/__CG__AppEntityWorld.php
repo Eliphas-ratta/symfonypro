@@ -7,7 +7,7 @@ namespace Proxies\__CG__\App\Entity;
  */
 class World extends \App\Entity\World implements \Doctrine\ORM\Proxy\InternalProxy
 {
-     use \Symfony\Component\VarExporter\LazyGhostTrait {
+    use \Symfony\Component\VarExporter\LazyGhostTrait {
         initializeLazyObject as private;
         setLazyObjectAsInitialized as public __setInitialized;
         isLazyObjectInitialized as private;
@@ -22,33 +22,33 @@ class World extends \App\Entity\World implements \Doctrine\ORM\Proxy\InternalPro
     
 
     private const LAZY_OBJECT_PROPERTY_SCOPES = [
-        "\0".parent::class."\0".'Description' => [parent::class, 'Description', null],
-        "\0".parent::class."\0".'Name' => [parent::class, 'Name', null],
-        "\0".parent::class."\0".'World_Capacity' => [parent::class, 'World_Capacity', null],
-        "\0".parent::class."\0".'World_City' => [parent::class, 'World_City', null],
-        "\0".parent::class."\0".'World_Continent' => [parent::class, 'World_Continent', null],
-        "\0".parent::class."\0".'World_Domain' => [parent::class, 'World_Domain', null],
-        "\0".parent::class."\0".'World_Faction' => [parent::class, 'World_Faction', null],
-        "\0".parent::class."\0".'World_Guild' => [parent::class, 'World_Guild', null],
-        "\0".parent::class."\0".'World_Hero' => [parent::class, 'World_Hero', null],
-        "\0".parent::class."\0".'World_Race' => [parent::class, 'World_Race', null],
-        "\0".parent::class."\0".'Worldimage' => [parent::class, 'Worldimage', null],
-        "\0".parent::class."\0".'id' => [parent::class, 'id', null],
-        "\0".parent::class."\0".'users' => [parent::class, 'users', null],
-        'Description' => [parent::class, 'Description', null],
-        'Name' => [parent::class, 'Name', null],
-        'World_Capacity' => [parent::class, 'World_Capacity', null],
-        'World_City' => [parent::class, 'World_City', null],
-        'World_Continent' => [parent::class, 'World_Continent', null],
-        'World_Domain' => [parent::class, 'World_Domain', null],
-        'World_Faction' => [parent::class, 'World_Faction', null],
-        'World_Guild' => [parent::class, 'World_Guild', null],
-        'World_Hero' => [parent::class, 'World_Hero', null],
-        'World_Race' => [parent::class, 'World_Race', null],
-        'Worldimage' => [parent::class, 'Worldimage', null],
-        'id' => [parent::class, 'id', null],
-        'users' => [parent::class, 'users', null],
-    ];
+        "\0".parent::class."\0".'Description' => [parent::class, 'Description', null, 16],
+        "\0".parent::class."\0".'Name' => [parent::class, 'Name', null, 16],
+        "\0".parent::class."\0".'World_Capacity' => [parent::class, 'World_Capacity', null, 16],
+        "\0".parent::class."\0".'World_City' => [parent::class, 'World_City', null, 16],
+        "\0".parent::class."\0".'World_Continent' => [parent::class, 'World_Continent', null, 16],
+        "\0".parent::class."\0".'World_Domain' => [parent::class, 'World_Domain', null, 16],
+        "\0".parent::class."\0".'World_Faction' => [parent::class, 'World_Faction', null, 16],
+        "\0".parent::class."\0".'World_Guild' => [parent::class, 'World_Guild', null, 16],
+        "\0".parent::class."\0".'World_Hero' => [parent::class, 'World_Hero', null, 16],
+        "\0".parent::class."\0".'World_Race' => [parent::class, 'World_Race', null, 16],
+        "\0".parent::class."\0".'Worldimage' => [parent::class, 'Worldimage', null, 16],
+        "\0".parent::class."\0".'id' => [parent::class, 'id', null, 16],
+        "\0".parent::class."\0".'users' => [parent::class, 'users', null, 16],
+        'Description' => [parent::class, 'Description', null, 16],
+        'Name' => [parent::class, 'Name', null, 16],
+        'World_Capacity' => [parent::class, 'World_Capacity', null, 16],
+        'World_City' => [parent::class, 'World_City', null, 16],
+        'World_Continent' => [parent::class, 'World_Continent', null, 16],
+        'World_Domain' => [parent::class, 'World_Domain', null, 16],
+        'World_Faction' => [parent::class, 'World_Faction', null, 16],
+        'World_Guild' => [parent::class, 'World_Guild', null, 16],
+        'World_Hero' => [parent::class, 'World_Hero', null, 16],
+        'World_Race' => [parent::class, 'World_Race', null, 16],
+        'Worldimage' => [parent::class, 'Worldimage', null, 16],
+        'id' => [parent::class, 'id', null, 16],
+        'users' => [parent::class, 'users', null, 16],
+    ];
 
     public function __isInitialized(): bool
     {

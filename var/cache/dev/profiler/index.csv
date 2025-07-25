@@ -1561,3 +1561,13 @@ f37f85,127.0.0.1,GET,https://127.0.0.1:8000/privacy-policy,1751225026,,200,reque
 c08046,127.0.0.1,GET,https://127.0.0.1:8000/legal-notice,1751225138,,200,request
 eabf6b,127.0.0.1,GET,https://127.0.0.1:8000/legal-notice,1751225233,,200,request
 7ceafd,127.0.0.1,GET,https://127.0.0.1:8000/privacy-policy,1751225276,,200,request
+13b310,127.0.0.1,GET,https://127.0.0.1:8000/,1751225565,,200,request
+9cce7f,127.0.0.1,GET,https://127.0.0.1:8000/,1753456852,,200,request
+113e65,127.0.0.1,GET,https://127.0.0.1:8000/world,1753456857,,200,request
+3d73ca,127.0.0.1,GET,https://127.0.0.1:8000/hero/8,1753456866,,200,request
+c0935b,127.0.0.1,GET,https://127.0.0.1:8000/world/8/factions,1753456867,,200,request
+b7027b,127.0.0.1,GET,https://127.0.0.1:8000/hero/show/23,1753456869,,200,request
+628c0e,127.0.0.1,GET,https://127.0.0.1:8000/hero/show/23,1753456873,,200,request
+70b317,127.0.0.1,GET,https://127.0.0.1:8000/hero/show/25,1753456875,,200,request
+f470a7,127.0.0.1,GET,https://127.0.0.1:8000/hero/show/25,1753456876,,200,request
+9a68cb,127.0.0.1,GET,https://127.0.0.1:8000/hero/show/24,1753456877,,200,request
